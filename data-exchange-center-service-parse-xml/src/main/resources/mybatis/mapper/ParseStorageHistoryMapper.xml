@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.parse.xml.mapper.ParseStorageHistoryMapper">
+	<!-- 配置二级缓存刷新时间为24小时一次 -->
+	<cache flushInterval="864000000"/>
+	<resultMap id="xmlContent" type="data.exchange.center.service.parse.xml.domain.XmlContent">
+		<result column="AJBS"        property="AJBS"       javaType="string"        jdbcType="VARCHAR" />
+		<result column="AJLX"        property="AJLX"       javaType="string"        jdbcType="VARCHAR" />
+		<result column="FYDM"        property="FYDM"       javaType="string"        jdbcType="VARCHAR" />
+		<result column="AJZT"        property="AJZT"       javaType="string"        jdbcType="VARCHAR" />
+		<result column="AH"          property="AH"         javaType="string"        jdbcType="VARCHAR" />
+		
+		<result column="LARQ"        property="LARQ"       javaType="java.sql.Date" jdbcType="TIMESTAMP" />
+		<result column="JARQ"        property="JARQ"       javaType="java.sql.Date" jdbcType="TIMESTAMP" />
+		<result column="XMLNR"       property="XMLNR"      javaType="Object"        jdbcType="BLOB" />
+		<result column="CREATETIME"  property="CREATETIME" javaType="string"        jdbcType="VARCHAR" />
+		<result column="LASTUPDATE"  property="LASTUPDATE" javaType="java.sql.Date" jdbcType="TIMESTAMP" />
+		
+		<result column="DESTSCHEMA"  property="DESTSCHEMA" javaType="string"        jdbcType="VARCHAR" />
+		<result column="AJSOURCE"    property="AJSOURCE"   javaType="string"        jdbcType="VARCHAR" />
+		<result column="INPUTSRC"    property="INPUTSRC"   javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ajlxMeta" type="data.exchange.center.service.parse.xml.domain.AjlxMeta">
+		<result column="N_ID"        property="nId"        javaType="int"           jdbcType="INTEGER" />
+		<result column="C_AJLX"      property="cAjlx"      javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_NAME"      property="cName"      javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_EPREFIX"   property="cEprefix"   javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_AJLB"      property="cAjlb"      javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_FB"        property="cFb"        javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_STAT"      property="cStat"      javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ajlxMeta1" type="data.exchange.center.service.parse.xml.domain.AjlxMeta">
+		<result column="N_ID"        property="nId"        javaType="int"           jdbcType="INTEGER" />
+		<result column="C_AJLX"      property="cAjlx"      javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_NAME"      property="cName"      javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_EPREFIX"   property="cEprefix"   javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_AJLB"      property="cAjlb"      javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_FB"        property="cFb"        javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_STAT"      property="cStat"      javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="colMeta" type="data.exchange.center.service.parse.xml.domain.ColMeta">
+		<result column="C_ETBNAME"   property="cEtbname"   javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_CTBNAME"   property="cCtbname"   javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_TABLEID"   property="cTableid"   javaType="string"        jdbcType="VARCHAR" />
+		<result column="N_SN"        property="nSn"        javaType="int"           jdbcType="INTEGER" />
+		<result column="C_ECOLNAME"  property="cEcolname"  javaType="string"        jdbcType="VARCHAR" />
+		
+		<result column="C_CCOLNAME"  property="cCcolname"  javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_DATATYPE"  property="cDatatype"  javaType="string"        jdbcType="VARCHAR" />
+		<result column="N_DATALEN"   property="nDatalen"   javaType="int"           jdbcType="INTEGER" />
+		<result column="N_PRECISION" property="nPrecision" javaType="int"           jdbcType="INTEGER" />
+		<result column="C_DESC"      property="cDesc"      javaType="string"        jdbcType="VARCHAR" />
+		
+		<result column="C_CODEID"    property="cCodeid"    javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_NOTNULL"   property="cNotnull"   javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_PUCOL"     property="cPucol"     javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_USERID"    property="cUserid"    javaType="string"        jdbcType="VARCHAR" />
+		<result column="D_CREATE"    property="dCreate"    javaType="java.sql.Date" jdbcType="TIMESTAMP" />
+		
+		<result column="D_UPDATE"    property="dUpdate"    javaType="java.sql.Date" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="tableMeta" type="data.exchange.center.service.parse.xml.domain.TableMeta">
+		<result column="C_TABLEID"   property="cTableid"   javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_TREEID"    property="cTreeid"    javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_NODEID"    property="cNodeid"    javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_ETBNAME"   property="cEtbname"   javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_CTBNAME"   property="cCtbname"   javaType="string"        jdbcType="VARCHAR" />
+		
+		<result column="C_DESC"      property="cDesc"      javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_AJLXCODE"  property="cAjlxcode"  javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_USERID"    property="cUserid"    javaType="string"        jdbcType="VARCHAR" />
+		<result column="D_CREATE"    property="dCreate"    javaType="java.sql.Date" jdbcType="TIMESTAMP" />
+		<result column="D_UPDATE"    property="dUpdate"    javaType="java.sql.Date" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<select id="getXML" parameterType="java.util.Map" resultMap="xmlContent" useCache="false">
+		SELECT AJBS, AJLX, FYDM, AJZT, AH, LARQ, 
+		       JARQ, XMLNR, CREATETIME, LASTUPDATE, 
+		       DESTSCHEMA, AJSOURCE, INPUTSRC 
+		  FROM SGYLS.BUF_EXTERNAL2XML 
+		 WHERE 1=1
+		   AND XMLTYPE = 1
+		   AND UPPER(DESTSCHEMA) = 'SGY'
+		   AND AJSOURCE = '001'
+		   <if test="map.param!=null and map.param!='' ">
+			   AND AJBS = #{map.param}
+		  </if>
+	</select>
+	<select	id="getAjlxMetaC" parameterType="String" resultMap="ajlxMeta">
+		SELECT N_ID, C_AJLX, C_NAME, C_EPREFIX, C_AJLB, C_FB, C_STAT 
+		  FROM DCADM.DC_AJLXLIST 
+		 WHERE C_NAME = #{ajlxCname}
+	</select>
+	<select	id="getAjlxMetaE" parameterType="String" resultMap="ajlxMeta1">
+		SELECT N_ID, C_AJLX, C_NAME, C_EPREFIX, C_AJLB, C_FB, C_STAT 
+		  FROM DCADM.DC_AJLXLIST 
+		 WHERE C_AJLX = #{ajlxEname}
+	</select>
+	<select id="getColMeta" parameterType="String" resultMap="colMeta">
+		SELECT T1.C_ETBNAME, T1.C_CTBNAME,
+           T2.C_TABLEID, T2.N_SN, T2.C_ECOLNAME, T2.C_CCOLNAME, T2.C_DATATYPE, 
+           T2.N_DATALEN, T2.N_PRECISION, T2.C_DESC, T2.C_CODEID, T2.C_NOTNULL,
+           T2.C_PUCOL, T2.C_USERID, T2.D_CREATE, T2.D_UPDATE
+          FROM DCADM.DC_META_TREETABLE T1, 
+               DCADM.DC_META_TABCOL    T2
+         WHERE T1.C_AJLXCODE = (SELECT C_AJLX 
+                                  FROM DCADM.DC_AJLXLIST
+                                 WHERE C_AJLX = #{ajlxEname})
+           AND T2.C_TABLEID=T1.C_TABLEID
+           AND T1.C_TREEID IN ('2', '3')
+       	 UNION 
+		SELECT T1.C_ETBNAME, T1.C_CTBNAME,
+               T2.C_TABLEID, T2.N_SN, T2.C_ECOLNAME, T2.C_CCOLNAME, T2.C_DATATYPE, 
+               T2.N_DATALEN, T2.N_PRECISION, T2.C_DESC, T2.C_CODEID, T2.C_NOTNULL,
+               T2.C_PUCOL, T2.C_USERID, T2.D_CREATE, T2.D_UPDATE
+          FROM DCADM.DC_META_TREETABLE T1, 
+               DCADM.DC_META_TABCOL    T2
+         WHERE T1.C_ETBNAME = 'YASTML_YASTML'
+           AND T2.C_TABLEID=T1.C_TABLEID
+           AND T1.C_TREEID = '2'
+	</select>
+	<select id="getTableMeta" parameterType="String" resultMap="tableMeta">
+		SELECT C_TABLEID, C_TREEID, C_NODEID, C_ETBNAME,
+               C_CTBNAME, C_DESC, C_AJLXCODE, C_USERID, D_CREATE, D_UPDATE
+    	  FROM DCADM.DC_META_TREETABLE
+         WHERE C_AJLXCODE = (SELECT C_AJLX 
+                               FROM DCADM.DC_AJLXLIST
+                              WHERE C_AJLX = #{ajlxEname})
+           AND C_TREEID IN ('2', '3')
+ 		UNION                              
+ 		SELECT C_TABLEID, C_TREEID, C_NODEID, C_ETBNAME,
+               C_CTBNAME, C_DESC, C_AJLXCODE, C_USERID, D_CREATE, D_UPDATE
+    	  FROM DCADM.DC_META_TREETABLE
+         WHERE C_ETBNAME = 'YASTML_YASTML'
+           AND C_TREEID = '2'
+	</select>
+	<insert id="insertTable_uf_eaj" parameterType="java.util.Map">
+		INSERT INTO BUF_EAJ
+			(AJBS, AJLX, DEPTCODE, REGDATE, LASTUPDATE, CONTENTUPD, 
+			 AH, AJJZJD, LARQ, JARQ, LAAY, CBSPTBS, CBSPT, CBR,  SRCCODE)
+		values(
+			#{map.AJBS,       jdbcType=VARCHAR},
+			#{map.AJLX,       jdbcType=VARCHAR},
+			#{map.DEPTCODE,   jdbcType=VARCHAR},
+			#{map.REGDATE,    jdbcType=DATE},
+			#{map.LASTUPDATE, jdbcType=DATE},
+			#{map.CONTENTUPD, jdbcType=DATE},
+			#{map.AH,         jdbcType=VARCHAR},
+			#{map.AJJZJD,     jdbcType=VARCHAR},
+			#{map.LARQ,       jdbcType=DATE},
+			#{map.JARQ,       jdbcType=DATE},
+			#{map.LAAY,       jdbcType=INTEGER},
+			#{map.CBSPTBS,    jdbcType=INTEGER},
+			#{map.CBSPT,      jdbcType=VARCHAR},
+			#{map.CBR,        jdbcType=INTEGER},
+			#{map.SRCCODE,    jdbcType=VARCHAR}
+		)
+	</insert>
+	<delete id="delete_buf_eaj" parameterType="String">
+		DELETE FROM BUF_EAJ 
+		 WHERE AJBS = #{ajbs, jdbcType=VARCHAR}
+	</delete>
+	<insert id="saveCase" parameterType="java.util.Map">
+		${params.insertSql}
+	</insert>
+	<delete id="deleteTableRecord" parameterType="String">
+		${deleteSql}	
+	</delete>
+</mapper> 

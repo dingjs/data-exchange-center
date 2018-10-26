@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.sfgk.mapper.AjgkPcMapper">
+
+	<resultMap id="outMapPcajjbxx" type="data.exchange.center.service.sfgk.domain.pc.Pcajjbxx">
+		<result column="wyzjbh"    property="wyzjbh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajbs"    property="ajbs"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ah"    property="ah"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajlxdm"    property="ajlxdm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajlxmc"    property="ajlxmc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajlxbsdm"    property="ajlxbsdm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajlxbsmc"    property="ajlxbsmc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="jbfydm"    property="jbfydm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="jbfymc"    property="jbfymc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajlydm"    property="ajlydm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajlymc"    property="ajlymc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="xajlydm"    property="xajlydm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="xajlymc"    property="xajlymc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="larq"    property="larq"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="laaydm"    property="laaydm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="laaymc"    property="laaymc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="qqpcje"    property="qqpcje"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajjzjddm"    property="ajjzjddm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajjzjdmc"    property="ajjzjdmc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="gkztdm"    property="gkztdm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="gkztmc"    property="gkztmc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="gkrq"    property="gkrq"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="cxrq"    property="cxrq"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="yxztdm"    property="yxztdm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="yxztmc"    property="yxztmc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="cbspt"    property="cbspt"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="cbr"    property="cbr"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="fdsxts"    property="fdsxts"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="sxjmrq"    property="sxjmrq"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="jarq"    property="jarq"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="jaaydm"    property="jaaydm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="jaaymc"    property="jaaymc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="jafsdm"    property="jafsdm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="jafsmc"    property="jafsmc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="xjafsdm"    property="xjafsdm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="xjafsmc"    property="xjafsmc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="pcfsdm"    property="pcfsdm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="pcfsmc"    property="pcfsmc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="cjsj"    property="cjsj"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="cjr"    property="cjr"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="gxsj"    property="gxsj"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="gxr"    property="gxr"    javaType="string"    jdbcType="VARCHAR" />
+  	</resultMap>
+	<resultMap id="outMapPcYaqk" type="data.exchange.center.service.sfgk.domain.pc.Yaqk">
+		<result column="bh"    property="bh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajbh"    property="ajbh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="xh"    property="xh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ah"    property="ah"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="jbfydm"    property="jbfydm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="jbfymc"    property="jbfymc"    javaType="string"    jdbcType="VARCHAR" />
+  	</resultMap>
+	<resultMap id="outMapPcTsxx" type="data.exchange.center.service.sfgk.domain.pc.Tsxx">
+		<result column="bh"    property="bh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajbh"    property="ajbh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="xh"    property="xh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ftytdm"    property="ftytdm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ftytmc"    property="ftytmc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="kssj"    property="kssj"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="jssj"    property="jssj"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="dd"    property="dd"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="sfgkktdm"    property="sfgkktdm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="sfgkktmc"    property="sfgkktmc"    javaType="string"    jdbcType="VARCHAR" />
+  	</resultMap>
+	<resultMap id="outMapPcYcsx" type="data.exchange.center.service.sfgk.domain.pc.Ycsx">
+		<result column="bh"    property="bh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajbh"    property="ajbh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="xh"    property="xh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="sqrq"    property="sqrq"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="sqsyhyydm"    property="sqsyhyydm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="sqsyhyymc"    property="sqsyhyymc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ycqjdm"    property="ycqjdm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ycqjmc"    property="ycqjmc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="spyj"    property="spyj"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ksrq"    property="ksrq"    javaType="string"    jdbcType="VARCHAR" />
+  	</resultMap>
+	<resultMap id="outMapPcKcsx" type="data.exchange.center.service.sfgk.domain.pc.Kcsx">
+		<result column="bh"    property="bh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajbh"    property="ajbh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="xh"    property="xh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="kcsxlxdm"    property="kcsxlxdm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="kcsxlxmc"    property="kcsxlxmc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="kcsxsydm"    property="kcsxsydm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="kcsxsymc"    property="kcsxsymc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="qsrq"    property="qsrq"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="jsrq"    property="jsrq"    javaType="string"    jdbcType="VARCHAR" />
+  	</resultMap>
+	<resultMap id="outMapPcZzhf" type="data.exchange.center.service.sfgk.domain.pc.Zzhf">
+		<result column="bh"    property="bh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajbh"    property="ajbh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="xh"    property="xh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="zzrq"    property="zzrq"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="zzsydm"    property="zzsydm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="zzsymc"    property="zzsymc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="hfrq"    property="hfrq"    javaType="string"    jdbcType="VARCHAR" />
+  	</resultMap>
+	<resultMap id="outMapPcDsr" type="data.exchange.center.service.sfgk.domain.pc.Pcdsr">
+		<result column="bh"    property="bh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajbh"    property="ajbh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="xh"    property="xh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="lxdm"    property="lxdm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="lxmc"    property="lxmc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="mc"    property="mc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ssdwdm"    property="ssdwdm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ssdwmc"    property="ssdwmc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="fddbr"    property="fddbr"    javaType="string"    jdbcType="VARCHAR" />
+  	</resultMap>
+	<resultMap id="outMapPcywjg" type="data.exchange.center.service.sfgk.domain.pc.Pcywjg">
+		<result column="bh"    property="bh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajbh"    property="ajbh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="xh"    property="xh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="lxdm"    property="lxdm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="lxmc"    property="lxmc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="pcywjg"    property="pcywjg"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="pcje"    property="pcje"    javaType="string"    jdbcType="VARCHAR" />
+  	</resultMap>
+	<resultMap id="outMapPcSpzzcy" type="data.exchange.center.service.sfgk.domain.pc.Spzzcy">
+		<result column="bh"    property="bh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajbh"    property="ajbh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="xh"    property="xh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="xm"    property="xm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="jsdm"    property="jsdm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="jsmc"    property="jsmc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="lxdh"    property="lxdh"    javaType="string"    jdbcType="VARCHAR" />
+  	</resultMap>
+	<resultMap id="outMapPcZjxx" type="data.exchange.center.service.sfgk.domain.pc.Zjxx">
+		<result column="bh"    property="bh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajbh"    property="ajbh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="xh"    property="xh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="zjmc"    property="zjmc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="zjlxdm"    property="zjlxdm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="zjlxmc"    property="zjlxmc"    javaType="string"    jdbcType="VARCHAR" />
+  	</resultMap>
+
+	<select id="getPcAjgkxx" parameterType="java.util.Map" statementType="CALLABLE" >
+		<![CDATA[
+		{CALL  DCADM.DC_SPLCGKTEST.GETPCAJ(
+			#{ajbs, mode=IN, jdbcType=VARCHAR},
+			#{ajlx, mode=IN, jdbcType=VARCHAR},
+			#{v_cursor1,  mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,   resultMap=outMapPcajjbxx},
+			#{v_cursor2,  mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,   resultMap=outMapPcYaqk},
+			#{v_cursor3,  mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,   resultMap=outMapPcTsxx},
+			#{v_cursor4,  mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,   resultMap=outMapPcYcsx},
+			#{v_cursor5,  mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,   resultMap=outMapPcKcsx},
+			#{v_cursor6,  mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,   resultMap=outMapPcZjxx},
+			#{v_cursor7,  mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,   resultMap=outMapPcDsr},
+			#{v_cursor8,  mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,   resultMap=outMapPcSpzzcy},
+			#{v_cursor9,  mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,   resultMap=outMapPcywjg},
+			#{v_cursor10, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,   resultMap=outMapPcZzhf}
+		)}
+		]]>
+	</select>
+</mapper>

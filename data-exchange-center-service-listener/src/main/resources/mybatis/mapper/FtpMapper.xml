@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.listener.mapper.FtpMapper">
+	
+	<select id="selectCount" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(1) FROM SGY.DZJZ_FTP_CODE
+		 WHERE 1 = 1
+		<if test="fydm != null and fydm != '' ">
+         	AND FYDM     = #{fydm}
+		</if>
+		<if test="ftpname != null and ftpname != '' ">
+         	AND FTPNAME  = #{ftpname}
+		</if>
+		<if test="ipaddr != null and ipaddr != '' ">
+         	AND HOST     = #{ipaddr}
+		</if>
+		<if test="ftpport != null and ftpport != '' ">
+         	AND PORT     = #{ftpport}
+		</if>
+		<if test="usrname != null and usrname != '' ">
+         	AND USERNAME = #{usrname}
+		</if>
+		<if test="passwd != null and passwd != '' ">
+         	AND PASSWORD = #{passwd}
+		</if>
+		<if test="root != null and root != '' ">
+         	AND ROOT     = #{root}
+		</if>
+	</select>
+	<insert id="addNewFtp" parameterType="java.util.Map">
+		INSERT INTO SGY.DZJZ_FTP_CODE 
+		       (FYDM, 
+		       FTPNAME, 
+		       HOST, 
+		       PORT, 
+		       PASSWORD, 
+		       NOWFTP, 
+		       ROOT, 
+		       USERNAME, 
+		       LOCALPASSIVEMODE, 
+		       ENCODING, 
+		       CLIENTTIMEOUT, 
+		       POOLSIZE, 
+		       TRANSFERFILETYPE) 
+		VALUES (#{fydm},
+               #{ftpname},
+               #{ipaddr}, 
+               #{ftpport}, 
+               #{passwd}, 
+               '1', 
+               '/', 
+               #{usrname}, 
+               '1', 
+               '新增FTP', 
+               '10000',
+		       '1', 
+		       '2')
+	</insert>
+	<update id="updateFtp" parameterType="java.util.Map">
+		UPDATE SGY.DZJZ_FTP_CODE
+		   SET HOST     = #{ipaddr},
+         	   PORT     = #{ftpport},
+         	   USERNAME = #{usrname},
+         	   PASSWORD = #{passwd},
+         	   ROOT     = #{root}
+         WHERE FYDM     = #{fydm}
+           AND FTPNAME  = #{ftpname}
+	</update>
+	<select id="getUpdateCount" resultType="int">
+		SELECT count(1) FROM SGY.DZJZ_FTP_CODE WHERE encoding = '新增FTP'
+	</select>
+	<insert id="addRecoveryAjbs" parameterType="java.util.Map">
+		INSERT INTO DCADM.DC_RCB_AJBS(C_AJBS, C_DEPTCODE, C_SRCCODE, C_LOCK)
+		VALUES(#{ajbs},#{fydm},'003', '0')
+	</insert>
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CASE:schema xmlns:CASE="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://dataexchange.court.gov.cn/2009/data" targetNamespace="http://dataexchange.court.gov.cn/2009/data" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<CASE:element name="公开方式" type="公开"/>
+	<CASE:complexType name="法院与公开方式的关联关系">
+		<CASE:sequence>
+			<CASE:element name="R" type="法院与公开方式的关联关系1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="法院与公开方式的关联关系1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="法院编号" type="C50"/>
+			<CASE:element name="公开方式的编号" type="N" minOccurs="0"/>
+			<CASE:element name="开通时间" type="DT" minOccurs="0"/>
+			<CASE:element name="地址" type="C100" minOccurs="0"/>
+			<CASE:element name="更新时间" type="DT" minOccurs="1"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="公开">
+		<CASE:sequence>
+			<CASE:element name="法院与公开方式的关联关系" type="法院与公开方式的关联关系" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:simpleType name="C32">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="32"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="C50">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="50"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="N">
+		<CASE:restriction base="xsd:int"/>
+	</CASE:simpleType>
+	<CASE:simpleType name="DT">
+		<CASE:restriction base="xsd:dateTime"/>
+	</CASE:simpleType>
+	<CASE:simpleType name="C100">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="100"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+</CASE:schema>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>智能辅助办案系统-法院端</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+<link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css" />
+<link rel="stylesheet" href="plugins/datepicker/datepicker3.css" />
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<link rel="icon" type="image/x-icon" href="/ico/favicon.ico">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+
+		<header class="main-header">
+			<a href="#" class="logo">
+				<span class="logo-lg"><b>政法数据交换监控平台</b></span>
+			</a>
+			<nav class="navbar navbar-static-top">
+				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+			</nav>
+		</header>
+		<!-- Left side column. contains the logo and sidebar -->
+  		<aside class="main-sidebar">
+
+    	<!-- sidebar: style can be found in sidebar.less -->
+    		<section class="sidebar">
+
+      			<!-- Sidebar user panel (optional) -->
+      			<div class="user-panel">
+        			<div class="pull-left image">
+          				<img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
+        			</div>
+        			<div class="pull-left info">
+          				<p>菜单栏</p>
+          				<!-- Status -->
+          				<a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+        			</div>
+      			</div>
+
+      			<!-- Sidebar Menu -->
+      			<ul class="sidebar-menu" data-widget="tree">
+        			<li class="header">查询</li>
+        			<!-- Optionally, you can add icons to the links -->
+        			<li class="active">
+        				<a href="index.html">
+        					<i class="fa fa-th"></i>
+							<span>案件交换查询</span>
+						</a>
+					</li>
+       				<li>
+       					<a href="widget-table.html">
+       						<i class="fa fa-table"></i>
+							<span>收案情况查询</span>
+						</a>
+					</li>
+      			</ul>
+      			<!-- /.sidebar-menu -->
+    		</section>
+    		<!-- /.sidebar -->
+  		</aside>
+		<div class="content-wrapper">
+			<section class="content-header">
+				<h1>
+					智能辅助办案 <small>监控平台</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> 案件状态查询</a></li>
+				</ol>
+			</section>
+
+			<section class="content">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">案件交换查询</h3>
+								<div>
+									<div style="font-weight:bold;">
+										注意：
+									</div>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.检察院移送案件到法院非实时，如果未查询到案件信息请耐心等待，一般1天内法院端会收到。
+										<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2."JZJBXX的部分JZMLWJ节点缺失"表示检察院移送到法院的案件数据包格式错误。
+										<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.该案件缺少必要的文书或卷宗文件信息"表示检察院移送到法院的案件缺少文书或者卷宗 。
+										<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.若一个案件在监控平台能够查询到在审判系统未查询到，此时需要咨询下蔡老师。
+								</div>
+							</div>
+							<div class="box-body">
+								<div class="btn-group" style="float: right">
+									<button type="button" onclick="sybData()" class="btn btn-warning" data-btn-type="search">查询</button>
+								</div>
+								<div class="input-group" style="float: right; width: 100px">
+									<input type="text" class="form-control" name="endDate" id="endDate" placeholder="结束日期"></input>
+								</div>
+								<div class="input-group" style="float: right; width: 100px">
+									<input type="text" class="form-control" name="startDate" id="startDate" placeholder="开始日期"></input>
+								</div>
+								<div class="input-group" style="float: right; width: 100px">
+									<input type="text" class="form-control" name="dsr" id="dsr" placeholder="当事人姓名"></input>
+								</div>
+								<div class="input-group" style="float: right; width: 220px">
+									<input type="text" class="form-control" name="wsbh" id="wsbh" placeholder="接收单位"></input>
+								</div>
+								<div class="input-group" style="float: right; width: 230px">
+									<input type="text" class="form-control" name="ajbh" id="ajbh" placeholder="案件编号"></input>
+								</div>
+								<table id="dataTable" class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>案件编号</th>
+											<th>文书编号</th>
+											<th>当事人</th>
+											<th>案件名称</th>
+											<th>发送单位</th>
+											<th>接收单位</th>
+											<th>中心平台接收时间</th>
+											<th>中心平台状态</th>
+											<th>对应案件标识</th>
+											<th>业务系统状态</th>
+											<th>业务系统接收时间</th>
+											<th>交换编号</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="item:${list}">
+											<td th:text="${item.ptajbh}"></td>
+											<td th:text="${item.wswh}"></td>
+											<td th:text="${item.dsr}"></td>
+											<td th:text="${item.ajmc}"></td>
+											<td th:text="${item.fsdw}"></td>
+											<td th:text="${item.jsdw}"></td>
+											<td th:text="${item.jssj}"></td>
+											<td th:text="${item.msg}"></td>
+											<td th:text="${item.ajbs}"></td>
+											<td th:text="${item.flag}"></td>
+											<td th:text="${item.fksj}"></td>
+											<td th:text="${item.jhbh}"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<footer class="main-footer">
+			<div class="pull-right hidden-xs">
+				<b>Version</b> v3.1
+			</div>
+			<strong>Copyright &copy; 2018 四川省高级人民法院数据中心平台.</strong> All rights
+			reserved.
+		</footer>
+		<div class="control-sidebar-bg"></div>
+	</div>
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+	<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="bower_components/fastclick/lib/fastclick.js"></script>
+	<script src="dist/js/adminlte.min.js"></script>
+	<script src="dist/js/demo.js"></script>
+	<script src="plugins/datepicker/bootstrap-datepicker.js"></script>
+	<script src="plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
+	<script>
+		function sybData() {
+			var table = $('#dataTable').DataTable();
+			table.destroy();
+			var startDate = $("#startDate").val() == "" ? null : $("#startDate").val();
+			var endDate   = $("#endDate").val()   == "" ? null : $("#endDate").val();
+			var dsr       = $("#dsr").val()       == "" ? null : $("#dsr").val();
+			var ajbh      = $("#ajbh").val()      == "" ? null : $("#ajbh").val();
+			var wsbh      = $("#wsbh").val()      == "" ? null : $("#wsbh").val();
+			/* if(startDate == ""||startDate == null){
+				alert("请选择开始日期");
+				return;
+			}
+			if(endDate == ""||endDate ==null){
+				alert("请选择结束日期");
+				return;
+			} */
+			table = $('#dataTable').DataTable({
+				"paging" : true,
+				"destroy" : true,
+				//"lengthChange": false,
+				"searching" : false,
+				"ordering" : true,
+				"info" : true,
+				"autoWidth" : false,
+				"scrollX" : true,
+				"order": [6, 'desc'],
+				"iDisplayLength":10,
+				"ajax" : {
+					url : "/queryJhkLog",
+					type : "GET",
+					data : {
+						startDate : startDate,
+						endDate   : endDate,
+						dsr       : dsr,
+						ajbh      : ajbh,
+						wsbh      : wsbh
+					}
+				},
+				"columns" : [ {
+					"data" : "ptajbh"
+				}, {
+					"data" : "wswh"
+				}, {
+					"data" : "dsr"
+				}, {
+					"data" : "ajmc"
+				}, {
+					"data" : "fsdw"
+				}, {
+					"data" : "jsdw"
+				},  {
+					"data" : "jssj"
+				}, {
+					"data" : "msg"
+				}, {
+					"data" : "ajbs"
+				} , {
+					"data" : "flag"
+				} , {
+					"data" : "fksj"
+				} , {
+					"data" : "jhbh"
+				}],
+				'language' : {
+					'emptyTable' : '没有数据',
+					'loadingRecords' : '加载中...',
+					'processing' : '查询中...',
+					'search' : '搜索:',
+					'lengthMenu' : '每页 _MENU_ 条记录',
+					'zeroRecords' : '没有数据',
+					'paginate' : {
+						'next' : '下一页',
+						'previous' : '上一页'
+					},
+					'info' : '第 _PAGE_ 页 / 共 _PAGES_ 页',
+					'infoEmpty' : '没有数据',
+					'infoFiltered' : '(从 _MAX_ 条记录中筛选)'
+				}
+			});
+		}
+
+		$(function() {
+			$("#startDate").val("");
+			$("#endDate").val("");
+			$("#dsr").val("");
+			$("#ajbh").val("");
+			$("#wsbh").val("");
+			$('#dataTable').DataTable({
+				"paging" : true,
+				"destroy" : true,
+				//"lengthChange": false,
+				"searching" : false,
+				"ordering" : true,
+				"info" : true,
+				"autoWidth" : false,
+				"scrollX" : true,
+				"iDisplayLength":10,
+				'language' : {
+					'emptyTable' : '没有数据',
+					'loadingRecords' : '加载中...',
+					'processing' : '查询中...',
+					'search' : '搜索:',
+					'lengthMenu' : '每页 _MENU_ 条记录',
+					'zeroRecords' : '没有数据',
+					'paginate' : {
+						'next' : '下一页',
+						'previous' : '上一页'
+					},
+					'info' : '第 _PAGE_ 页 / 共 _PAGES_ 页',
+					'infoEmpty' : '没有数据',
+					'infoFiltered' : '(从 _MAX_ 条记录中筛选)'
+				}
+			});
+		});
+		$("#startDate").datepicker({
+		    language: "zh-CN",
+		    autoclose: true,//选中之后自动隐藏日期选择框
+		    //clearBtn: true,//清除按钮
+		    //todayBtn: true,//今日按钮
+		    format: "yyyy-mm-dd",
+		    defaultDate : new Date(),
+		    endDate:new Date()
+		    //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+		});
+		$("#endDate").datepicker({
+		    language: "zh-CN",
+		    autoclose: true,//选中之后自动隐藏日期选择框
+		    //clearBtn: true,//清除按钮
+		    //todayBtn: true,//今日按钮
+		    format: "yyyy-mm-dd",
+		    defaultDate : new Date(),
+		    endDate:new Date()
+		    //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+		});
+	</script>
+</body>
+</html>

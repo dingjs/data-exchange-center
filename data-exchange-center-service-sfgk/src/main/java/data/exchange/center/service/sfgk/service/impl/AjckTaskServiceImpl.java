@@ -1,0 +1,129 @@
+ package data.exchange.center.service.sfgk.service.impl;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.dom4j.io.OutputFormat;
+import org.dom4j.io.XMLWriter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import data.exchange.center.common.time.TimeUtils;
+import data.exchange.center.service.sfgk.domain.Ktgkxx;
+import data.exchange.center.service.sfgk.service.SfgkService;
+import data.exchange.center.service.sfgk.service.TaskService;
+import data.exchange.center.service.sfgk.util.FileInfoUtil;
+import data.exchange.center.service.sfgk.util.FileZipCompressUtil;
+import data.exchange.center.service.sfgk.util.ParseUtil;
+import data.exchange.center.service.sfgk.util.XsdName;
+import data.exchange.center.service.sfgk.util.validate.Xmlvalidate;
+
+@Service("ajckTaskService")
+public class AjckTaskServiceImpl implements TaskService {
+
+	private static Logger logger = LoggerFactory.getLogger(AjckTaskServiceImpl.class);
+	
+	@Autowired
+	private SfgkService sfgkService;
+
+	@Override
+	public void startTask() throws Exception {
+		logger.info("开始生产 案件查看 xml");
+		String root = "D://SFGK//";
+		String dir  = "ajck//";
+		Path path = Paths.get(root + dir);
+		try {
+	        Files.createDirectory(path);
+	    } catch(FileAlreadyExistsException e){
+	        // the directory already exists.
+	    } catch (IOException e) {
+	        //something else went wrong
+	        e.printStackTrace();
+	    }
+		
+		List<File> fileList = new ArrayList<>();
+		List<File> deleteList = new ArrayList<>();
+		ByteArrayOutputStream outStreamXml = makeXml(null);
+		String xmlfileName = root+String.format(FileInfoUtil.XML_NAME_AJCK, 1);
+		ParseUtil.saveXml(xmlfileName, outStreamXml);
+		boolean retb = new Xmlvalidate().validateXml(XsdName.AJCK, xmlfileName);
+		if(!retb) {
+			new File(xmlfileName).delete();
+		}else {
+			fileList.add(new File(xmlfileName));
+			deleteList.add(new File(xmlfileName));
+		}
+		
+		String zipname = FileInfoUtil.ZIP_LX_AJCK
+				+"_export_"
+				+TimeUtils.getYesterdayDate()+"000000"
+				+"_"+TimeUtils.getYesterdayDate()+"235959"
+				+"_3000_"
+				+TimeUtils.getNTime()+"_"+1+".zip";
+		FileOutputStream fos2 = new FileOutputStream(new File(root + dir + zipname));
+		FileZipCompressUtil.toZip(fileList, fos2);
+		sfgkService.addAjckFile(root + dir + zipname);
+		
+		
+		for(File deletefile:deleteList) {
+			deletefile.delete();
+		}
+	}
+	/**
+	 * 
+	 * @function 生产xml
+	 * @author Tony
+	 * @param ktgkxxList
+	 * @creaetime 2018年4月26日 下午3:17:24
+	 * @return
+	 */
+	public ByteArrayOutputStream makeXml(Ktgkxx ttgkxx) {
+		try {
+			
+		    Document document = DocumentHelper.createDocument();  
+	        Element root = document.addElement("案件查看","http://dataexchange.court.gov.cn/2009/data");  
+	        root.addNamespace("xsi","http://www.w3.org/2001/XMLSchema-instance");  
+	        root.addAttribute("xsi:schemaLocation","http://dataexchange.court.gov.cn/2009/data ktgg.xsd");  
+	        Element ktggxx = root.addElement("案件查看信息");
+	        // 标识信息
+	        Element r = ktggxx.addElement("R");
+	        r.addElement("编号").addText("304500000008552");
+	        r.addElement("案件编号").addText("304500000008552");
+	        r.addElement("案件的唯一标识").addText("304500000008552");
+	        r.addElement("案件类别代码").addText("1");
+	        r.addElement("案件类别名称").addText("刑事一审");
+	        r.addElement("案号").addText("(2018)川0681刑初4号");
+	        r.addElement("法院编号").addText("3045");
+	        r.addElement("查询人").addText("卢攀");
+	        r.addElement("查询人类型代码").addText("4");
+	        r.addElement("查询人类型名称").addText("被告人");
+	        r.addElement("查询时间").addText("2018-06-01T12:11:25");
+	        r.addElement("更新时间").addText(ParseUtil.parseDateTime(TimeUtils.getNowTime()));
+	        
+			OutputFormat format = new OutputFormat("   ", true);
+			format.setEncoding("UTF-8");// 设置编码格式
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			XMLWriter xmlWriter = new XMLWriter(outputStream, format);
+			xmlWriter.write(document);
+			xmlWriter.close();
+			return outputStream;
+		} catch (Exception e) {
+			logger.error(e.toString());
+			e.printStackTrace();
+		}
+		return null;
+	}
+}

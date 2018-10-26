@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="head"></div>
+    <!-- DataTables -->
+    <link rel="stylesheet" th:href="@{/plugins/datatables/dataTables.bootstrap.css}"/>
+    <title>不迷失-Admin 系统日志</title>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini ">
+<div class="wrapper">
+
+    <div th:replace="header"></div>
+    <div th:replace="sidebar"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <div class="box">
+                        <div class="box-body">
+                            <table id="dataTable" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>帐号</th>
+                                    <th>操作</th>
+                                    <th>内容</th>
+                                    <th>时间</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="item:${list}">
+                                    <td th:text="${item.user}">id</td>
+                                    <td th:text="${item.operation}">label</td>
+                                    <td th:text="${item.content}">url</td>
+                                    <td th:text="${#dates.format(item.createTime,'yyyy/MM/dd HH:mm')}">status</td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+
+</div>
+
+
+<!-- page script -->
+<script>
+    $(function () {
+        $('#dataTable').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+			'language': {    
+            'emptyTable': '没有数据',    
+            'loadingRecords': '加载中...',    
+            'processing': '查询中...',    
+            'search': '搜索:',    
+            'lengthMenu': '每页 _MENU_ 条记录',    
+            'zeroRecords': '没有数据',    
+            'paginate': {      
+                    'next':       '上一页',    
+                    'previous':   '下一页'    
+                    },    
+            'info': '第 _PAGE_ 页 / 共 _PAGES_ 页',    
+            'infoEmpty': '没有数据',    
+            'infoFiltered': '(从 _MAX_ 条记录中筛选)'    
+			}  
+        });
+    });
+</script>
+</body>
+</html>

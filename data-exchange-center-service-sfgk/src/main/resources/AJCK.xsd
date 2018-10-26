@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CASE:schema xmlns:CASE="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://dataexchange.court.gov.cn/2009/data" targetNamespace="http://dataexchange.court.gov.cn/2009/data" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<CASE:element name="案件查看" type="查看"/>
+	<CASE:complexType name="案件查看信息">
+		<CASE:sequence>
+			<CASE:element name="R" type="案件查看信息1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="案件查看信息1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="案件的唯一标识" type="C50" minOccurs="0"/>
+			<CASE:element name="案件类别代码" type="N" minOccurs="0"/>
+			<CASE:element name="案件类别名称" type="C300" minOccurs="0"/>
+			<CASE:element name="案号" type="C50" minOccurs="0"/>
+			<CASE:element name="法院编号" type="C50"/>
+			<CASE:element name="查询人" type="C100" minOccurs="0"/>
+			<CASE:element name="查询人类型代码" type="N" minOccurs="0"/>
+			<CASE:element name="查询人类型名称" type="C300" minOccurs="0"/>
+			<CASE:element name="查询时间" type="DT" minOccurs="0"/>
+			<CASE:element name="登录ip" type="C100" minOccurs="0"/>
+			<CASE:element name="更新时间" type="DT" minOccurs="1"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="查看">
+		<CASE:sequence>
+			<CASE:element name="案件查看信息" type="案件查看信息" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:simpleType name="C32">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="32"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="C50">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="50"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="N">
+		<CASE:restriction base="xsd:int"/>
+	</CASE:simpleType>
+	<CASE:simpleType name="C300">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="300"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="C100">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="100"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="DT">
+		<CASE:restriction base="xsd:dateTime"/>
+	</CASE:simpleType>
+</CASE:schema>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.factor.trial.mapper.AjxxAllMapper">
+
+
+ <select id="getTablename" parameterType="java.util.Map" resultType="java.util.Map">
+    <![CDATA[
+   		SELECT * FROM DCADM.DC_META_TREETABLE WHERE (C_AJLXCODE =#{ajlx} AND C_TREEID='0') 
+   		OR (C_TREEID = '0' AND  C_ETBNAME='YASTML_YASTML')
+       ]]>
+    </select>
+    
+     <select id="getAjxx" parameterType="java.util.Map" resultType="java.util.Map">
+    <![CDATA[
+       SELECT * FROM ${tableName}  WHERE AJBS=  #{ajbs}
+       ]]>
+    </select>
+      <select id="getAjlxMc" parameterType="string" resultType="string">
+    <![CDATA[
+       SELECT c_name FROM dcadm.dc_ajlxlist  WHERE c_ajlx =  #{ajlx} 
+       ]]>
+    </select>
+          <select id="getAjDaj" parameterType="java.util.Map" resultType="java.util.Map">
+    <![CDATA[
+      select ms.ajbs,ms.xh,ms.xsmc,ms.wjmc,ms.wjhz, mm.mlmc,mm.mlbh from ${jalxqz}_stwj ms left join 
+      ${jalxqz}_mlxx mm on(mm.ajbs=ms.ajbs and mm.mlbh=ms.ssmlbh ) where ms.ajbs = #{ajbs} AND mm.DEPT_CODE ='510107'
+       ]]>
+    </select>
+    <select id="getAjGcj" parameterType="java.util.Map" resultType="java.util.Map">
+    <![CDATA[
+      select ms.ajbs,ms.xh,ms.xsmc,ms.wjmc,ms.wjhz, mm.mlmc,mm.mlbh from ${jalxqz}_stwj_gc ms left join 
+      ${jalxqz}_mlxx_gc mm on(mm.ajbs=ms.ajbs and mm.mlbh=ms.ssmlbh ) where ms.ajbs = #{ajbs} AND mm.DEPT_CODE ='510107'
+       ]]>
+    </select>
+    <select id="getajbs" parameterType="java.util.Map" resultType="java.util.Map">
+      <![CDATA[
+				      SELECT *
+				FROM
+				   (SELECT ROWNUM AS RN, XX.*
+				    FROM
+				   (select ajbs,ajlx from sgy.buf_eaj  WHERE SUBSTR(AJLX,0,1)in ('1','2','3','4','5') and  SUBSTR(AJLX,2,1)in ('1','2','3','4','5') 
+				   ) XX
+				   WHERE ROWNUM <= #{endRownum})
+				WHERE RN >  #{rownum}
+       ]]>
+    </select>
+    
+     <select id="getMetaTablename" parameterType="java.util.Map" resultType="java.util.Map">
+    <![CDATA[
+   		select * from dcadm.dc_meta_treetable  where c_treeid=0   order by to_number(c_nodeid) 
+       ]]>
+    </select>
+    
+     <select id="getMetaTabcol" parameterType="java.util.Map" resultType="java.util.Map">
+    <![CDATA[
+   		select C_CCOLNAME,C_ECOLNAME,C_DATATYPE,N_DATALEN,C_NOTNULL,C_PUCOL from dcadm.dc_meta_tabcol where c_tableid=#{tableId}
+       ]]>
+    </select>
+         <select id="insertAjbs">
+    <![CDATA[
+   		insert into aaa(deajbs) values(#{ajbs}) 
+       ]]>
+    </select>
+</mapper>

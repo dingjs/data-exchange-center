@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>智能辅助办案系统-法院端</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+<link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css" />
+<link rel="stylesheet" href="plugins/datepicker/datepicker3.css" />
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<link rel="icon" type="image/x-icon" href="/ico/favicon.ico">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+
+		<header class="main-header">
+			<a href="#" class="logo">
+				<span class="logo-lg"><b>政法数据交换监控平台</b></span>
+			</a>
+			<nav class="navbar navbar-static-top">
+				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+			</nav>
+		</header>
+		<!-- Left side column. contains the logo and sidebar -->
+  		<aside class="main-sidebar">
+
+    	<!-- sidebar: style can be found in sidebar.less -->
+    		<section class="sidebar">
+
+      			<!-- Sidebar user panel (optional) -->
+      			<div class="user-panel">
+        			<div class="pull-left image">
+          				<img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
+        			</div>
+        			<div class="pull-left info">
+          				<p>菜单栏</p>
+          				<!-- Status -->
+          				<a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+        			</div>
+      			</div>
+
+      			<!-- Sidebar Menu -->
+      			<ul class="sidebar-menu" data-widget="tree">
+        			<li class="header">查询</li>
+        			<!-- Optionally, you can add icons to the links -->
+        			<li>
+        				<a href="index.html">
+        					<i class="fa fa-th"></i>
+							<span>案件交换查询</span>
+						</a>
+					</li>
+       				<li class="active">
+       					<a href="widget-table.html">
+       						<i class="fa fa-table"></i>
+							<span>收案情况查询</span>
+						</a>
+					</li>
+      			</ul>
+      			<!-- /.sidebar-menu -->
+    		</section>
+    		<!-- /.sidebar -->
+  		</aside>
+		<div class="content-wrapper">
+			<section class="content-header">
+				<h1>
+					智能辅助办案 <small>监控平台</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> 收案情况查询</a></li>
+				</ol>
+			</section>
+
+			<section class="content">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">收案情况查询</h3>
+							</div>
+							<div class="box-body">
+								<div class="btn-group" style="float: right;">
+									<button type="button" onclick="sybData()" class="btn btn-warning" data-btn-type="search">查询</button>
+								</div>
+								<div class="input-group" style="float: right; width: 230px">
+									<input type="text" class="form-control" name="jsdw" id="jsdw" placeholder="接收单位"></input>
+								</div>
+								<table id="dataTable" class="table table-bordered table-striped">
+									<thead>
+										<tr>
+										    <th>接收单位</th>
+											<th>平台接收总数</th>
+											<th>平台退案总数</th>
+											<th>平台收案总数</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="item:${list}">
+											<td th:text="${item.jsdw}"></td>
+											<td th:text="${item.ptjszs}"></td>
+											<td th:text="${item.pttazs}"></td>
+											<td th:text="${item.ptsazs}"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<footer class="main-footer">
+			<div class="pull-right hidden-xs">
+				<b>Version</b> v3.1
+			</div>
+			<strong>Copyright &copy; 2018 四川省高级人民法院数据中心平台.</strong> All rights
+			reserved.
+		</footer>
+		<div class="control-sidebar-bg"></div>
+	</div>
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+	<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="bower_components/fastclick/lib/fastclick.js"></script>
+	<script src="dist/js/adminlte.min.js"></script>
+	<script src="dist/js/demo.js"></script>
+	<script src="plugins/datepicker/bootstrap-datepicker.js"></script>
+	<script src="plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
+	<script>
+		function sybData() {
+			var table = $('#dataTable').DataTable();
+			table.destroy();
+			var jsdw = $("#jsdw").val() == "" ? null : $("#jsdw").val();
+			table = $('#dataTable').DataTable({
+				"paging" : true,
+				"destroy" : true,
+				//"lengthChange": false,
+				"searching" : false,
+				"ordering" : true,
+				"info" : true,
+				"autoWidth" : false,
+				"scrollX" : true,
+				"order": [3, 'asc'],
+				"iDisplayLength":10,
+				"ajax" : {
+					url : "/queryCaseCount",
+					type : "GET",
+					data : {
+						jsdw : jsdw
+					}
+				},
+				"columns" : [ {
+					"data" : "jsdw"
+				}, {
+					"data" : "ptjszs"
+				}, {
+					"data" : "pttazs"
+				}, {
+					"data" : "ptsazs"
+				}],
+				'language' : {
+					'emptyTable' : '没有数据',
+					'loadingRecords' : '加载中...',
+					'processing' : '查询中...',
+					'search' : '搜索:',
+					'lengthMenu' : '每页 _MENU_ 条记录',
+					'zeroRecords' : '没有数据',
+					'paginate' : {
+						'next' : '下一页',
+						'previous' : '上一页'
+					},
+					'info' : '第 _PAGE_ 页 / 共 _PAGES_ 页',
+					'infoEmpty' : '没有数据',
+					'infoFiltered' : '(从 _MAX_ 条记录中筛选)'
+				}
+			});
+		}
+
+		$(function() {
+			$("#jsdw").val("");
+			$('#dataTable').DataTable({
+				"paging" : true,
+				"destroy" : true,
+				//"lengthChange": false,
+				"searching" : false,
+				"ordering" : true,
+				"info" : true,
+				"autoWidth" : false,
+				"scrollX" : true,
+				"iDisplayLength":10,
+				'language' : {
+					'emptyTable' : '没有数据',
+					'loadingRecords' : '数据加载中，请稍后...',
+					'processing' : '查询中...',
+					'search' : '搜索:',
+					'lengthMenu' : '每页 _MENU_ 条记录',
+					'zeroRecords' : '没有数据',
+					'paginate' : {
+						'next' : '下一页',
+						'previous' : '上一页'
+					},
+					'info' : '第 _PAGE_ 页 / 共 _PAGES_ 页',
+					'infoEmpty' : '没有数据',
+					'infoFiltered' : '(从 _MAX_ 条记录中筛选)'
+				}
+			});
+		});
+		$("#startDate").datepicker({
+		    language: "zh-CN",
+		    autoclose: true,//选中之后自动隐藏日期选择框
+		    //clearBtn: true,//清除按钮
+		    //todayBtn: true,//今日按钮
+		    format: "yyyy-mm-dd",
+		    defaultDate : new Date(),
+		    endDate:new Date()
+		    //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+		});
+		$("#endDate").datepicker({
+		    language: "zh-CN",
+		    autoclose: true,//选中之后自动隐藏日期选择框
+		    //clearBtn: true,//清除按钮
+		    //todayBtn: true,//今日按钮
+		    format: "yyyy-mm-dd",
+		    defaultDate : new Date(),
+		    endDate:new Date()
+		    //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+		});
+	</script>
+</body>
+</html>

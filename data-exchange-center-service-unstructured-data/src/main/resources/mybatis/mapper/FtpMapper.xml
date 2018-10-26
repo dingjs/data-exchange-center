@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.unstructured.data.mapper.FtpMapper">
+	<resultMap id="ftpInfoMap" type="data.exchange.center.service.unstructured.data.domain.FTPClientInfoConfigure">
+		<result column="FYDM"             property="FYDM"             javaType="string"        jdbcType="VARCHAR" />
+		<result column="FTPNAME"          property="FTPNAME"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="HOST"             property="HOST"             javaType="string"        jdbcType="VARCHAR" />
+		<result column="PORT"             property="PORT"             javaType="string"        jdbcType="VARCHAR" />
+		<result column="PASSWORD"         property="PASSWORD"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="NOWFTP"           property="NOWFTP"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="ROOT"             property="ROOT"             javaType="string"        jdbcType="VARCHAR" />
+		<result column="USERNAME"         property="USERNAME"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="LOCALPASSIVEMODE" property="LOCALPASSIVEMODE" javaType="string"        jdbcType="VARCHAR" />
+		<result column="ENCODING"         property="ENCODING"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="CLIENTTIMEOUT"    property="CLIENTTIMEOUT"    javaType="string"        jdbcType="VARCHAR" />
+		<result column="POOLSIZE"         property="POOLSIZE"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="TRANSFERFILETYPE" property="TRANSFERFILETYPE" javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="CountMap" type="data.exchange.center.service.unstructured.data.domain.Count">
+		<result column="ftpName"          property="ftpName"          javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="urlInfoMap" type="data.exchange.center.service.unstructured.data.domain.UrlInfo">
+		<result column="FILENAME"         property="FILENAME"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="OLDPATH"          property="OLDPATH"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="CZLX"             property="CZLX"             javaType="string"        jdbcType="VARCHAR" />
+		<result column="XH"               property="XH"               javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+    <resultMap id="outMapInteger" type="java.util.HashMap">
+		<result column="anFlag"       	 property="anFlag"  	javaType="int"       	 jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="outMapString" type="java.util.HashMap">
+		<result column="avErrmsg"        property="avErrmsg"    javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+    <select id="handleTempUnstructureData" parameterType="java.util.Map" statementType="CALLABLE" >
+		<![CDATA[
+		{CALL  DCADM.DC_FJGH.EXTRACTER(
+			#{ajbs, mode=IN, jdbcType=VARCHAR},
+			#{uuid, mode=IN, jdbcType=VARCHAR},
+			#{v_cursor1, mode=OUT,jdbcType=INTEGER, javaType=int,      resultMap=outMapInteger},
+			#{v_cursor2, mode=OUT,jdbcType=VARCHAR, javaType=String,   resultMap=outMapString}
+		)}
+		]]>
+	</select>
+	<select id="handlePath" parameterType="java.util.Map" statementType="CALLABLE" >
+		<![CDATA[
+		{CALL  DCADM.DC_FJGH.PATHWRITER(
+			#{ajbs, mode=IN, jdbcType=VARCHAR},
+			#{uuid, mode=IN, jdbcType=VARCHAR},
+			#{v_cursor1, mode=OUT,jdbcType=INTEGER, javaType=int,      resultMap=outMapInteger},
+			#{v_cursor2, mode=OUT,jdbcType=VARCHAR, javaType=String,   resultMap=outMapString}
+		)}
+		]]>
+	</select>
+	<select id="getFtpInfo" parameterType="java.util.Map" resultMap="ftpInfoMap">
+		SELECT * 
+		  FROM DZJZ_FTP_CODE
+		 WHERE FYDM = #{fydm}
+		   AND FTPNAME = #{ftpName}
+	</select>
+	<select id="getUrlInfo" parameterType="String" resultMap="urlInfoMap">
+		SELECT C_CZLX CZLX, 
+		       C_XH XH,
+		       C_NEWPATH FILENAME,
+               C_OLDPATH OLDPATH
+          FROM DCADM.DC_FJGH_EXTOPER
+         WHERE C_AJBS = #{ajbs}
+		 ORDER BY D_STAMP
+	</select>
+	<select id="getFtpCount" parameterType="String" resultMap="CountMap">
+		SELECT DISTINCT SUBSTR(C_OLDPATH,0,INSTR(C_OLDPATH,':')-1) ftpName
+          FROM DCADM.DC_FJGH_EXTOPER
+         WHERE C_AJBS = #{ajbs}
+           AND C_OLDPATH IS NOT NULL
+	</select>
+	<delete id="deleteDC_FJGH_EXTOPER" parameterType="java.util.Map">
+		DELETE FROM DCADM.DC_FJGH_EXTOPER
+		 WHERE C_AJBS = #{ajbs}
+		   AND C_XH   = #{xh}
+	</delete>
+	<select id="handleError" parameterType="java.util.Map">
+		<![CDATA[
+		{CALL  DCADM.DC_FJGH.FTP_ERROR(
+			#{ajbs, mode=IN, jdbcType=VARCHAR},
+			#{xh,   mode=IN, jdbcType=VARCHAR},
+			#{ajlx, mode=IN, jdbcType=VARCHAR}
+		)}
+		]]>
+	</select>
+</mapper>

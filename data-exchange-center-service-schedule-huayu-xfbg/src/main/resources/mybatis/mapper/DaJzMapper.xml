@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.huayu.xfbg.mapper.DaJzMapper">
+    <resultMap id="Ajxx"
+        type="data.exchange.center.service.huayu.xfbg.domain.Ajxx">
+        <result column="AHDM" property="AHDM" />
+        <result column="FYDM" property="FYDM" />
+        <result column="AJLX" property="AJLX" />
+        <result column="AJZT" property="AJZT" />
+    </resultMap>
+    
+	<insert id="pushDajToSGY" parameterType="data.exchange.center.service.huayu.xfbg.domain.Daj">
+		INSERT INTO DCADM.temp_daj
+		            (
+					C_FilePath,
+					C_LX,
+					DT_ZHXGSJ,
+					N_AJBS,
+					N_Order,
+					C_FLAG,
+					C_AH,
+					C_MC,
+					N_YS,
+					C_MLMC,
+					N_WJXH,
+					C_PATH,
+					C_FILENAME,
+					C_WJDX)
+		      VALUES(
+		      	 	 #{C_FilePath,      jdbcType=VARCHAR}, 
+		      	 	 #{C_LX,            jdbcType=VARCHAR}, 
+		      	 	 #{DT_ZHXGSJ,       jdbcType=VARCHAR}, 
+		             #{N_AJBS,          jdbcType=VARCHAR}, 
+		             #{N_Order,         jdbcType=INTEGER}, 
+		             #{C_FLAG,          jdbcType=VARCHAR}, 
+		             #{C_AH,			jdbcType=TIMESTAMP}, 
+		             #{C_MC,      	    jdbcType=INTEGER},
+			  		 #{N_YS,            jdbcType=INTEGER},
+			  		 #{C_MLMC,          jdbcType=VARCHAR},
+			  		 #{N_WJXH,          jdbcType=INTEGER},
+			  		 #{C_PATH,          jdbcType=VARCHAR},
+			  		 #{C_FILENAME,      jdbcType=VARCHAR},
+			  		 #{C_WJDX,          jdbcType=INTEGER})
+	</insert>
+	<insert id="pushGcjToSGY" parameterType="data.exchange.center.service.huayu.xfbg.domain.Gcj">
+		INSERT INTO DCADM.temp_gcj
+		            (N_AJLB,
+					C_WSMC,
+					DT_ZHBJSJ,
+					C_DOC_PROTOCOL,
+					N_AJBS,
+					N_AJJZJD,
+					C_HTM_PROTOCOL,
+					C_AH,
+					C_BH,
+					C_PATH,
+					C_FILENAME,
+					C_WJDX)
+		      VALUES(#{N_AJLB,       	jdbcType=INTEGER}, 
+		      	 	 #{C_WSMC,          jdbcType=VARCHAR}, 
+		      	 	 #{DT_ZHBJSJ,      	jdbcType=TIMESTAMP}, 
+		      	 	 #{C_DOC_PROTOCOL,  jdbcType=VARCHAR}, 
+		      	 	 #{N_AJBS,       	jdbcType=VARCHAR}, 
+		             #{N_AJJZJD,        jdbcType=INTEGER}, 
+		             #{C_HTM_PROTOCOL,  jdbcType=VARCHAR}, 
+		             #{C_AH,          	jdbcType=VARCHAR}, 
+		             #{C_BH,			jdbcType=VARCHAR},
+		             #{C_PATH,          jdbcType=VARCHAR},
+			  		 #{C_FILENAME,      jdbcType=VARCHAR},
+			  		 #{C_WJDX,          jdbcType=INTEGER})
+	</insert>
+	
+	   <select id="getAllAjxx" parameterType="map" resultMap="Ajxx">
+        <![CDATA[
+           Select  
+                AJBS AHDM,AH,DEPTCODE FYDM, AJLX AJLX, AJJZJD AJZT,LARQ ,ROWNUM RN  
+           from 
+                SGY.BUF_EAJ 
+           Where 
+                ajlx = '15' and 
+                srccode = '004' and  
+                AJBS not in(
+	                          select 
+	                            c_objid 
+	                           from 
+	                            dcadm.DC_CHK_OBJCHKLOCK t 
+	                           where 
+	                            c_srccode = '007'
+                            )
+        ]]>
+    </select>
+</mapper>   

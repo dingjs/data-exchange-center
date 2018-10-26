@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <package name="data.exchange.center.service.parse.xml.domain"/>
+    </typeAliases>
+    <mappers>
+        <mapper resource="mybatis/mapper/GetTableMetaMapper.xml"/>
+        <mapper resource="mybatis/mapper/ParseStorageHistoryMapper.xml"/>
+        <mapper resource="mybatis/mapper/ParseStorageSPZTMapper.xml"/>
+        <mapper resource="mybatis/mapper/ParseStorageTongdahaiMapper.xml"/>
+        <mapper resource="mybatis/mapper/ParseStorageZxajMapper.xml"/>
+        <mapper resource="mybatis/mapper/ParseXmlMapper.xml"/>
+        <mapper resource="mybatis/mapper/ParseStorageJxjsMapper.xml"/>
+    </mappers>
+</configuration>

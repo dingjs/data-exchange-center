@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.wuhou.mapper.WuhouMapper">
+	<resultMap id="outMapUserInfo" type="data.exchange.center.service.wuhou.domain.UserInfo">
+		<result column="dlbz"            property="dlbz"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="xm"              property="xm"             javaType="string"        jdbcType="VARCHAR" />
+		<result column="yx"              property="yx"             javaType="string"        jdbcType="VARCHAR" />
+		<result column="mm"              property="mm"             javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="outMapAjbsInfo" type="data.exchange.center.service.wuhou.domain.AjbsInfo">
+    	<result column="AJBS"            jdbcType="VARCHAR"        property="ajbs" />
+    	<result column="AH"              jdbcType="VARCHAR"        property="ah" />
+    	<result column="SYCX"            jdbcType="VARCHAR"        property="sycx" />
+    	<result column="LAAY"            jdbcType="VARCHAR"        property="laay" />
+    	<result column="FYDM"            jdbcType="VARCHAR"        property="fydm" />
+    	<result column="FDSXTS"          jdbcType="VARCHAR"        property="fdsxts" />
+    	<result column="LARQ"            jdbcType="VARCHAR"        property="larq" />
+    	<result column="SSDW1"           jdbcType="VARCHAR"        property="ssdw1" />
+    	<result column="CBRMC"           jdbcType="VARCHAR"        property="cbrmc" />
+    	<result column="MC"              jdbcType="VARCHAR"        property="mc" />
+    	<result column="XB"              jdbcType="VARCHAR"        property="xb" />
+    	<result column="CSRQ"            jdbcType="VARCHAR"        property="csrq" />
+    	<result column="NL"              jdbcType="VARCHAR"        property="nl" />
+    	<result column="GJ"              jdbcType="VARCHAR"        property="gj" />
+    	<result column="MZ"              jdbcType="VARCHAR"        property="mz" />
+    	<result column="SFZHM"           jdbcType="VARCHAR"        property="sfzhm" />
+    	<result column="DZ"              jdbcType="VARCHAR"        property="dz" />
+    	<result column="LXDH"            jdbcType="VARCHAR"        property="lxdh" />
+    	<result column="KTRQ"            jdbcType="VARCHAR"        property="ktrq" />	
+  	</resultMap>
+  	<resultMap id="outMapXzAjbsInfo" type="data.exchange.center.service.wuhou.domain.XzAjbsInfo">
+        <result column="AJBS"            jdbcType="VARCHAR"        property="ajbs" />
+        <result column="AH"              jdbcType="VARCHAR"        property="ah" />
+        <result column="XZGLFW"            jdbcType="VARCHAR"        property="XZGLFW" />
+        <result column="FYDM"            jdbcType="VARCHAR"        property="fydm" />
+        <result column="FDSXTS"          jdbcType="VARCHAR"        property="fdsxts" />
+        <result column="LARQ"            jdbcType="VARCHAR"        property="larq" />
+        <result column="CBRMC"           jdbcType="VARCHAR"        property="cbrmc" />
+        <result column="bgr"              jdbcType="VARCHAR"        property="bgr" />
+        <result column="XB"              jdbcType="VARCHAR"        property="xb" />
+        <result column="CSRQ"            jdbcType="VARCHAR"        property="csrq" />
+        <result column="NL"              jdbcType="VARCHAR"        property="nl" />
+        <result column="GJ"              jdbcType="VARCHAR"        property="gj" />
+        <result column="MZ"              jdbcType="VARCHAR"        property="mz" />
+        <result column="SFZHM"           jdbcType="VARCHAR"        property="sfzhm" />
+        <result column="DZ"              jdbcType="VARCHAR"        property="dz" />
+        <result column="LXDH"            jdbcType="VARCHAR"        property="lxdh" />
+        <result column="KTRQ"            jdbcType="VARCHAR"        property="ktrq" />   
+	    <result column="cfnr"            jdbcType="VARCHAR"        property="cfnr" />   
+	    <result column="cfyy"            jdbcType="VARCHAR"        property="cfyy" />   
+	    <result column="ksrq"            jdbcType="VARCHAR"        property="ksrq" />   
+	    <result column="jsrq"            jdbcType="VARCHAR"        property="jsrq" />   
+	    <result column="pcjg"            jdbcType="VARCHAR"        property="pcjg" />   
+	    <result column="zr"            jdbcType="VARCHAR"        property="zr" />   
+    </resultMap>
+        <resultMap id="outMapXsAjbsInfo" type="data.exchange.center.service.wuhou.domain.XsAjbsInfo">
+        <result column="AJBS"            jdbcType="VARCHAR"        property="ajbs" />
+        <result column="AH"              jdbcType="VARCHAR"        property="ah" />
+        <result column="XZGLFW"            jdbcType="VARCHAR"        property="XZGLFW" />
+        <result column="FYDM"            jdbcType="VARCHAR"        property="fydm" />
+        <result column="FDSXTS"          jdbcType="VARCHAR"        property="fdsxts" />
+        <result column="LARQ"            jdbcType="VARCHAR"        property="larq" />
+        <result column="SSDW1"           jdbcType="VARCHAR"        property="ssdw1" />
+        <result column="CBRMC"           jdbcType="VARCHAR"        property="cbrmc" />
+        <result column="MC"              jdbcType="VARCHAR"        property="mc" />
+        <result column="XB"              jdbcType="VARCHAR"        property="xb" />
+        <result column="CSRQ"            jdbcType="VARCHAR"        property="csrq" />
+        <result column="NL"              jdbcType="VARCHAR"        property="nl" />
+        <result column="GJ"              jdbcType="VARCHAR"        property="gj" />
+        <result column="MZ"              jdbcType="VARCHAR"        property="mz" />
+        <result column="SFZHM"           jdbcType="VARCHAR"        property="sfzhm" />
+        <result column="DZ"              jdbcType="VARCHAR"        property="dz" />
+        <result column="LXDH"            jdbcType="VARCHAR"        property="lxdh" />
+        <result column="gsjg"            jdbcType="VARCHAR"        property="gsjg" /> 
+        <result column="KTRQ"            jdbcType="VARCHAR"        property="ktrq" />   
+    </resultMap>
+  	<resultMap id="outMapAjcl" type="data.exchange.center.service.wuhou.domain.Ajcl">
+		<result column="ajbs"            property="ajbs"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="xh"              property="xh"             javaType="string"        jdbcType="VARCHAR" />
+		<result column="wjmc"            property="wjmc"           javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="outMapAjbsList" type="data.exchange.center.service.wuhou.domain.AjbsList">
+		<result column="ajbs"            property="ajbs"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="fydm"            property="fydm"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="ajlx"            property="ajlx"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="updatetime"      property="updatetime"     javaType="string"        jdbcType="VARCHAR" />
+	
+	</resultMap>
+	
+	<select id="getBmInfo" resultType="java.util.Map">
+		select JGMC, JGLX, YX, JGJB, SJJGBZ, JGZN, BZ, ZZJGBZ, FYBZ, DM
+          from sgy.spzt_zzjg
+         where dept_code in ('510103','510141','511025','510728')
+	</select>
+	<select id="getUserInfo" parameterType="java.util.Map" resultMap="outMapUserInfo">
+		select dlbz, xm, '' yx, mm 
+		  from sgy.spzt_zzry
+		 where dept_code in ('510103','510141','511025','510728') and dept_code = #{fydm}
+	</select>
+	<select id="getXzAjbsInfo" parameterType="java.util.Map" resultMap="outMapXzAjbsInfo">
+		select tt1.ajbs,ah,  xzglfw, fydm, fdsxts, to_char(larq, 'yyyy-mm-dd')larq, 
+	               tt3.ktrq, ssdw1, cbrmc, mc, xb, to_char(csrq, 'yyyy-mm-dd')csrq, 
+	               nl, gj, mz, sfzhm, dz, lxdh
+	          from 
+	               (select t1.ajbs,t1.ah,  t5.xzglfw, t1.deptcode fydm, 
+                         t3.fdsxts, t1.larq, t4.mc cbrmc
+                    from sgy.buf_eaj t1 
+                    left join sgy.xzys_ajslqk t2 
+                      on t1.ajbs = t2.ajbs
+                     and t1.ajlx = 21
+                    left join sgy.xzys_baqx t3 
+                      on t1.ajbs = t3.ajbs
+                    left join sgy.yastml_yastml t4 
+                      on t4.ajbs = t1.ajbs 
+                     and (t1.cbr-8000) = t4.xh 
+                   left join sgy.xzys_sahlaxx t5
+                       on t1.ajbs = t5.ajbs
+	                 where t1.ajbs = ${ajbs} 
+	                   and t1.deptcode in ('510103','510141','511025','510728') and  t1.deptcode = ${fydm}) tt1
+	          left join
+	               (select t5.ajbs, t5.ssdw1, t6.mc, t6.xb, t6.csrq, t6.nl,
+	                       t6.gj, t6.mz, t6.sfzhm, t6.dz, t6.lxdh 
+	                  from sgy.xzys_dsr t5 
+	                  left join sgy.yastml_yastml t6 
+	                    on t5.ajbs = t6.ajbs 
+	                   and t5.xh = t6.xh 
+	                 where t5.ajbs=${ajbs} 
+	                   and t5.dept_code in ('510103','510141','511025','510728') and  t5.dept_code = ${fydm})tt2
+	            on tt1.ajbs = tt2.ajbs
+	          left join
+	                (select ajbs, to_char(kssj, 'yyyymmdd') ktrq 
+	                   from sgy.xzys_ftsyjl 
+	                  where dept_code in ('510103','510141','511025','510728') and  dept_code = ${fydm}
+	                    and ajbs = ${ajbs} )tt3
+	            on tt2.ajbs = tt3.ajbs
+	</select>
+	<select id="getXsAjbsInfo" parameterType="java.util.Map" resultMap="outMapXsAjbsInfo">
+	     select tt1.ajbs,ah, sycx, laay,GSJG, fydm, fdsxts, to_char(larq, 'yyyy-mm-dd')larq, 
+               tt3.ktrq, cbrmc, mc, xb, to_char(csrq, 'yyyy-mm-dd')csrq, zr,ssdw1,
+               nl, gj, mz, sfzhm, dz, lxdh,tt2.cfnr,tt2.cfyy,tt2.ksrq,tt2.jsrq,tt2.pcjg
+          from 
+               (select t1.ajbs,t1.ah, t2.sycx, t1.laay, t1.deptcode fydm, 
+                       t3.fdsxts, t1.larq, t4.mc cbrmc,t5.gsjg
+                  from sgy.buf_eaj t1 
+                  left join sgy.xsys_ajslqk t2 
+                    on t1.ajbs = t2.ajbs
+                   and t1.ajlx = 21
+                  left join sgy.xsys_baqx t3 
+                    on t1.ajbs = t3.ajbs
+                  left join sgy.yastml_yastml t4 
+                    on t4.ajbs = t1.ajbs 
+                   and (t1.cbr-8000) = t4.xh
+                   left join sgy.xsys_sahlaxx t5
+                   on t1.ajbs = t5.ajbs
+                 where t1.ajbs = ${ajbs}  
+                   and t1.deptcode in ('510103','510141','511025','510728') and  t1.deptcode = ${fydm}) tt1
+          left join
+               (select t5.ajbs, t5.ssdw1, t6.mc, t6.xb, t6.csrq, t6.nl,
+                       t6.gj, t6.mz, t6.sfzhm, t6.dz, t6.lxdh ,t7.cfnr,t7.cfyy,to_char(t7.ksrq, 'yyyymmdd') ksrq ,to_char(t7.jsrq, 'yyyymmdd') jsrq ,t7.pcjg
+                  from sgy.xsys_BGR t5 
+                  left join sgy.yastml_yastml t6 
+                    on t5.ajbs = t6.ajbs 
+                   and t5.xh = t6.xh 
+                   left join sgy.xsys_qkljqk t7
+                   on t7.ajbs = t5.ajbs
+                 where t5.ajbs=${ajbs} 
+                   and t5.dept_code in ('510103','510141','511025','510728') and  t5.dept_code = ${fydm})tt2
+            on tt1.ajbs = tt2.ajbs
+          left join
+                (select ajbs, to_char(kssj, 'yyyymmdd') ktrq 
+                   from sgy.xsys_ftsyjl 
+                  where dept_code  in ('510103','510141','511025','510728') and  dept_code = ${fydm}
+                    and ajbs = ${ajbs} )tt3                    
+            on tt2.ajbs = tt3.ajbs
+            left join 
+                 (select yastml.mc as zr,zrxx.ajbs
+                    from xsys_zrxx zrxx
+                    left join yastml_yastml yastml 
+                      on zrxx.ajbs = yastml.ajbs 
+                      and  zrxx.zr = yastml.xh 
+                    where zrxx.dept_code in ('510103','510141','511025','510728') and  zrxx.dept_code = ${fydm}
+                     and zrxx.ajbs = ${ajbs} )tt4
+               on tt1.ajbs = tt4.ajbs
+	</select>
+	<select id="getAjbsInfo" parameterType="java.util.Map" resultMap="outMapAjbsInfo">
+    	select tt1.ajbs,ah, sycx, laay, fydm, fdsxts, to_char(larq, 'yyyy-mm-dd')larq, 
+               tt3.ktrq, ssdw1, cbrmc, mc, xb, to_char(csrq, 'yyyy-mm-dd')csrq, 
+               nl, gj, mz, sfzhm, dz, lxdh
+          from 
+               (select t1.ajbs,t1.ah, t2.sycx, t1.laay, t1.deptcode fydm, 
+                       t3.fdsxts, t1.larq, t4.mc cbrmc
+                  from sgy.buf_eaj t1 
+                  left join sgy.msys_ajslqk t2 
+                    on t1.ajbs = t2.ajbs
+                   and t1.ajlx = 21
+                  left join sgy.msys_baqx t3 
+                    on t1.ajbs = t3.ajbs
+                  left join sgy.yastml_yastml t4 
+                    on t4.ajbs = t1.ajbs 
+                   and (t1.cbr-8000) = t4.xh 
+                 where t1.ajbs = ${ajbs} 
+                   and t1.deptcode in ('510103','510141','511025','510728') and  t1.deptcode = ${fydm}) tt1
+          left join
+               (select t5.ajbs, t5.ssdw1, t6.mc, t6.xb, t6.csrq, t6.nl,
+                       t6.gj, t6.mz, t6.sfzhm, t6.dz, t6.lxdh 
+                  from sgy.msys_dsr t5 
+                  left join sgy.yastml_yastml t6 
+                    on t5.ajbs = t6.ajbs 
+                   and t5.xh = t6.xh 
+                 where t5.ajbs=${ajbs}
+                   and t5.dept_code in ('510103','510141','511025','510728') and  t5.dept_code = ${fydm})tt2
+            on tt1.ajbs = tt2.ajbs
+          left join
+                (select ajbs, to_char(kssj, 'yyyymmdd') ktrq 
+                   from sgy.msys_ftsyjl 
+                  where dept_code in ('510103','510141','511025','510728') and  dept_code = ${fydm}
+                    and ajbs = ${ajbs})tt3
+            on tt2.ajbs = tt3.ajbs
+	</select>
+	<select id="getAjclList" parameterType="java.util.Map" resultMap="outMapAjcl">
+		select ajbs, xh, wjmc 
+		  from sgy.msys_stwj_gc
+		 where ajbs = #{ajbs}
+		   and dept_code in ('510103','510141','511025','510728') and  dept_code = ${fydm}
+		union all
+		  select ajbs, xh, wjmc 
+          from sgy.xsys_stwj_gc 
+         where ajbs = #{ajbs}
+           and dept_code in ('510103','510141','511025','510728') and  dept_code = ${fydm}
+        union all
+          select ajbs, xh, wjmc 
+          from sgy.xzys_stwj_gc 
+         where ajbs = #{ajbs}
+           and dept_code in ('510103','510141','511025','510728') and  dept_code = ${fydm}
+	</select>
+	  <select id="getXzAjclList" parameterType="java.util.Map" resultMap="outMapAjcl">
+        select ajbs, xh, wjmc 
+          from sgy.xzys_stwj_gc 
+         where ajbs = #{ajbs}
+           and dept_code in ('510103','510141','511025','510728')
+    </select>
+	<select id="getAjbsList" parameterType="java.util.Map" resultMap="outMapAjbsList">
+		<![CDATA[
+		select ajbs, deptcode fydm, ajlx,to_char(updatetime,'yyyymmdd hh24miss') as updatetime
+		  from sgy.buf_eaj 
+		 where 1 = 1
+		   and deptcode = ${fydm}
+		   and deptcode in  ('510103','510141','511025','510728')
+		   and ajjzjd < '7'
+		   and ajlx in ( '21','31','11')
+		   and updatetime >= to_date(#{startDate},'yyyymmdd hh24miss')
+           and updatetime <= to_date(#{endDate},'yyyymmdd hh24miss')
+        ]]>
+	</select>
+</mapper>

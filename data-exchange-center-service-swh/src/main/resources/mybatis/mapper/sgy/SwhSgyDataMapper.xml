@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.swh.mapper.sgy.SwhSgyDataMapper">
+  <delete id="deleteEaj" parameterType="java.lang.String">
+    delete from EAJ
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+ <insert id="pushEaj" parameterType="data.exchange.center.service.swh.domain.Eaj">
+    insert into EAJ (AHDM, FYDM, AH, 
+      SARQ, LARQ, KTRQ, 
+      JARQ, XTAJLX, SPCX, 
+      SSXZ, SYCX, AJLY, JAFS, 
+      MQZZ, AJLB, AJZT, XLA, 
+      LASTUPDATE, JBFY)
+    values (#{ahdm,jdbcType=VARCHAR}, #{fydm,jdbcType=VARCHAR}, #{ah,jdbcType=VARCHAR}, 
+      #{sarq,jdbcType=TIMESTAMP}, #{larq,jdbcType=TIMESTAMP}, #{ktrq,jdbcType=TIMESTAMP}, 
+      #{jarq,jdbcType=TIMESTAMP}, #{xtajlx,jdbcType=VARCHAR}, #{spcx,jdbcType=VARCHAR}, 
+      #{ssxz,jdbcType=VARCHAR}, #{sycx,jdbcType=VARCHAR}, #{ajly,jdbcType=VARCHAR}, #{jafs,jdbcType=VARCHAR}, 
+      #{mqzz,jdbcType=VARCHAR}, #{ajlb,jdbcType=VARCHAR}, #{ajzt,jdbcType=VARCHAR}, #{xla,jdbcType=DECIMAL}, 
+      #{lastupdate,jdbcType=TIMESTAMP}, #{jbfy,jdbcType=DECIMAL})
+  </insert>
+  
+    <delete id="deleteEajYaxx" parameterType="java.lang.String">
+        delete from EAJ_YAXX
+        where AHDM = #{ahdm,jdbcType=VARCHAR}
+    </delete>
+    <insert id="pushEajYaxx" parameterType="data.exchange.center.service.swh.domain.EajYaxx">
+    insert into EAJ_YAXX (AHDM, XH, JBFY, YABS, YSAH, YCBRBS)
+    values (#{ahdm,jdbcType=VARCHAR}, #{xh,jdbcType=DECIMAL}, #{jbfy,jdbcType=VARCHAR}, 
+      #{yabs,jdbcType=VARCHAR}, #{ysah,jdbcType=VARCHAR}, #{ycbrbs,jdbcType=VARCHAR})
+  </insert>
+  
+   <delete id="deleteEajSala" parameterType="java.lang.String">
+    delete from EAJ_SALA
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="pushEajSala" parameterType="data.exchange.center.service.swh.domain.EajSalx">
+    insert into EAJ_SALA (AHDM, JCJG, GSR, 
+      FDMSPC, FDMSSSQQ, CZFS, 
+      SLF, AJZLX, SDCLRQ)
+    values (#{ahdm,jdbcType=VARCHAR}, #{jcjg,jdbcType=VARCHAR}, #{gsr,jdbcType=VARCHAR}, 
+      #{fdmspc,jdbcType=VARCHAR}, #{fdmsssqq,jdbcType=VARCHAR}, #{czfs,jdbcType=VARCHAR}, 
+      #{slf,jdbcType=DECIMAL}, #{ajzlx,jdbcType=VARCHAR}, #{sdclrq,jdbcType=VARCHAR})
+  </insert>
+  
+   <delete id="deleteEajSl" parameterType="java.lang.String">
+    delete from EAJ_SL
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="pushEajSl" parameterType="data.exchange.center.service.swh.domain.EajSl">
+    insert into EAJ_SL (AHDM, AJSJ, GTSSLX, 
+      GKSL, BGKSLYY, KTSL, 
+      XPRQ, SWCN, SFGTFZ, 
+      GTFZRS, SFJTFZ, FZJTRS, 
+      SQRS, SHRS, SDRS)
+    values (#{ahdm,jdbcType=VARCHAR}, #{ajsj,jdbcType=VARCHAR}, #{gtsslx,jdbcType=VARCHAR}, 
+      #{gksl,jdbcType=VARCHAR}, #{bgkslyy,jdbcType=VARCHAR}, #{ktsl,jdbcType=VARCHAR}, 
+      #{xprq,jdbcType=VARCHAR}, #{swcn,jdbcType=VARCHAR}, #{sfgtfz,jdbcType=VARCHAR}, 
+      #{gtfzrs,jdbcType=DECIMAL}, #{sfjtfz,jdbcType=VARCHAR}, #{fzjtrs,jdbcType=DECIMAL}, 
+      #{sqrs,jdbcType=DECIMAL}, #{shrs,jdbcType=DECIMAL}, #{sdrs,jdbcType=DECIMAL})
+  </insert>
+  
+   <delete id="deleteEajSjqk" parameterType="java.lang.String">
+    delete from EAJ_SJQK
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="pushEajSjqk" parameterType="data.exchange.center.service.swh.domain.EajSjqk">
+    insert into EAJ_SJQK (AHDM, ZZSY, JASY1
+      )
+    values (#{ahdm,jdbcType=VARCHAR}, #{zzsy,jdbcType=VARCHAR}, #{jasy1,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+   <delete id="deleteEajHbqk" parameterType="java.lang.String">
+    delete from EAJ_HBQK
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="pushEajHbqk" parameterType="data.exchange.center.service.swh.domain.EajHbqk">
+    insert into EAJ_HBQK (AHDM, XH, HBLX, 
+      HBJG)
+    values (#{ahdm,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{hblx,jdbcType=VARCHAR}, 
+      #{hbjg,jdbcType=VARCHAR})
+  </insert>
+  
+   <delete id="deleteEajQxbg" parameterType="java.lang.String">
+    delete from EAJ_QXBG
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="pushEajQxbg" parameterType="data.exchange.center.service.swh.domain.EajQxbg">
+    insert into EAJ_QXBG (AHDM, XH, ZZSY, 
+      BGLB)
+    values (#{ahdm,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{zzsy,jdbcType=VARCHAR}, 
+      #{bglb,jdbcType=VARCHAR})
+  </insert>
+  
+   <delete id="deleteEajMtbq" parameterType="java.lang.String">
+    delete from EAJ_MTBQ
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+      and XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <insert id="pushEajMtbq" parameterType="data.exchange.center.service.swh.domain.EajMtbq">
+    insert into EAJ_MTBQ (AHDM, XH, ZZSY, 
+      BQLX)
+    values (#{ahdm,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{zzsy,jdbcType=VARCHAR}, 
+      #{bqlx,jdbcType=VARCHAR})
+  </insert>
+  
+   <delete id="deleteEajFtsy" parameterType="java.lang.String">
+    delete from EAJ_FTSY
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="pushEajFtsy" parameterType="data.exchange.center.service.swh.domain.EajFtsy">
+    insert into EAJ_FTSY (AHDM, XH, DTDSR, 
+      KTRQ, KTFT, PTRS, GKKT, 
+      TC)
+    values (#{ahdm,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{dtdsr,jdbcType=VARCHAR}, 
+      #{ktrq,jdbcType=VARCHAR}, #{ktft,jdbcType=VARCHAR}, #{ptrs,jdbcType=DECIMAL}, #{gkkt,jdbcType=VARCHAR}, 
+      #{tc,jdbcType=DECIMAL})
+  </insert>
+  
+  <delete id="deleteEajGxyy" parameterType="java.lang.String">
+    delete from EAJ_GXYY
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="pushEajGxyy" parameterType="data.exchange.center.service.swh.domain.EajGxyy">
+    insert into EAJ_GXYY (AHDM, XH, GXYYCL, 
+      GXWTLX)
+    values (#{ahdm,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{gxyycl,jdbcType=VARCHAR}, 
+      #{gxwtlx,jdbcType=VARCHAR})
+  </insert>
+  
+   <delete id="deleteEajZj" parameterType="java.lang.String">
+    delete from EAJ_ZJ
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="pushEajZj" parameterType="data.exchange.center.service.swh.domain.EajZj">
+    insert into EAJ_ZJ (AHDM, XH, JZR, 
+      MC, LX, ZJSS, RZJG, 
+      RZLY, BRZLY)
+    values (#{ahdm,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{jzr,jdbcType=VARCHAR}, 
+      #{mc,jdbcType=VARCHAR}, #{lx,jdbcType=VARCHAR}, #{zjss,jdbcType=VARCHAR}, #{rzjg,jdbcType=VARCHAR}, 
+      #{rzly,jdbcType=BLOB}, #{brzly,jdbcType=BLOB})
+  </insert>
+  
+  <delete id="deleteEajSpxy" parameterType="java.lang.String">
+    delete from EAJ_SPCY
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="pushEajSpxy" parameterType="data.exchange.center.service.swh.domain.EajSpxy">
+    insert into EAJ_SPCY (AHDM, XH, JS, 
+      CY)
+    values (#{ahdm,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{js,jdbcType=VARCHAR}, 
+      #{cy,jdbcType=VARCHAR})
+  </insert>
+  
+  <delete id="deleteEdsr" parameterType="java.lang.String">
+    delete from EDSR
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="pushEdsr" parameterType="data.exchange.center.service.swh.domain.Edsr">
+    insert into EDSR (AHDM, XH, MC, 
+      SSDW, LX, DZ, XB, 
+      CSRQ, NL, MZ, WHCD, 
+      SF, GJ, YUANJ, HJSZD, 
+      SZDW, ZW, SFZHM, QTZJZL, 
+      QTZJHM, DWFZZJZRR, FZNL, 
+      FDDBR, TSSF, TSSLHBL, 
+      FZJE, CFZ, LAOJ, LEIF, 
+      DLRBH, ZHIY)
+    values (#{ahdm,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{mc,jdbcType=VARCHAR}, 
+      #{ssdw,jdbcType=VARCHAR}, #{lx,jdbcType=VARCHAR}, #{dz,jdbcType=VARCHAR}, #{xb,jdbcType=VARCHAR}, 
+      #{csrq,jdbcType=VARCHAR}, #{nl,jdbcType=DECIMAL}, #{mz,jdbcType=VARCHAR}, #{whcd,jdbcType=VARCHAR}, 
+      #{sf,jdbcType=VARCHAR}, #{gj,jdbcType=VARCHAR}, #{yuanj,jdbcType=VARCHAR}, #{hjszd,jdbcType=VARCHAR}, 
+      #{szdw,jdbcType=VARCHAR}, #{zw,jdbcType=VARCHAR}, #{sfzhm,jdbcType=VARCHAR}, #{qtzjzl,jdbcType=VARCHAR}, 
+      #{qtzjhm,jdbcType=VARCHAR}, #{dwfzzjzrr,jdbcType=VARCHAR}, #{fznl,jdbcType=DECIMAL}, 
+      #{fddbr,jdbcType=VARCHAR}, #{tssf,jdbcType=VARCHAR}, #{tsslhbl,jdbcType=VARCHAR}, 
+      #{fzje,jdbcType=DECIMAL}, #{cfz,jdbcType=VARCHAR}, #{laoj,jdbcType=VARCHAR}, #{leif,jdbcType=VARCHAR}, 
+      #{dlrbh,jdbcType=VARCHAR}, #{zhiy,jdbcType=VARCHAR})
+  </insert>
+  
+   <delete id="deleteEdsrQzcs" parameterType="java.lang.String">
+    delete from EDSR_QZCS
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="pushEdsrQzcs" parameterType="data.exchange.center.service.swh.domain.EdsrQzcs">
+    insert into EDSR_QZCS (AHDM, XH, BGR, 
+      JYCS, SSRQ, ZL, JG
+      )
+    values (#{ahdm,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{bgr,jdbcType=VARCHAR}, 
+      #{jycs,jdbcType=VARCHAR}, #{ssrq,jdbcType=VARCHAR}, #{zl,jdbcType=VARCHAR}, #{jg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <delete id="deleteEdsrQklj" parameterType="java.lang.String">
+    delete from EDSR_QKLJ
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+      and XH = #{xh,jdbcType=VARCHAR}
+      and BGR = #{bgr,jdbcType=VARCHAR}
+  </delete>
+  <insert id="pushEdsrQklj" parameterType="data.exchange.center.service.swh.domain.EdsrQklj">
+    insert into EDSR_QKLJ (AHDM, XH, BGR, 
+      KSRQ, PCJG, CFNR, CFYY, 
+      JSRQ)
+    values (#{ahdm,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{bgr,jdbcType=VARCHAR}, 
+      #{ksrq,jdbcType=VARCHAR}, #{pcjg,jdbcType=VARCHAR}, #{cfnr,jdbcType=VARCHAR}, #{cfyy,jdbcType=VARCHAR}, 
+      #{jsrq,jdbcType=VARCHAR})
+  </insert>
+   <delete id="deleteEdsrZkzm" parameterType="java.lang.String">
+    delete from EDSR_ZKZM
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="pushEdsrZkzm" parameterType="data.exchange.center.service.swh.domain.EdsrZkzm">
+    insert into EDSR_ZKZM (AHDM, XH, BGR, 
+      ZMZS)
+    values (#{ahdm,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{bgr,jdbcType=VARCHAR}, 
+      #{zmzs,jdbcType=VARCHAR})
+  </insert>
+  <delete id="deleteEdsrDzlx" parameterType="java.lang.String">
+    delete from EDSR_DZLX
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="pushEdsrDzlx" parameterType="data.exchange.center.service.swh.domain.EdsrDzlx">
+    insert into EDSR_DZLX (AHDM, XH, BGR, 
+      DZZM, ZXZL, ZYXQN, 
+      ZYXQY, HXZL, HXXQN, 
+      HXXQY, DCFJX, BCFJX, 
+      BDZZQLZS, BDZZQLN, BDZZQLY, 
+      FJSE, MSCCJE)
+    values (#{ahdm,jdbcType=VARCHAR}, #{xh,jdbcType=DECIMAL}, #{bgr,jdbcType=VARCHAR}, 
+      #{dzzm,jdbcType=VARCHAR}, #{zxzl,jdbcType=VARCHAR}, #{zyxqn,jdbcType=DECIMAL}, 
+      #{zyxqy,jdbcType=DECIMAL}, #{hxzl,jdbcType=VARCHAR}, #{hxxqn,jdbcType=DECIMAL}, 
+      #{hxxqy,jdbcType=DECIMAL}, #{dcfjx,jdbcType=VARCHAR}, #{bcfjx,jdbcType=VARCHAR}, 
+      #{bdzzqlzs,jdbcType=VARCHAR}, #{bdzzqln,jdbcType=DECIMAL}, #{bdzzqly,jdbcType=DECIMAL}, 
+      #{fjse,jdbcType=DECIMAL}, #{msccje,jdbcType=DECIMAL})
+  </insert>
+  <delete id="deleteEdsrlxqj" parameterType="java.lang.String">
+    delete from EDSR_LXQJ
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="pushEdsrlxqj" parameterType="data.exchange.center.service.swh.domain.Edsrlxqj">
+    insert into EDSR_LXQJ (AHDM, XH, BGR, 
+      ZL, QJ, FZSS)
+    values (#{ahdm,jdbcType=VARCHAR}, #{xh,jdbcType=DECIMAL}, #{bgr,jdbcType=VARCHAR}, 
+      #{zl,jdbcType=VARCHAR}, #{qj,jdbcType=VARCHAR}, #{fzss,jdbcType=BLOB})
+  </insert>
+  <delete id="deleteEfTzcd" parameterType="java.lang.String">
+    delete from EF_TZCD
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="pushEfTzcd" parameterType="data.exchange.center.service.swh.domain.EfTzcd">
+    insert into EF_TZCD (AHDM, JNRXH, CDJE
+      )
+    values (#{ahdm,jdbcType=VARCHAR}, #{jnrxh,jdbcType=VARCHAR}, #{cdje,jdbcType=DECIMAL}
+      )
+  </insert>
+   <delete id="deleteEajXsfzdx" parameterType="java.lang.String">
+    delete from EAJ_XSFZDX
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="pushEajXsfzdx" parameterType="data.exchange.center.service.swh.domain.EajXsfzdx">
+    insert into EAJ_XSFZDX (AHDM, XH, ZL, 
+      SL, JLDW)
+    values (#{ahdm,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{zl,jdbcType=VARCHAR}, 
+      #{sl,jdbcType=DECIMAL}, #{jldw,jdbcType=VARCHAR})
+  </insert>
+   <delete id="deleteEdsrQt" parameterType="java.lang.String">
+    delete from EDSR_QT
+    where AHDM = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="pushEdsrQt" parameterType="data.exchange.center.service.swh.domain.EdsrQt">
+    insert into EDSR_QT (AHDM, XH, MC, 
+      ZW, LX, SZDW, ZJZL, 
+      ZJHM)
+    values (#{ahdm,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{mc,jdbcType=VARCHAR}, 
+      #{zw,jdbcType=VARCHAR}, #{lx,jdbcType=VARCHAR}, #{szdw,jdbcType=VARCHAR}, #{zjzl,jdbcType=VARCHAR}, 
+      #{zjhm,jdbcType=VARCHAR})
+  </insert>
+   <delete id="deleteEaJz" parameterType="java.lang.String">
+    delete from EAJ_JZ
+    where AJBS = #{ajbs,jdbcType=VARCHAR}
+  </delete>
+  <insert id="pushEaJz" parameterType="data.exchange.center.service.swh.domain.EaJz">
+    insert into EAJ_JZ (AJBS, XH, YXXH, 
+      XSMC, WJMC, WJGS, WJLJ, 
+      SSMLBH, SFSYZQ, SFLB
+      )
+    values (#{ajbs,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{yxxh,jdbcType=DECIMAL}, 
+      #{xsmc,jdbcType=VARCHAR}, #{wjmc,jdbcType=VARCHAR}, #{wjgs,jdbcType=VARCHAR}, #{wjlj,jdbcType=VARCHAR}, 
+      #{ssmlbh,jdbcType=VARCHAR}, #{sfsyzq,jdbcType=DECIMAL}, #{sflb,jdbcType=DECIMAL}
+      )
+  </insert>
+  
+   <delete id="deleteEaJzMl" parameterType="java.lang.String">
+    delete from EAJ_JZ_ML
+    where AJBS = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+    <insert id="pushEaJzMl" parameterType="data.exchange.center.service.swh.domain.EaJJZMl">
+    insert into EAJ_DA_ML (AJBS, MLBH, MLMC, 
+      XH, KSYS, JSYS, SFSYZQ
+      )
+    values (#{ajbs,jdbcType=VARCHAR}, #{mlbh,jdbcType=VARCHAR}, #{mlmc,jdbcType=VARCHAR}, 
+      #{xh,jdbcType=DECIMAL}, #{ksys,jdbcType=DECIMAL}, #{jsys,jdbcType=DECIMAL}, #{sfsyzq,jdbcType=DECIMAL}
+      )
+  </insert>
+  
+   <delete id="deleteEaJDa" parameterType="java.lang.String">
+    delete from EAJ_DA
+    where AJBS = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="pushEaJDa" parameterType="data.exchange.center.service.swh.domain.EaJDa">
+    insert into EAJ_DA (AJBS, XH, XSMC, 
+      WJMC, WJGS, WJLJ, SSMLBH, 
+      SFSYZQ)
+    values (#{ajbs,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{xsmc,jdbcType=VARCHAR}, 
+      #{wjmc,jdbcType=VARCHAR}, #{wjgs,jdbcType=VARCHAR}, #{wjlj,jdbcType=VARCHAR}, #{ssmlbh,jdbcType=VARCHAR}, 
+      #{sfsyzq,jdbcType=DECIMAL})
+  </insert>
+   <delete id="deleteEaJDaMl" parameterType="java.lang.String">
+    delete from EAJ_DA_ML
+    where AJBS = #{ahdm,jdbcType=VARCHAR}
+  </delete>
+<insert id="pushEaJDaMl" parameterType="data.exchange.center.service.swh.domain.EajDaMl">
+    insert into EAJ_JZ_ML (AJBS, XH, MLBH, 
+      MLMC, SFSYZQ)
+    values (#{ajbs,jdbcType=VARCHAR}, #{xh,jdbcType=DECIMAL}, #{mlbh,jdbcType=VARCHAR}, 
+      #{mlmc,jdbcType=VARCHAR}, #{sfsyzq,jdbcType=DECIMAL})
+  </insert>
+</mapper>

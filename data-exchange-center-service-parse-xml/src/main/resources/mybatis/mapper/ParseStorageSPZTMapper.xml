@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.parse.xml.mapper.ParseStorageSPZTMapper">
+	<!-- 配置二级缓存刷新时间为24小时一次 -->
+	<cache flushInterval="864000000"/>
+	<resultMap id="xmlContent" type="data.exchange.center.service.parse.xml.domain.SpztXmlContent">
+		<result column="DM"          property="DM"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="LX"          property="LX"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="FYDM"        property="FYDM"       javaType="string"        jdbcType="VARCHAR" />
+		<result column="XMLNR"       property="XMLNR"      javaType="Object"        jdbcType="BLOB" />
+		<result column="LASTUPDATE"  property="LASTUPDATE" javaType="java.sql.Date" jdbcType="TIMESTAMP" />
+		
+		<result column="UUID"        property="UUID"       javaType="string"        jdbcType="VARCHAR" />
+		<result column="SENDTIME"    property="SENDTIME"   javaType="java.sql.Date" jdbcType="TIMESTAMP" />
+		<result column="INPUTSRC"    property="INPUTSRC"   javaType="string"        jdbcType="VARCHAR" />
+		<result column="DESTSCHEMA"  property="DESTSCHEMA" javaType="string"        jdbcType="VARCHAR" />
+		<result column="AJSOURCE"    property="AJSOURCE"   javaType="string"        jdbcType="VARCHAR" />
+		
+		<result column="XMLTYPE"     property="XMLTYPE"    javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="scXmlContent" type="data.exchange.center.service.parse.xml.domain.ScXmlContent">
+		<result column="AJBS"        property="AJBS"       javaType="string"        jdbcType="VARCHAR" />
+		<result column="AJLX"        property="AJLX"       javaType="string"        jdbcType="VARCHAR" />
+		<result column="FYDM"        property="FYDM"       javaType="string"        jdbcType="VARCHAR" />
+		<result column="XMLNR"       property="XMLNR"      javaType="Object"        jdbcType="BLOB" />
+		<result column="LASTUPDATE"  property="LASTUPDATE" javaType="java.sql.Date" jdbcType="TIMESTAMP" />
+		
+		<result column="UUID"        property="UUID"       javaType="string"        jdbcType="VARCHAR" />
+		<result column="SENDTIME"    property="SENDTIME"   javaType="java.sql.Date" jdbcType="TIMESTAMP" />
+		<result column="INPUTSRC"    property="INPUTSRC"   javaType="string"        jdbcType="VARCHAR" />
+		<result column="DESTSCHEMA"  property="DESTSCHEMA" javaType="string"        jdbcType="VARCHAR" />
+		<result column="AJSOURCE"    property="AJSOURCE"   javaType="string"        jdbcType="VARCHAR" />
+		
+		<result column="XMLTYPE"     property="XMLTYPE"    javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ajlxMeta" type="data.exchange.center.service.parse.xml.domain.AjlxMeta">
+		<result column="n_id"        property="nId"        javaType="int"           jdbcType="NUMERIC" />
+		<result column="c_ajlx"      property="cAjlx"      javaType="string"        jdbcType="VARCHAR" />
+		<result column="c_name"      property="cName"      javaType="string"        jdbcType="VARCHAR" />
+		<result column="c_eprefix"   property="cEprefix"   javaType="string"        jdbcType="VARCHAR" />
+		<result column="c_ajlb"      property="cAjlb"      javaType="string"        jdbcType="VARCHAR" />
+		<result column="c_fb"        property="cFb"        javaType="string"        jdbcType="VARCHAR" />
+		<result column="c_stat"      property="cStat"      javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="colMeta" type="data.exchange.center.service.parse.xml.domain.ColMeta">
+		<result column="c_etbname"   property="cEtbname"   javaType="string"        jdbcType="VARCHAR" />
+		<result column="c_ctbname"   property="cCtbname"   javaType="string"        jdbcType="VARCHAR" />
+		<result column="c_tableid"   property="cTableid"   javaType="string"        jdbcType="VARCHAR" />
+		<result column="n_sn"        property="nSn"        javaType="int"           jdbcType="NUMERIC" />
+		<result column="c_ecolname"  property="cEcolname"  javaType="string"        jdbcType="VARCHAR" />
+		
+		<result column="c_ccolname"  property="cCcolname"  javaType="string"        jdbcType="VARCHAR" />
+		<result column="c_datatype"  property="cDatatype"  javaType="string"        jdbcType="VARCHAR" />
+		<result column="n_datalen"   property="nDatalen"   javaType="int"           jdbcType="NUMERIC" />
+		<result column="n_precision" property="nPrecision" javaType="int"           jdbcType="NUMERIC" />
+		<result column="c_desc"      property="cDesc"      javaType="string"        jdbcType="VARCHAR" />
+		
+		<result column="c_codeid"    property="cCodeid"    javaType="string"        jdbcType="VARCHAR" />
+		<result column="c_notnull"   property="cNotnull"   javaType="string"        jdbcType="VARCHAR" />
+		<result column="c_pucol"     property="cPucol"     javaType="string"        jdbcType="VARCHAR" />
+		<result column="c_userid"    property="cUserid"    javaType="string"        jdbcType="VARCHAR" />
+		<result column="d_create"    property="dCreate"    javaType="java.sql.Date" jdbcType="TIMESTAMP" />
+		
+		<result column="d_update"    property="dUpdate"    javaType="java.sql.Date" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="tableMeta" type="data.exchange.center.service.parse.xml.domain.TableMeta">
+		<result column="c_tableid"   property="cTableid"   javaType="string"        jdbcType="VARCHAR" />
+		<result column="c_treeid"    property="cTreeid"    javaType="string"        jdbcType="VARCHAR" />
+		<result column="c_nodeid"    property="cNodeid"    javaType="string"        jdbcType="VARCHAR" />
+		<result column="c_etbname"   property="cEtbname"   javaType="string"        jdbcType="VARCHAR" />
+		<result column="c_ctbname"   property="cCtbname"   javaType="string"        jdbcType="VARCHAR" />
+		
+		<result column="c_desc"      property="cDesc"      javaType="string"        jdbcType="VARCHAR" />
+		<result column="c_ajlxcode"  property="cAjlxcode"  javaType="string"        jdbcType="VARCHAR" />
+		<result column="c_userid"    property="cUserid"    javaType="string"        jdbcType="VARCHAR" />
+		<result column="d_create"    property="dCreate"    javaType="java.sql.Date" jdbcType="TIMESTAMP" />
+		<result column="d_update"    property="dUpdate"    javaType="java.sql.Date" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="outMapInteger" type="java.util.HashMap">
+		<result column="anFlag"       	 property="anFlag"  	javaType="int"       	 jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="outMapString" type="java.util.HashMap">
+		<result column="avErrmsg"        property="avErrmsg"    javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="getXML" parameterType="java.util.Map" resultMap="xmlContent" useCache="false">
+		SELECT DM, LX, FYDM, XMLNR, LASTUPDATE, UUID,
+		       SENDTIME, INPUTSRC, DESTSCHEMA, AJSOURCE, XMLTYPE
+		  FROM SGY.BUF_ZZJGRY2XML 
+		 WHERE 1=1
+		   AND XMLTYPE = 1
+		   AND UPPER(DESTSCHEMA) = 'SGY'
+		   AND AJSOURCE = '002'
+		   <if test="map.param!=null and map.param!='' ">
+			   AND DM = #{map.param}
+		  </if>
+	</select>
+	<select id="getAJSCXML" parameterType="java.util.Map" resultMap="scXmlContent" useCache="false">
+		SELECT AJBS, AJLX, FYDM, XMLNR, LASTUPDATE, UUID, SENDTIME,
+		       INPUTSRC, DESTSCHEMA, AJSOURCE, XMLTYPE
+		  FROM SGY.BUF_AJSC2XML
+		 WHERE 1=1
+		   AND XMLTYPE = 1
+		   AND UPPER(DESTSCHEMA) = 'SGY'
+		   AND AJSOURCE = '002'
+		   <if test="map.param!=null and map.param!='' ">
+			   AND AJBS = #{map.param}
+		  </if>
+	</select>
+	<insert id="insert_AJSCXX_AJSCXX" parameterType="java.util.Map">
+		INSERT INTO AJSCXX_AJSCXX
+			(AJBS, ID,  REG_TIME, UPDATE_TIME, DEPT_CODE, APP_CODE,
+  			 AJLX, JBFY, SPR, SPRBS, SPRQ, SSRQ, SSYY)
+		values(
+			#{map.AJBS,        jdbcType=NUMERIC},
+			#{map.ID,          jdbcType=VARCHAR},
+			#{map.REG_TIME,    jdbcType=TIMESTAMP},
+			#{map.UPDATE_TIME, jdbcType=TIMESTAMP},
+			#{map.DEPT_CODE,   jdbcType=VARCHAR},
+			#{map.APP_CODE,    jdbcType=VARCHAR},
+			#{map.AJLX,        jdbcType=VARCHAR},
+			#{map.JBFY,        jdbcType=VARCHAR},
+			#{map.SPR,         jdbcType=VARCHAR},
+			#{map.SPRBS,       jdbcType=NUMERIC},
+			to_date(#{map.SPRQ},'yyyy-mm-dd hh24:mi:ss'),<!-- #{map.SPRQ,        jdbcType=DATE}, -->
+			to_date(#{map.SSRQ},'yyyy-mm-dd hh24:mi:ss'),<!-- #{map.SSRQ,        jdbcType=DATE}, -->
+			#{map.SSYY,        jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<select id="deleteAjxxByAjbs" parameterType="java.util.Map" statementType="CALLABLE" useCache="false">
+		<![CDATA[
+		{CALL  DCADM.DELETEBUFDATABYAJBS(
+			#{ajbs,      mode=IN,  jdbcType=VARCHAR},
+			#{v_cursor1, mode=OUT, jdbcType=NUMERIC, javaType=int,    resultMap=outMapInteger},
+			#{v_cursor2, mode=OUT, jdbcType=VARCHAR, javaType=String, resultMap=outMapString}
+		)}
+		]]>
+	</select>
+	<delete id="delete_AJSCXX_AJSCXX" parameterType="String">
+		DELETE FROM AJSCXX_AJSCXX WHERE AJBS = #{ajbs}
+	</delete>
+	<insert id="insert_SPZT_FYBM" parameterType="java.util.Map">
+		INSERT INTO SPZT_FYBM
+			(ID, REG_TIME, UPDATE_TIME, DEPT_CODE, APP_CODE, FYBZ,
+             DM, JGLX, FYMC, YX, DQM, BZ, FYJC)
+		values(
+			#{map.ID,          jdbcType=VARCHAR},
+			#{map.REG_TIME,    jdbcType=TIMESTAMP},
+			#{map.UPDATE_TIME, jdbcType=TIMESTAMP},
+			#{map.DEPT_CODE,   jdbcType=VARCHAR},
+			#{map.APP_CODE,    jdbcType=VARCHAR},
+			#{map.FYBZ,        jdbcType=NUMERIC},
+			#{map.DM,          jdbcType=NUMERIC},
+			#{map.JGLX,        jdbcType=NUMERIC},
+			#{map.FYMC,        jdbcType=VARCHAR},
+			#{map.YX,          jdbcType=NUMERIC},
+			#{map.DQM,         jdbcType=VARCHAR},
+			#{map.BZ,          jdbcType=VARCHAR},
+			#{map.FYJC,        jdbcType=VARCHAR}
+		)
+	</insert>
+	<delete id="delete_SPZT_FYBM" parameterType="String">
+		DELETE FROM SPZT_FYBM WHERE FYBZ = #{ajbs}
+	</delete>
+	
+	<insert id="insert_SPZT_ZZRY" parameterType="java.util.Map">
+		INSERT INTO SPZT_ZZRY
+			(ID, REG_TIME, UPDATE_TIME, DEPT_CODE, APP_CODE, RYBZ, XM, DLBZ,
+			 XB, CSRQ, MZ, WHCD, HYZK, SFZHM, ZZMM, XZJB, ZW, ZSBZ, DHHM, 
+			 YX, FGDJ, FJDJ, SZJG, BZ, ZZRYBZ, FYBZ, DM, MM)
+		values(
+			#{map.ID,          jdbcType=VARCHAR},
+	  		#{map.REG_TIME,    jdbcType=TIMESTAMP},
+	  		#{map.UPDATE_TIME, jdbcType=TIMESTAMP},
+	  		#{map.DEPT_CODE,   jdbcType=NUMERIC},
+	  		#{map.APP_CODE,    jdbcType=NUMERIC},
+	  		#{map.RYBZ,        jdbcType=NUMERIC},
+	  		#{map.XM,          jdbcType=NUMERIC},
+	  		#{map.DLBZ,        jdbcType=NUMERIC},
+	  		#{map.XB,          jdbcType=NUMERIC},
+	  		to_date(#{map.CSRQ},'yyyy-mm-dd hh24:mi:ss'),<!-- #{map.CSRQ,        jdbcType=DATE}, -->
+	  		#{map.MZ,          jdbcType=NUMERIC},
+	  		#{map.WHCD,        jdbcType=NUMERIC},
+	  		#{map.HYZK,        jdbcType=NUMERIC},
+	  		#{map.SFZHM,       jdbcType=VARCHAR},
+	  		#{map.ZZMM,        jdbcType=NUMERIC},
+	  		#{map.XZJB,        jdbcType=NUMERIC},
+	  		#{map.ZW,          jdbcType=NUMERIC},
+	  		#{map.ZSBZ,        jdbcType=NUMERIC},
+	  		#{map.DHHM,        jdbcType=VARCHAR},
+	  		#{map.YX,          jdbcType=NUMERIC},
+	  		#{map.FGDJ,        jdbcType=NUMERIC},
+	  		#{map.FJDJ,        jdbcType=NUMERIC},
+	  		#{map.SZJG,        jdbcType=NUMERIC},
+	  		#{map.BZ,          jdbcType=VARCHAR},
+	  		#{map.ZZRYBZ,      jdbcType=NUMERIC},
+	  		#{map.FYBZ,        jdbcType=NUMERIC},
+	  		#{map.DM,          jdbcType=NUMERIC},
+	  		#{map.MM,          jdbcType=VARCHAR}
+		)
+	</insert>
+	<delete id="delete_SPZT_ZZRY" parameterType="String">
+		DELETE FROM SPZT_ZZRY WHERE RYBZ = #{ajbs}
+	</delete>
+	<insert id="insert_SPZT_ZZJG" parameterType="java.util.Map">
+		INSERT INTO SPZT_ZZJG
+			(ID, REG_TIME, UPDATE_TIME, DEPT_CODE, APP_CODE, JGBZ,JGMC,
+			JGLX, YX, JGJB, SJJGBZ, JGZN, BZ, ZZJGBZ, FYBZ, DM)
+		values(
+			#{map.ID,          jdbcType=VARCHAR},
+			#{map.REG_TIME,    jdbcType=TIMESTAMP},
+			#{map.UPDATE_TIME, jdbcType=TIMESTAMP},
+			#{map.DEPT_CODE,   jdbcType=VARCHAR},
+			#{map.APP_CODE,    jdbcType=VARCHAR},
+			#{map.JGBZ,        jdbcType=VARCHAR},
+			#{map.JGMC,        jdbcType=VARCHAR},
+			#{map.JGLX,        jdbcType=NUMERIC},
+			#{map.YX,          jdbcType=NUMERIC},
+			#{map.JGJB,        jdbcType=NUMERIC},
+			#{map.SJJGBZ,      jdbcType=VARCHAR},
+			#{map.JGZN,        jdbcType=VARCHAR},
+			#{map.BZ,          jdbcType=VARCHAR},
+			#{map.ZZJGBZ,      jdbcType=NUMERIC},
+			#{map.FYBZ,        jdbcType=NUMERIC},
+			#{map.DM,          jdbcType=NUMERIC}
+		)
+	</insert>
+	<delete id="delete_SPZT_ZZJG" parameterType="String">
+		DELETE FROM SPZT_ZZJG WHERE JGBZ = #{ajbs}
+	</delete>
+	
+</mapper> 

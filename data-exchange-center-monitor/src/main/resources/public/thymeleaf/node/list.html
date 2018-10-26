@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<div th:replace="head"></div>
+	<!-- DataTables -->
+	<link rel="stylesheet" th:href="@{/plugins/datatables/dataTables.bootstrap.css}" />
+	<title>服务节点信息</title>
+	<!-- 引入 echarts.js -->
+	<script src="../../echarts/echarts.js"></script>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini ">
+			<section class="content">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="box">
+							<div class="box-body">
+								<table id="data" class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>服务</th>
+											<th>IP</th>
+											<th>端口</th>
+											<th>状态</th>
+											<th>实例名</th>
+											<th>主页</th>
+											<th>健康检查</th>
+											<th>服务信息</th>
+											<th>版本</th>
+											<th>注册时间</th>
+											<th>卸载时间</th>
+											<th>启动时间</th>
+											<th>最后更新时间</th>
+											<th>上一个脏时间</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="item:${list}">
+											<td th:text="${item.instanceInfo.appName}"></td>
+                                    		<td th:text="${item.instanceInfo.hostName}"></td>
+                                    		<td th:text="${item.instanceInfo.port}"></td>
+                                    		<td th:text="${item.instanceInfo.status}"></td>
+                                    		<td th:text="${item.instanceInfo.instanceId}"></td>
+                                    		<td th:text="${item.instanceInfo.homePageUrl}"></td>
+                                    		<td th:text="${item.instanceInfo.healthCheckUrl}"></td>
+                                    		<td th:text="${item.instanceInfo.statusPageUrl}"></td>
+                                    		<td th:text="${item.instanceInfo.version}"></td>
+                                    		<td th:text="${#dates.format(item.instanceInfo.leaseInfo.registrationTimestamp,'yyyy/MM/dd HH:mm')}"></td>
+                                    		<td th:text="${#dates.format(item.instanceInfo.leaseInfo.evictionTimestamp,'yyyy/MM/dd HH:mm')}"></td>
+                                    		<td th:text="${#dates.format(item.instanceInfo.leaseInfo.serviceUpTimestamp,'yyyy/MM/dd HH:mm')}"></td>
+                                    		<td th:text="${#dates.format(item.instanceInfo.lastUpdatedTimestamp,'yyyy/MM/dd HH:mm')}"></td>
+                                    		<td th:text="${#dates.format(item.instanceInfo.lastDirtyTimestamp,'yyyy/MM/dd HH:mm')}"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /.box -->
+					</div>
+					<!-- /.col -->
+				</div>
+			</section>
+<script th:src="@{/plugins/jQuery/jquery-2.2.3.min.js}"></script>
+<script th:src="@{/plugins/slimScroll/jquery.slimscroll.min.js}"></script>
+<script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/plugins/datatables/dataTables.bootstrap.min.js}"></script>
+<script th:src="@{/plugins/iCheck/icheck.min.js}"></script>         
+	<script>
+	$(function () {
+        $('#data').DataTable({
+            "paging": true,
+            "destroy":true,
+            //"lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+			"scrollX": true,
+			'language': {    
+	            'emptyTable': '没有数据',    
+	            'loadingRecords': '加载中...',    
+	            'processing': '查询中...',    
+	            'search': '搜索:',    
+	            'lengthMenu': '每页 _MENU_ 条记录',    
+	            'zeroRecords': '没有数据',    
+	            'paginate': {      
+	                    'next':       '下一页',    
+	                    'previous':   '上一页'    
+	                    },    
+	            'info': '第 _PAGE_ 页 / 共 _PAGES_ 页',    
+	            'infoEmpty': '没有数据',    
+	            'infoFiltered': '(从 _MAX_ 条记录中筛选)'    
+	        }  
+        });
+    });
+	</script>
+</body>
+</html>

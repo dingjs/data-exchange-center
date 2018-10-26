@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.huayu.mapper.HuayuMapper">
+	
+	 <select id="getAjlb" parameterType="java.util.Map" resultType="java.util.Map">
+	    <![CDATA[
+	   SELECT  
+        EAJ.AJBS,AJLX,AH,DEPTCODE,LAAY,LARQ ,UPDATETIME 
+      FROM 
+        BUF_EAJ EAJ, (SELECT AJBS,BS,XH FROM YASTML_YASTML WHERE  BS = #{rybs}) RYAJ
+      WHERE 
+        LAAY IN (9181,9722,9462) 
+        AND DEPTCODE LIKE '5107%'
+        AND  EAJ.AJBS = RYAJ.AJBS 
+        AND (EAJ.CBR-8000) = RYAJ.XH
+	    AND UPDATETIME >to_date(#{tjsj,jdbcType=VARCHAR, javaType=String},'yyyy-MM-dd hh24:MI:ss')
+	      ]]>
+    </select>
+     <select id="getMetaTablename" parameterType="java.util.Map" resultType="java.util.Map">
+	    <![CDATA[
+	   		select 
+	   			* 
+	   		from 
+	   			dcadm.dc_meta_treetable  
+	   		where 
+	   			c_treeid=0   order by to_number(c_nodeid) 
+	      ]]>
+    </select>
+     <select id="getAjxx" parameterType="java.util.Map" resultType="java.util.Map">
+	    <![CDATA[
+	       SELECT * FROM ${tableName}  WHERE AJBS=  #{ajbs}
+	      ]]>
+    </select>
+    <select id="getAjlxMc" parameterType="string" resultType="string">
+	    <![CDATA[
+	       SELECT c_name FROM dcadm.dc_ajlxlist  WHERE c_ajlx =  #{ajlx} 
+	     ]]>
+    </select>
+    <select id="getAjQz" parameterType="string" resultType="string">
+	    <![CDATA[
+	       SELECT C_EPREFIX FROM dcadm.dc_ajlxlist  WHERE c_ajlx =  #{ajlx} 
+	     ]]>
+    </select>
+    
+     <select id="getAjDaj" parameterType="java.util.Map" resultType="java.util.Map">
+	    <![CDATA[
+	      select 
+	      	ms.ajbs,
+	      	ms.xh,
+	      	ms.xsmc,
+	      	ms.wjmc,
+	      	ms.wjhz,
+          	ms.sfsyzq,
+         	ms.update_time as LASTUPDATE,
+	      	mm.mlmc,
+	      	mm.mlbh 
+	      from 
+	      	${jalxqz}_stwj ms left join 
+	      	${jalxqz}_mlxx mm on(mm.ajbs=ms.ajbs and mm.mlbh=ms.ssmlbh ) 
+	      where 
+	      	ms.ajbs = #{ajbs} 
+	      	AND mm.DEPT_CODE like '5107%'
+	     ]]>
+    </select>
+    <select id="getAjGcj" parameterType="java.util.Map" resultType="java.util.Map">
+	    <![CDATA[
+	      select 
+	       	ms.ajbs,
+	      	ms.xh,
+	      	ms.xsmc,
+	      	ms.wjmc,
+	      	ms.wjhz,
+          	ms.sfsyzq,
+         	ms.update_time as LASTUPDATE,
+	      	mm.mlmc,
+	      	mm.mlbh
+	      from 
+	      	${jalxqz}_stwj_gc ms left join 
+	        ${jalxqz}_mlxx_gc mm on(mm.ajbs=ms.ajbs and mm.mlbh=ms.ssmlbh ) 
+	      where 
+	      	ms.ajbs = #{ajbs} 
+	      	AND mm.DEPT_CODE like '5107%'
+	      ]]>
+    </select>
+    <select id="getTablename" parameterType="java.util.Map" resultType="java.util.Map">
+	    <![CDATA[
+	   		SELECT
+	   			 * 
+	   		FROM 
+	   			DCADM.DC_META_TREETABLE 
+	   		WHERE 
+	   			(C_AJLXCODE =#{ajlx} 
+	   			AND C_TREEID='0') 
+	   			OR (C_TREEID = '0' AND  C_ETBNAME='YASTML_YASTML')
+	      ]]>
+    </select>
+     <select id="getZzjg" parameterType="java.util.Map" resultType="java.util.Map">
+	    <![CDATA[
+	   	select 
+	   		jgjb,dm,zzjgbz,jgmc,sjjgbz,yx,JGBZ 
+	   	from 
+	   		spzt_zzjg 
+	   	where 
+	   		jgbz = #{jgbz} 
+	   		and fybz like '5107%'
+	      ]]>
+    </select>
+     <select id="getZzry" parameterType="java.util.Map" resultType="java.util.Map">
+	    <![CDATA[
+	   select 
+		id, rybz, xm, dlbz, xb, csrq, mz, whcd, hyzk, sfzhm, zzmm, xzjb, zw, zsbz, dhhm, yx, fgdj, fjdj, szjg, bz, zzrybz, fybz, dm, mm 
+	   from 
+	   	spzt_zzry 
+	   where 
+	 	fybz = #{fybz}  
+	 	and dlbz = #{dlbz}   
+	 	and mm = #{mm}  
+	 	and fybz like '5107%'
+	      ]]>
+    </select>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.download.mapper.DownloadMapper">
+	<resultMap id="outMapFtpPath" type="data.exchange.center.service.download.domain.FilePath">
+		<result column="FILE_NAME"            property="fileName"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="OLD_PATH"             property="oldPath"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="C_EPREFIX"            property="cEpreFix"         javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="outMapBlob" type="data.exchange.center.service.download.domain.FileBlob">
+		<result column="WJNR"                 property="wjnr"             jdbcType="BLOB"/>
+	</resultMap>
+	<select id="getFilePath" parameterType="String" resultMap="outMapFtpPath">
+		SELECT FILE_NAME, OLD_PATH, C_EPREFIX 
+	      FROM DCADM.DC_FJGH_FILEREC T1, 
+	           DCADM.DC_AJLXLIST T2 
+	     WHERE T1.AJLX_CODE = T2.C_AJLX
+	       AND T1.AJBS = #{ajbs}
+	       AND T1.XH   = #{xh}
+	</select>
+	<select id="getBlob" parameterType="map" resultMap="outMapBlob">
+		SELECT WJNR
+		  FROM ${tb}_STWJ_GC
+		 WHERE AJBS = #{ajbs}
+		   AND XH = #{xh}
+	</select>
+</mapper>

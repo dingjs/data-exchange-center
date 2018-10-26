@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.log.mapper.LogMapper">
+	<insert id="logger" parameterType="java.util.Map">
+		INSERT INTO DCADM.DC_CHK_OBJCHKLOCK
+                    (C_SRVENAME, N_SRVID, C_LOGID, C_OBJID, C_OBJLX, C_FYDM, 
+                    C_SRCCODE, D_STAMP, C_ERRMSG) 
+        VALUES(#{serviceName},${serviceId},#{id},#{ajbs},#{lx},#{fydm},#{srccode},systimestamp,#{msg})
+	</insert>
+	<delete id="deleteLog" parameterType="java.util.Map">
+		DELETE FROM DCADM.DC_CHK_OBJCHKLOCK
+		WHERE 1 = 1
+		<if test="serviceName != null and serviceName != '' ">
+         	<![CDATA[AND C_SRVENAME LIKE '%${serviceName}%']]>
+		</if>
+		<if test="serviceId != null and serviceId != '' ">
+         	<![CDATA[AND N_SRVID LIKE '%${serviceId}%']]>
+		</if>
+		<if test="id != null and id != '' ">
+         	<![CDATA[AND C_LOGID LIKE '%${id}%']]>
+		</if>
+		<if test="ajbs != null and ajbs != '' ">
+         	<![CDATA[AND C_OBJID LIKE '%${ajbs}%']]>
+		</if>
+		<if test="lx != null and lx != '' ">
+         	<![CDATA[AND C_OBJLX LIKE '%${lx}%']]>
+		</if>
+		<if test="fydm != null and fydm != '' ">
+         	<![CDATA[AND C_FYDM LIKE '%${fydm}%']]>
+		</if>
+		<if test="srccode != null and srccode != '' ">
+         	<![CDATA[AND C_SRCCODE LIKE '%${srccode}%']]>
+		</if>
+		<if test="msg != null and msg != '' ">
+         	<![CDATA[AND C_ERRMSG LIKE '%${msg}%']]>
+		</if>
+	</delete>
+</mapper>

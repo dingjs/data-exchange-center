@@ -1,0 +1,65 @@
+server:
+  port: 80
+  compression:
+    enabled: true
+  connection-timeout: 3000
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://150.0.2.164:10000/eureka/
+
+debug: false
+
+##登录记住我的token加密key
+remember:
+  key: javajidi_com
+##actuator config,actuator运行在一个独立的webappcontext中，see AnnotationConfigEmbeddedWebApplicationContext
+management:
+  context-path: /management
+  security:
+    enabled: false
+
+spring:
+  session:
+      store-type: none
+  application:
+    name: monitor
+    qiniu:
+      access-key: NDx4d9Lr1IYC7ThIFw-s77rCnJJPqdQX5bKl169j
+      securt-key: QIEaT5yrcdaLmBIUhBp2rYkivtWZLFd_u3OFvbt6
+      bucket: bumishi-blog
+      domain: http://static.bumishi.cn
+  datasource:
+    url: jdbc:oracle:thin:@150.0.2.15:1521/oraods
+    username: sgy
+    password: sgy
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    druid: 
+         initialSize: 1
+         minIdle: 1
+         maxActive: 200
+         maxWait: 60000
+         timeBetweenEvictionRunsMillis: 20000
+         minEvictableIdleTimeMillis: 300000
+         validationQuery: SELECT 1 FROM DUAL
+         testWhileIdle: true
+         testOnBorrow: false
+         testOnReturn: false
+         poolPreparedStatements: true
+         maxPoolPreparedStatementPerConnectionSize: 20
+  cache:
+    guava:
+      spec: maximumSize=500,expireAfterAccess=3600s
+
+ #spring-boot-admin config
+  boot:
+    admin:
+      url: http://localhost:${server.port}${spring.boot.admin.context-path}
+      context-path: /admin
+      client:
+        enabled: true
+  thymeleaf:
+    prefix: classpath:/public/thymeleaf/

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.api.gateway.mapper.ApiGatewayMapper">
+	<resultMap id="registerInfoResultMap" type="data.exchange.center.api.gateway.domain.RegisterInfo">
+		<result column="N_SRVID"    jdbcType="DECIMAL"   property="nSrvid"    />
+		<result column="C_DEPTCODE" jdbcType="VARCHAR"   property="cDeptcode" />
+		<result column="C_UNAME"    jdbcType="VARCHAR"   property="cUname"    />
+		<result column="C_PNAME"    jdbcType="VARCHAR"   property="cPname"    />
+		<result column="C_MPHONE"   jdbcType="VARCHAR"   property="cMphone"   />
+		<result column="C_INNERIP"  jdbcType="VARCHAR"   property="cInnerip"  />
+		<result column="C_TOKEN"    jdbcType="VARCHAR"   property="cToken"    />
+		<result column="C_METHOD"   jdbcType="CHAR"      property="cMethod"   />
+		<result column="C_USERID"   jdbcType="VARCHAR"   property="cUserid"   />
+		<result column="D_CREATE"   jdbcType="TIMESTAMP" property="dCreate"   />
+		<result column="D_UPDATE"   jdbcType="TIMESTAMP" property="dUpdate"   />
+	</resultMap>
+	<resultMap id="serviceInfoResultMap" type="data.exchange.center.api.gateway.domain.ServiceInfo">
+		<result column="N_SRVID"    jdbcType="DECIMAL"   property="nSrvid" />
+		<result column="C_SRVCNAME" jdbcType="VARCHAR"   property="cSrvcname" />
+		<result column="C_SRVENAME" jdbcType="VARCHAR"   property="cSrvename" />
+		<result column="C_SRVLANG"  jdbcType="VARCHAR"   property="cSrvlang" />
+		<result column="C_SRVTYPE"  jdbcType="VARCHAR"   property="cSrvtype" />
+		<result column="C_SRVURL"   jdbcType="VARCHAR"   property="cSrvurl" />
+		<result column="C_DESC"     jdbcType="VARCHAR"   property="cDesc" />
+		<result column="N_INTERVAL" jdbcType="DECIMAL"   property="nInterval" />
+		<result column="C_ENABLE"   jdbcType="VARCHAR"   property="cEnable" />
+		<result column="C_USERID"   jdbcType="VARCHAR"   property="cUserid" />
+		<result column="D_CREATE"   jdbcType="TIMESTAMP" property="dCreate" />
+		<result column="D_UPDATE"   jdbcType="TIMESTAMP" property="dUpdate" />
+		<result column="N_SRVMODE"  jdbcType="VARCHAR"   property="nSrvmode" />
+	</resultMap>
+	
+	<!-- 根据服务名称获取鉴权信息 -->
+	<select id="getTokenByServiceName" parameterType="string" resultMap="registerInfoResultMap">
+		SELECT T1.* FROM DCADM.DC_REG_SOATOKEN T1, DCADM.DC_REG_SERVICE T2
+		 WHERE T1.N_SRVID = T2.N_SRVID
+		   AND T2.C_SRVENAME = #{serviceName}
+	</select>
+	<select id="getServiceInfoByServiceName" parameterType="string" resultMap="serviceInfoResultMap">
+		SELECT T2.* FROM DCADM.DC_REG_SOATOKEN T1, DCADM.DC_REG_SERVICE T2
+		 WHERE T1.N_SRVID = T2.N_SRVID
+		   AND T2.C_SRVENAME = #{serviceName}
+	</select>
+	<select id="getServiceInfo" resultMap="serviceInfoResultMap">
+		SELECT * FROM DCADM.DC_REG_SERVICE
+	</select>
+</mapper>

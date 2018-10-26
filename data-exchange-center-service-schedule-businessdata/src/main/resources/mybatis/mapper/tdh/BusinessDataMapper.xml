@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.businessdata.mapper.tdh.BusinessDataMapper">
+	<resultMap id="BufExternal2Xml" type="data.exchange.center.service.businessdata.domain.BufExternal2Xml">
+		<result column="ajbs"   		property="ajbs" />
+		<result column="ajlx"   		property="ajlx" />
+		<result column="fydm"   		property="fydm" />
+		<result column="ajzt"   		property="ajzt" />
+		<result column="ah"   			property="ah" />
+		<result column="larq"   		property="larq" 		javaType="date"  		jdbcType="TIMESTAMP"/>
+		<result column="jarq"   		property="jarq"  		javaType="date"  		jdbcType="TIMESTAMP"/>
+		<result column="xmlnr"   		property="xmlnr" 		javaType="object"  		jdbcType="BLOB"/>
+		<result column="createtime"   	property="createtime" 	javaType="date"  		jdbcType="TIMESTAMP"/>
+		<result column="lastupdate"  	property="lastupdate" 	javaType="date"  		jdbcType="TIMESTAMP"/>
+		<result column="type"   		property="type" />
+		<result column="uuid"   		property="uuid" />
+		<result column="sendtime"   	property="sendtime" 	javaType="date"  		jdbcType="TIMESTAMP"/>
+		<result column="inputsrc"   	property="inputsrc" />
+		<result column="destschema"   	property="destschema" />
+		<result column="ajsource"   	property="ajsource" />
+		<result column="xmltype"   		property="xmltype" />
+	</resultMap>
+	<resultMap id="DcMonXmlOutAll" type="data.exchange.center.service.businessdata.domain.DcMonXmlOutAll">
+		<result column="ajbs"   		property="ajbs" />
+		<result column="ajlx"   		property="ajlx" />
+		<result column="fydm"   		property="fydm" />
+		<result column="ajzt"   		property="ajzt" />
+		<result column="ah"   			property="ah" />
+		<result column="larq"   		property="larq" 		javaType="date"  		jdbcType="TIMESTAMP"/>
+		<result column="jarq"   		property="jarq"  		javaType="date"  		jdbcType="TIMESTAMP"/>
+		<result column="xmlnr"   		property="xmlnr" 		javaType="object"  		jdbcType="BLOB"/>
+		<result column="createtime"   	property="createtime" 	javaType="date"  		jdbcType="TIMESTAMP"/>
+		<result column="lastupdate"  	property="lastupdate" 	javaType="date"  		jdbcType="TIMESTAMP"/>
+		<result column="type"   		property="type" />
+		<result column="uuid"   		property="uuid" />
+		<result column="sendtime"   	property="sendtime" 	javaType="date"  		jdbcType="TIMESTAMP"/>
+		<result column="inputsrc"   	property="inputsrc" />
+		<result column="destschema"   	property="destschema" />
+		<result column="ajsource"   	property="ajsource" />
+		<result column="xmltype"   		property="xmltype" />
+	</resultMap>
+	<resultMap id="DCMonXmlOutDel" type="data.exchange.center.service.businessdata.domain.DCMonXmlOutDel">
+		<result column="ajbs"   		property="ajbs" />
+		<result column="ajlx"   		property="ajlx" />
+		<result column="fydm"   		property="fydm" />
+		<result column="xmlnr"   		property="xmlnr" 		javaType="object"  		jdbcType="BLOB"/>
+		<result column="lastupdate"  	property="lastupdate" 	javaType="date"  		jdbcType="TIMESTAMP"/>
+		<result column="uuid"   		property="uuid" />
+		<result column="sendtime"   	property="sendtime" 	javaType="date"  		jdbcType="TIMESTAMP"/>
+		<result column="inputsrc"   	property="inputsrc" />
+		<result column="destschema"   	property="destschema" />
+		<result column="ajsource"   	property="ajsource" />
+		<result column="xmltype"   		property="xmltype" />
+	</resultMap>
+	   <resultMap id="DCMonXmlOutZzjg" type="data.exchange.center.service.businessdata.domain.DCMonXmlOutZzjg">
+        <result column="dm"           property="dm" />
+        <result column="lx"           property="lx" />
+        <result column="fydm"           property="fydm" />
+        <result column="xmlnr"          property="xmlnr"        javaType="object"       jdbcType="BLOB"/>
+        <result column="lastupdate"     property="lastupdate"   javaType="date"         jdbcType="TIMESTAMP"/>
+        <result column="uuid"           property="uuid" />
+        <result column="sendtime"       property="sendtime"     javaType="date"         jdbcType="TIMESTAMP"/>
+        <result column="inputsrc"       property="inputsrc" />
+        <result column="destschema"     property="destschema" />
+        <result column="ajsource"       property="ajsource" />
+        <result column="xmltype"        property="xmltype" />
+    </resultMap>
+	<select id="getDcMonXmlOut" parameterType="map" resultMap="DcMonXmlOutAll">
+	<![CDATA[
+		SELECT * FROM
+		    (Select
+                     AJBS,AJBM as AJLX,FYDM,
+                    (Case When AJZT>=300 And AJZT<400 then 3
+                          when ajzt>=400 and ajzt<500 then 4
+                          when ajzt>=500 and ajzt<800 then 5
+                          when ajzt>=800 and ajzt<970 then 7
+                          when ajzt>=970 then 8
+                          else 2
+                     END ) as AJzt,
+                     AH,To_date(LARQ,'YYYYMMDD') As LARQ,To_date(JARQ,'YYYYMMDD') JARQ,Sysdate CREATETIME,XMLNR,
+                     LASTUPDATE,TYPE,Nvl(UUID,lower(RAWTOHEX(sys_guid()))) as uuid,SENDTIME, 'DB' INPUTSRC,'SGY'DESTSCHEMA ,
+                      '002'AJSOURCE,'1' XMLTYPE, ROWNUM RN 
+                From 
+                      XMLDBA.DC_MON_XML_OUT a
+                WHERE
+                      a.XMLNR Is Not Null And (a.FLAG Is Null Or a.FLAG='0')
+                      And a.AJBS Not In (SELECT b.AHDM FROM xmldba.DC_MON_XML_OUT_DEL b WHERE a.LASTUPDATE > b.LASTUPDATE AND (b.FLAG Is Null Or b.FLAG='0')and Upper(b.LX) = 'BZ')
+                      and LASTUPDATE <= to_date(#{serverTime,jdbcType=VARCHAR, javaType=String},'yyyy-MM-dd hh24:MI:ss')
+                      and  (LENGTH(LARQ) = 8 or LARQ is null)and  (LENGTH(JARQ) = 8 or JARQ is null)) T
+		        WHERE 1=1
+				  AND RN >  ${min}
+				  AND RN <= ${max}
+		
+	 ]]>
+	</select>
+	<select id="getDcMonXmlOutDel" parameterType="map" resultMap="DCMonXmlOutDel">
+	<![CDATA[
+		Select
+		   ahdm ajbs ,xtajlx ajlx ,fydm ,XMLNR,LASTUPDATE, lower(RAWTOHEX(sys_guid())) as uuid ,
+		   Sysdate SENDTIME,'DB' INPUTSRC,'SGY' DESTSCHEMA,'002' AJSOURCE,'1' XMLTYPE ,FLAG
+		From 
+		   XMLDBA.DC_MON_XML_OUT_DEL 
+		WHERE 
+		   Upper(LX) = 'BZ' And XMLNR Is Not Null And( FLAG Is Null Or FLAG='0')
+		   AND  LASTUPDATE <= to_date(#{serverTime,jdbcType=VARCHAR, javaType=String},'yyyy-MM-dd hh24:MI:ss')
+	 ]]>
+	</select>
+		<select id="getDcMonXmlOutJg" parameterType="map" resultMap="DCMonXmlOutZzjg">
+	<![CDATA[
+		Select  a.DM,(Case When a.LX Is Null Then 'ZZFY'
+                                  When Upper(a.LX) = 'BM' Then 'ZZJG'
+                                  When Upper(a.LX) = 'RY' Then 'ZZRY'
+                              End) as lx,
+                a.FYDM,lower(RAWTOHEX(sys_guid())) UUID,XMLNR,LASTUPDATE,
+                Sysdate SENDTIME,'DB' INPUTSRC,'SGY' DESTSCHEMA,'002' AJSOURCE,'1' XMLTYPE 
+        From 
+                XMLDBA.DC_MON_XML_OUT_JG a 
+        Where
+                a.XMLNR Is Not Null And (a.FLAG Is Null Or a.FLAG='0')
+                Order By a.LASTUPDATE Asc
+	 ]]>
+	</select>
+	<select id="getPageDcMonXmlOut"   parameterType="String" resultType="int">
+		Select 
+			count(AJBS) 
+		From 
+			XMLDBA.DC_MON_XML_OUT  a
+		WHERE  
+			a.XMLNR Is Not Null And (a.FLAG Is Null Or a.FLAG='0') 
+			And a.AJBS Not In (SELECT b.AHDM FROM xmldba.TJ_SC b)
+	</select>
+	<select id="getPageDcMonXmlOutDe"   parameterType="String" resultType="int">
+		Select  
+			COUNT(1) 
+		from 
+			SGY.BUF_EAJ 
+		Where  
+			Substrb(DEPTCODE,1,4)=#{fydm}
+	</select>
+	<select id="getPageDcMonXmlOutJg"   parameterType="String" resultType="int">
+		Select  
+			COUNT(1) 
+		from 
+			SGY.BUF_EAJ 
+		Where  
+			Substrb(DEPTCODE,1,4)=#{fydm}
+	</select>
+	<update id="setOutFlag" parameterType="java.util.Map" >
+	   update DC_MON_XML_OUT set flag = 1 where ajbs = #{ajbs}
+	</update>
+	<update id="setDelFlag" parameterType="java.util.Map" >
+	  update DC_MON_XML_OUT_DEL set flag = 1 where ahdm = #{ajbs} And LX='BZ'
+    </update>
+    <update id="setJgFlag" parameterType="java.util.Map">
+      update DC_MON_XML_OUT_JG set flag = 1 where dm = #{dm}
+    </update>
+</mapper>

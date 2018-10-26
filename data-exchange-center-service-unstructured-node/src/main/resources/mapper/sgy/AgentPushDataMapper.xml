@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.unstructured.node.mapper.sgy.AgentPushDataMapper">
+	<resultMap id="Ajxx"
+		type="data.exchange.center.service.unstructured.node.domain.Ajxx">
+		<result column="AHDM" property="AHDM" />
+		<result column="FYDM" property="FYDM" />
+		<result column="AJLX" property="AJLX" />
+		<result column="AJZT" property="AJZT" />
+	</resultMap>
+	<resultMap id="RcbAjbs" type="data.exchange.center.service.unstructured.node.domain.RcbAjbs">
+		<result column="AJBS" property="AJBS" />
+		<result column="FYDM" property="FYDM" />
+		<result column="CLOCK" property="CLOCK" />
+	</resultMap>
+	<resultMap id="FjghInit" type="data.exchange.center.service.unstructured.node.domain.FjghInit">
+        <result column="C_AJBS" property="C_AJBS" />
+        <result column="C_FYDM" property="C_FYDM" />
+    </resultMap>
+	<insert id="pushEajMlxxToSGY" parameterType="java.util.List">
+		INSERT INTO DCADM.TEMP_EAJ_MLXX
+		(LSH,
+		FYDM,
+		XH,
+		JZLB,
+		PXH,
+		CLBT,
+		P1,
+		P2,
+		CH,
+		FLAG,
+		LASTUPDATE,
+		JMBH,
+		AJLX)
+		<foreach collection="list" item="item" index="index"
+			separator="union all">
+			(
+			SELECT
+			#{item.LSH, jdbcType=VARCHAR},
+			#{item.FYDM, jdbcType=VARCHAR},
+			#{item.XH, jdbcType=FLOAT},
+			#{item.JZLB, jdbcType=VARCHAR},
+			#{item.PXH, jdbcType=FLOAT},
+			#{item.CLBT, jdbcType=VARCHAR},
+			#{item.P1, jdbcType=INTEGER},
+			#{item.P2, jdbcType=INTEGER},
+			#{item.CH, jdbcType=INTEGER},
+			#{item.FLAG, jdbcType=VARCHAR},
+			#{item.LASTUPDATE,jdbcType=TIMESTAMP},
+			#{item.JMBH, jdbcType=INTEGER},
+			#{item.AJLX, jdbcType=VARCHAR}
+			FROM DUAL
+			)
+		</foreach>
+	</insert>
+	<insert id="pushEajSsjcyxToSGY" parameterType="java.util.List">
+		INSERT INTO DCADM.TEMP_EAJ_SSJCYX
+		(AJBS,
+		FYDM,
+		ID,
+		FTPPATH,
+		FTPFILE,
+		WJYS,
+		YEMA,
+		JZLB,
+		XH,
+		MC,
+		FILENAME,
+		JMXH,
+		LASTUPDATE,
+		ACTIONTYPE,
+		AJLX)
+		<foreach collection="list" item="item" index="index"
+			separator="union all">
+			(
+			SELECT
+			#{item.AJBS, jdbcType=VARCHAR},
+			#{item.FYDM, jdbcType=VARCHAR},
+			#{item.ID, jdbcType=FLOAT},
+			#{item.FTPPATH, jdbcType=VARCHAR},
+			#{item.FTPFILE, jdbcType=VARCHAR},
+			#{item.WJYS, jdbcType=FLOAT},
+			#{item.YEMA, jdbcType=VARCHAR},
+			#{item.JZLB, jdbcType=VARCHAR},
+			#{item.XH, jdbcType=FLOAT},
+			#{item.MC, jdbcType=VARCHAR},
+			#{item.FILENAME, jdbcType=VARCHAR},
+			#{item.JMXH, jdbcType=FLOAT},
+			#{item.LASTUPDATE,jdbcType=TIMESTAMP},
+			#{item.ACTIONTYPE, jdbcType=VARCHAR},
+			#{item.AJLX, jdbcType=VARCHAR}
+			FROM DUAL
+			)
+		</foreach>
+	</insert>
+	<insert id="pushEajMlxxGcToSGY" parameterType="java.util.List">
+		INSERT INTO DCADM.TEMP_EAJ_MLXX_GC
+		(LSH,
+		FYDM,
+		XH,
+		JZLB,
+		PXH,
+		CLBT,
+		P1,
+		P2,
+		CH,
+		FLAG,
+		LASTUPDATE,
+		JMBH,
+		AJLX)
+		<foreach collection="list" item="item" index="index"
+			separator="union all">
+			(
+			SELECT
+			#{item.LSH, jdbcType=VARCHAR},
+			#{item.FYDM, jdbcType=VARCHAR},
+			#{item.XH, jdbcType=FLOAT},
+			#{item.JZLB, jdbcType=VARCHAR},
+			#{item.PXH, jdbcType=FLOAT},
+			#{item.CLBT, jdbcType=VARCHAR},
+			#{item.P1, jdbcType=INTEGER},
+			#{item.P2, jdbcType=INTEGER},
+			#{item.CH, jdbcType=INTEGER},
+			#{item.FLAG, jdbcType=VARCHAR},
+			#{item.LASTUPDATE,jdbcType=TIMESTAMP},
+			#{item.JMBH, jdbcType=INTEGER},
+			#{item.AJLX, jdbcType=VARCHAR}
+			FROM DUAL
+			)
+		</foreach>
+	</insert>
+	<insert id="pushEajJzwjAllToSGY" parameterType="java.util.List">
+		INSERT INTO DCADM.TEMP_EAJ_JZWJ_ALL
+		(AHDM,
+		FYDM,
+		XH,
+		YXXH,
+		FILENAME,
+		FTPSERVER,
+		LOCALFILE,
+		PXH,
+		WJYS,
+		SFZYXJ,
+		LASTUPDATE,
+		SLT,
+		CJR,
+		CJSJ,
+		GKSJ,
+		SFGK,
+		ACTIONTYPE,
+		AJLX)
+		<foreach collection="list" item="item" index="index"
+			separator="union all">
+			(
+			SELECT
+			#{item.AHDM, jdbcType=VARCHAR},
+			#{item.FYDM, jdbcType=VARCHAR},
+			#{item.XH, jdbcType=VARCHAR},
+			#{item.YXXH, jdbcType=INTEGER},
+			#{item.FILENAME, jdbcType=VARCHAR},
+			#{item.FTPSERVER, jdbcType=VARCHAR},
+			#{item.LOCALFILE, jdbcType=VARCHAR},
+			#{item.PXH, jdbcType=INTEGER},
+			#{item.WJYS, jdbcType=INTEGER},
+			#{item.SFZYXJ, jdbcType=VARCHAR},
+			#{item.LASTUPDATE,jdbcType=TIMESTAMP},
+			#{item.SLT, jdbcType=BLOB},
+			#{item.CJR, jdbcType=VARCHAR},
+			#{item.CJSJ, jdbcType=VARCHAR},
+			#{item.GKSJ, jdbcType=VARCHAR},
+			#{item.SFGK, jdbcType=VARCHAR},
+			#{item.ACTIONTYPE, jdbcType=VARCHAR},
+			#{item.AJLX, jdbcType=VARCHAR}
+			FROM DUAL
+			)
+		</foreach>
+	</insert>
+	<insert id="pushEajJzToSGY"
+		parameterType="data.exchange.center.service.unstructured.node.domain.TempEajJz">
+		INSERT INTO DCADM.TEMP_EAJ_JZ
+		(AHDM,
+		AJLX,
+		XH,
+		STLB,
+		LB,
+		STBH,
+		MC,
+		BZ,
+		ZZSJ,
+		ZZR,
+		ZJXGR,
+		TJR,
+		TJRQ,
+		ZFJBS,
+		JXPXH,
+		JDZT,
+		YSBH,
+		WJMC,
+		WJGS,
+		WJDX,
+		YSBZ,
+		LCZT,
+		LCH,
+		SLH,
+		LASTUPDATE,
+		JMXH,
+		YZZT,
+		WJYS,
+		TQYY,
+		SENDID,
+		SFFBCPWS,
+		QZID,
+		FILENAME,
+		FTPSERVER,
+		WJZS,
+		WJFS,
+		WJJS,
+		WJCS,
+		NR,
+		SFDZSD,
+		TEDTIME,
+		ETIME,
+		GZWCDD,
+		HDID,
+		YWXH,
+		SFZYXJ,
+		YJFYJ,
+		SYDSR,
+		HASHCODE,
+		SFDG,
+		LCTQR, YYXHS, FYDM, AJZT,
+		ACTIONTYPE)
+		values(#{AHDM, jdbcType=VARCHAR},
+		#{AJLX, jdbcType=VARCHAR},
+		#{XH, jdbcType=VARCHAR},
+		#{STLB, jdbcType=VARCHAR},
+		#{LB, jdbcType=VARCHAR},
+		#{STBH, jdbcType=INTEGER},
+		#{MC, jdbcType=VARCHAR},
+		#{BZ, jdbcType=VARCHAR},
+		#{ZZSJ, jdbcType=TIMESTAMP},
+		#{ZZR, jdbcType=VARCHAR},
+		#{ZJXGR, jdbcType=VARCHAR},
+		#{TJR, jdbcType=VARCHAR},
+		#{TJRQ, jdbcType=TIMESTAMP},
+		#{ZFJBS, jdbcType=VARCHAR},
+		#{JXPXH, jdbcType=INTEGER},
+		#{JDZT, jdbcType=VARCHAR},
+		#{YSBH, jdbcType=INTEGER},
+		#{WJMC, jdbcType=VARCHAR},
+		#{WJGS, jdbcType=VARCHAR},
+		#{WJDX, jdbcType=FLOAT},
+		#{YSBZ, jdbcType=VARCHAR},
+		#{LCZT, jdbcType=VARCHAR},
+		#{LCH, jdbcType=VARCHAR},
+		#{SLH, jdbcType=VARCHAR},
+		#{LASTUPDATE, jdbcType=TIMESTAMP},
+		#{JMXH, jdbcType=VARCHAR},
+		#{YZZT, jdbcType=VARCHAR},
+		#{WJYS, jdbcType=FLOAT},
+		#{TQYY, jdbcType=VARCHAR},
+		#{SENDID, jdbcType=FLOAT},
+		#{SFFBCPWS, jdbcType=VARCHAR},
+		#{QZID, jdbcType=VARCHAR},
+		#{FILENAME, jdbcType=VARCHAR},
+		#{FTPSERVER, jdbcType=VARCHAR},
+		#{WJZS, jdbcType=INTEGER},
+		#{WJFS, jdbcType=FLOAT},
+		#{WJJS, jdbcType=FLOAT},
+		#{WJCS, jdbcType=FLOAT},
+		#{NR, javaType=Object,jdbcType=BLOB},
+		#{SFDZSD, jdbcType=VARCHAR},
+		#{TEDTIME, jdbcType=INTEGER},
+		#{ETIME, jdbcType=INTEGER},
+		#{GZWCDD, jdbcType=VARCHAR},
+		#{HDID, jdbcType=INTEGER},
+		#{YWXH, jdbcType=VARCHAR},
+		#{SFZYXJ, jdbcType=VARCHAR},
+		#{YJFYJ, jdbcType=VARCHAR},
+		#{SYDSR, jdbcType=VARCHAR},
+		#{HASHCODE, jdbcType=VARCHAR},
+		#{SFDG, jdbcType=VARCHAR},
+		#{LCTQR, jdbcType=VARCHAR},
+		#{YYXHS, jdbcType=VARCHAR},
+		#{FYDM, jdbcType=VARCHAR},
+		#{AJZT, jdbcType=VARCHAR},
+		#{ACTIONTYPE, jdbcType=VARCHAR})
+	</insert>
+	<insert id="pushEajJzwjAllNewToSGY" parameterType="java.util.List">
+		INSERT INTO DCADM.TEMP_EAJ_JZWJ_ALL_NEW
+		(AHDM,
+		FYDM,
+		AJLX,
+		XH,
+		YXXH,
+		FILENAME,
+		FTPSERVER,
+		FTPFILE,
+		LOCALFILE,
+		PXH,
+		WJYS,
+		SFZYXJ,
+		LASTUPDATE,
+		ACTIONTYPE)
+		<foreach collection="list" item="item" index="index"
+			separator="union all">
+			(
+			SELECT
+			#{item.AHDM, jdbcType=VARCHAR},
+			#{item.FYDM, jdbcType=VARCHAR},
+			#{item.AJLX, jdbcType=VARCHAR},
+			#{item.XH, jdbcType=VARCHAR},
+			#{item.YXXH, jdbcType=INTEGER},
+			#{item.FILENAME, jdbcType=VARCHAR},
+			#{item.FTPSERVER, jdbcType=VARCHAR},
+			#{item.FTPFILE, jdbcType=VARCHAR},
+			#{item.LOCALFILE, jdbcType=VARCHAR},
+			#{item.PXH, jdbcType=INTEGER},
+			#{item.WJYS, jdbcType=INTEGER},
+			#{item.SFZYXJ, jdbcType=VARCHAR},
+			#{item.LASTUPDATE, jdbcType=TIMESTAMP},
+			#{item.ACTIONTYPE, jdbcType=VARCHAR}
+			FROM DUAL
+			)
+		</foreach>
+	</insert>
+	<insert id="pushEajAll" parameterType="map">
+		INSERT INTO DCADM.DC_FJGH_UPD
+		(C_AJBS,
+		C_AJLX,
+		C_DEPTCODE,
+		C_AJZT,
+		C_TEMP_EAJ_JZ,
+		C_TEMP_EAJ_SSJCYX,
+		C_TEMP_EAJ_JZWJ_ALL_NEW,
+		C_TEMP_EAJ_MLXX,
+		C_TEMP_EAJ_MLXX_GC,
+		N_LEVEl,
+		C_AH,
+		D_LARQ,
+		C_CBRXM)
+		VALUES
+		(#{ahdm ,jdbcType=VARCHAR},
+		#{ajlx ,jdbcType=VARCHAR},
+		#{fydm ,jdbcType=VARCHAR},
+		#{ajzt ,jdbcType=VARCHAR},
+		#{TEMP_EAJ_JZ ,jdbcType=VARCHAR},
+		#{TEMP_EAJ_SSJCYX ,jdbcType=VARCHAR},
+		#{TEMP_EAJ_JZWJ_ALL_NEW ,jdbcType=VARCHAR},
+		#{TEMP_EAJ_MLXX ,jdbcType=VARCHAR},
+		#{TEMP_EAJ_MLXX_GC ,jdbcType=VARCHAR},
+		#{level ,jdbcType=INTEGER},
+		#{ah ,jdbcType=VARCHAR},
+		#{larq ,jdbcType=TIMESTAMP},
+		#{cbrxm ,jdbcType=VARCHAR})
+	</insert>
+
+	<insert id="insertTempEajAll" parameterType="map">
+		INSERT INTO DCADM.DC_FJGH_UPD(C_AJBS, C_AJLX, C_DEPTCODE, C_AJZT)
+		VALUES (#{AJBS}, #{AJLX}, #{FYDM}, #{AJZT})
+	</insert>
+	<update id="updateEajJzAllNewAJZT" parameterType="String">
+		UPDATE DCADM.DC_FJGH_UPD
+		SET C_TEMP_EAJ_JZWJ_ALL_NEW = 'true'
+		WHERE C_AJBS = #{ajbs}
+	</update>
+	<update id="updateEajJzAJZT" parameterType="String">
+		UPDATE DCADM.DC_FJGH_UPD
+		SET C_TEMP_EAJ_JZ = 'true'
+		WHERE C_AJBS = #{ajbs}
+	</update>
+	<update id="updateEajMlxxGcAJZT" parameterType="String">
+		UPDATE DCADM.DC_FJGH_UPD
+		SET C_TEMP_EAJ_MLXX_GC = 'true'
+		WHERE C_AJBS = #{ajbs}
+	</update>
+	<update id="updateEajMlxxAJZT" parameterType="String">
+		UPDATE DCADM.DC_FJGH_UPD
+		SET C_TEMP_EAJ_MLXX = 'true'
+		WHERE C_AJBS = #{ajbs}
+	</update>
+	<update id="updateEajSsjcyxAJZT" parameterType="String">
+		UPDATE DCADM.DC_FJGH_UPD
+		SET C_TEMP_EAJ_SSJCYX = 'true'
+		WHERE C_AJBS = #{ajbs}
+	</update>
+	<select id="getAjbs" resultType="int">
+	select sum (a) from  (   
+        SELECT COUNT(1) as a  FROM dcadm.DC_FJGH_UPD upd WHERE c_ajbs =  #{ajbs}
+    union all
+        select (case when count(*) = 0 then 1 else 0 end) as a from sgy.buf_eaj where ajbs =  #{ajbs}
+    )
+	</select>
+	<select id="getAllAjxxFromSgy" parameterType="map" resultMap="Ajxx">
+        <![CDATA[
+        SELECT AHDM, FYDM, AJLX, AJZT FROM
+        (
+               Select 
+                AJBS AHDM,AH, DEPTCODE FYDM, AJLX AJLX, AJJZJD AJZT,LARQ ,ROWNUM RN  
+               from 
+                SGY.BUF_EAJ 
+               Where  
+                Substrb(DEPTCODE,1,4) = #{fydm}
+        )T
+        WHERE 1=1
+          AND RN >  ${min}
+          AND RN <= ${max}
+        ]]>
+	</select>
+	<select id="getPageAllAjxxFromSgy" parameterType="String"
+		resultType="int">
+		Select
+		COUNT(1)
+		from
+		SGY.BUF_EAJ
+		Where
+		Substrb(DEPTCODE,1,4)=#{fydm}
+	</select>
+
+	<select id="getAllAjxxFromSgyRw" parameterType="map" resultMap="Ajxx">
+        <![CDATA[
+            ${datasql}
+        ]]>
+	</select>
+	<select id="getPageAllAjxxFromSgyRw" parameterType="map"
+		resultType="int">
+		${cntsql}
+	</select>
+	<select id="getDelRedis" parameterType="map" resultMap="RcbAjbs">
+        <![CDATA[
+            select 
+                C_AJBS AJBS,C_DEPTCODE FYDM ,C_LOCK CLOCK 
+            from 
+                DCADM.DC_RCB_AJBS t 
+            WHERE 
+                Substrb(C_DEPTCODE,1,4)=#{fydm} and C_LOCK = '0'
+        ]]>
+	</select>
+	<delete id="getDelRcbAjbs" parameterType="String">
+		delete from dcadm.dc_rcb_ajbs where c_ajbs =#{ajbs}
+	</delete>
+	<select id="getAllAjxxFromDelRedis" parameterType="String" resultMap="Ajxx">
+        <![CDATA[
+          SELECT  be.ajbs AHDM,
+                  be.DEPTCODE FYDM, 
+                  be.AJLX,
+                  be.AJJZJD AJZT,
+                  be.ah ah,
+                  be.larq larq 
+         FROM SGY.BUF_EAJ be 
+            WHERE
+                 be.ajbs = #{ajbs}
+        ]]>
+	</select>
+	<insert id="pushFjghInit" parameterType="map">
+		INSERT INTO DCADM.DC_FJGH_INIT
+		  (C_AJBS,C_FYDM,C_TYPE)
+		VALUES
+		  (#{ahdm, jdbcType=VARCHAR},
+		   #{fydm, jdbcType=VARCHAR},
+		   'node')
+	</insert>
+	<delete id="delFjghInit" parameterType="map">
+        delete from dcadm.DC_FJGH_INIT where C_AJBS = #{ahdm} and c_type = 'node'
+    </delete>
+    <delete id="delTempAllAndInit" parameterType="map">
+    begin
+        delete from dcadm.temp_eaj_jz where ahdm =#{ahdm};
+        delete from dcadm.temp_eaj_jzwj_all_new where ahdm = #{ahdm};
+        delete from dcadm.temp_eaj_mlxx where lsh = #{ahdm};
+        delete from dcadm.temp_eaj_mlxx_gc  where lsh = #{ahdm};
+        delete from dcadm.temp_eaj_ssjcyx where ajbs = #{ahdm};
+        delete from dcadm.DC_FJGH_INIT where C_AJBS = #{ahdm} and c_type = 'node';
+     end;
+    </delete>
+   <delete id="delTempAllToInit" parameterType="map">
+    begin
+	    delete from dcadm.temp_eaj_jz where ahdm in (select c_ajbs from dcadm.dc_fjgh_init where  Substrb(C_FYDM,1,4) = #{fydm} and c_type = 'node');
+	    delete from dcadm.temp_eaj_jzwj_all_new where ahdm in (select c_ajbs from dcadm.dc_fjgh_init where  Substrb(C_FYDM,1,4) = #{fydm} and c_type = 'node');
+	    delete from dcadm.temp_eaj_mlxx where lsh in (select c_ajbs from dcadm.dc_fjgh_init where  Substrb(C_FYDM,1,4) = #{fydm} and c_type = 'node');
+	    delete from dcadm.temp_eaj_mlxx_gc  where lsh in (select c_ajbs from dcadm.dc_fjgh_init where  Substrb(C_FYDM,1,4) = #{fydm} and c_type = 'node');
+	    delete from dcadm.temp_eaj_ssjcyx where ajbs in (select c_ajbs from dcadm.dc_fjgh_init where  Substrb(C_FYDM,1,4) = #{fydm} and c_type = 'node');
+	    delete from dcadm.dc_fjgh_init where  Substrb(C_FYDM,1,4) = #{fydm} and c_type = 'node';
+	 end;
+    </delete>
+    <select id="getFjghInit" parameterType="String" resultMap="FjghInit">
+         SELECT C_AJBS,C_FYDM FROM dcadm.dc_fjgh_init where  Substrb(C_FYDM,1,4) = #{fydm} and c_type = 'node' 
+                AND c_ajbs NOT IN (SELECT C_objid FROM dcadm.dc_chk_objchklock WHERE n_srvid = 15)
+    </select>
+</mapper>   

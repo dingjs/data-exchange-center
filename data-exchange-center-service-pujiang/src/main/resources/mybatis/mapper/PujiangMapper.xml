@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.pujiang.mapper.PujiangMapper">
+	<resultMap id="outMapUserInfo" type="data.exchange.center.service.pujiang.domain.UserInfo">
+		<result column="dlbz"            property="dlbz"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="xm"              property="xm"             javaType="string"        jdbcType="VARCHAR" />
+		<result column="yx"              property="yx"             javaType="string"        jdbcType="VARCHAR" />
+		<result column="mm"              property="mm"             javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="outMapAjbsInfo" type="data.exchange.center.service.pujiang.domain.AjbsInfo">
+    	<result column="AJBS"            jdbcType="VARCHAR"        property="ajbs" />
+    	<result column="AH"              jdbcType="VARCHAR"        property="ah" />
+    	<result column="SYCX"            jdbcType="VARCHAR"        property="sycx" />
+    	<result column="LAAY"            jdbcType="VARCHAR"        property="laay" />
+    	<result column="FYDM"            jdbcType="VARCHAR"        property="fydm" />
+    	<result column="FDSXTS"          jdbcType="VARCHAR"        property="fdsxts" />
+    	<result column="LARQ"            jdbcType="VARCHAR"        property="larq" />
+    	<result column="SSDW1"           jdbcType="VARCHAR"        property="ssdw1" />
+    	<result column="CBRMC"           jdbcType="VARCHAR"        property="cbrmc" />
+    	<result column="MC"              jdbcType="VARCHAR"        property="mc" />
+    	<result column="XB"              jdbcType="VARCHAR"        property="xb" />
+    	<result column="CSRQ"            jdbcType="VARCHAR"        property="csrq" />
+    	<result column="NL"              jdbcType="VARCHAR"        property="nl" />
+    	<result column="GJ"              jdbcType="VARCHAR"        property="gj" />
+    	<result column="MZ"              jdbcType="VARCHAR"        property="mz" />
+    	<result column="SFZHM"           jdbcType="VARCHAR"        property="sfzhm" />
+    	<result column="DZ"              jdbcType="VARCHAR"        property="dz" />
+    	<result column="LXDH"            jdbcType="VARCHAR"        property="lxdh" />
+    	<result column="KTRQ"            jdbcType="VARCHAR"        property="ktrq" />
+    	
+  	</resultMap>
+  	<resultMap id="outMapAjcl" type="data.exchange.center.service.pujiang.domain.Ajcl">
+		<result column="ajbs"            property="ajbs"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="xh"              property="xh"             javaType="string"        jdbcType="VARCHAR" />
+		<result column="wjmc"            property="wjmc"           javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="outMapAjbsList" type="data.exchange.center.service.pujiang.domain.AjbsList">
+		<result column="ajbs"            property="ajbs"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="fydm"            property="fydm"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="ajlx"            property="ajlx"           javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="getBmInfo" resultType="java.util.Map">
+		select JGMC, JGLX, YX, JGJB, SJJGBZ, JGZN, BZ, ZZJGBZ, FYBZ, DM
+          from sgy.spzt_zzjg
+         where dept_code = '510131'
+	</select>
+	<select id="getUserInfo" parameterType="java.util.Map" resultMap="outMapUserInfo">
+		select dlbz, xm, '' yx, mm 
+		  from sgy.spzt_zzry
+		 where dept_code = '510131'
+	</select>
+	<select id="getAjbsInfo" parameterType="java.util.Map" resultMap="outMapAjbsInfo">
+    	select tt1.ajbs,ah, sycx, laay, fydm, fdsxts, to_char(larq, 'yyyy-mm-dd')larq, 
+               tt3.ktrq, ssdw1, cbrmc, mc, xb, to_char(csrq, 'yyyy-mm-dd')csrq, 
+               nl, gj, mz, sfzhm, dz, lxdh
+          from 
+               (select t1.ajbs,t1.ah, t2.sycx, t1.laay, t1.deptcode fydm, 
+                       t3.fdsxts, t1.larq, t4.mc cbrmc
+                  from sgy.buf_eaj t1 
+                  left join sgy.msys_ajslqk t2 
+                    on t1.ajbs = t2.ajbs
+                   and t1.ajlx = 21
+                  left join sgy.msys_baqx t3 
+                    on t1.ajbs = t3.ajbs
+                  left join sgy.yastml_yastml t4 
+                    on t4.ajbs = t1.ajbs 
+                   and (t1.cbr-8000) = t4.xh 
+                 where t1.ajbs = ${ajbs} 
+                   and t1.deptcode = '510131') tt1
+          left join
+               (select t5.ajbs, t5.ssdw1, t6.mc, t6.xb, t6.csrq, t6.nl,
+                       t6.gj, t6.mz, t6.sfzhm, t6.dz, t6.lxdh 
+                  from sgy.msys_dsr t5 
+                  left join sgy.yastml_yastml t6 
+                    on t5.ajbs = t6.ajbs 
+                   and t5.xh = t6.xh 
+                 where t5.ajbs=${ajbs}
+                   and t5.dept_code = '510131')tt2
+            on tt1.ajbs = tt2.ajbs
+          left join
+                (select ajbs, to_char(kssj, 'yyyymmdd') ktrq 
+                   from sgy.msys_ftsyjl 
+                  where dept_code = '510131'
+                    and ajbs = ${ajbs})tt3
+            on tt2.ajbs = tt3.ajbs
+	</select>
+	<select id="getAjclList" parameterType="java.util.Map" resultMap="outMapAjcl">
+		select ajbs, xh, wjmc 
+		  from sgy.msys_stwj_gc 
+		 where ajbs = #{ajbs}
+		   and dept_code = '510131'
+	</select>
+	<select id="getAjbsList" parameterType="java.util.Map" resultMap="outMapAjbsList">
+		<![CDATA[
+		select ajbs, deptcode fydm, ajlx 
+		  from sgy.buf_eaj 
+		 where 1 = 1
+		   and deptcode = '510131' 
+		   and ajjzjd < '7'
+		   and ajlx = '21'
+		   and updatetime >= to_date(#{startDate},'yyyymmdd hh24miss')
+           and updatetime <= to_date(#{endDate},'yyyymmdd hh24miss')
+        ]]>
+	</select>
+</mapper>

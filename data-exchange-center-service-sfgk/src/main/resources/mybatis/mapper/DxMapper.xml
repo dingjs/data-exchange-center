@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.sfgk.mapper.DxMapper">
+
+	<resultMap id="outMapXzDxtzjl" type="data.exchange.center.service.sfgk.domain.dx.Dxtzjl">
+		<result column="bh"    property="bh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajbh"    property="ajbh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="ajbs"    property="ajbs"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="jsr"    property="jsr"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="jsrsjh"    property="jsrsjh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="jsrlxdm"    property="jsrlxdm"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="jsrlxmc"    property="jsrlxmc"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="fybh"    property="fybh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="dxnr"    property="dxnr"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="fssj"    property="fssj"    javaType="string"    jdbcType="VARCHAR" />
+  	</resultMap>
+  	<select id="getDx" resultMap="outMapXzDxtzjl">
+  		
+  	</select>
+</mapper>

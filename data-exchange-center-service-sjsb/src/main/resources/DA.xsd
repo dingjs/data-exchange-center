@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://dataexchange.court.gov.cn/2009/data" xmlns="http://dataexchange.court.gov.cn/2009/data" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="目录"> 
+    <xs:sequence> 
+        <xs:element name="目录编号" type="C32" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="父目录编号" type="C32" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="目录名称" type="C300" minOccurs="1" maxOccurs="1"/> 
+        <xs:element name="是否属于正卷" type="N12" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="序号" type="N" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="开始页数" type="N" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="结束页数" type="N" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence> 
+  </xs:complexType>
+  <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="目录列表"> 
+    <xs:sequence> 
+      <xs:element name="R" type="目录" minOccurs="0" maxOccurs="32768"/> 
+    </xs:sequence> 
+  </xs:complexType>
+  <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="文件"> 
+    <xs:sequence> 
+        <xs:element name="序号" type="N" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="文件名称" type="FileName" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="是否属于正卷" type="N12" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="所属目录编号" type="C32" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="文件大小" type="N" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="文件标识" type="C600" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence> 
+  </xs:complexType>
+  <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="文件列表"> 
+    <xs:sequence> 
+      <xs:element name="R" type="文件" minOccurs="0" maxOccurs="32768"/> 
+    </xs:sequence> 
+  </xs:complexType>
+  <xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="案件标识"> 
+    <xs:restriction base="xs:nonNegativeInteger"> 
+      <xs:totalDigits value="15"/> 
+    </xs:restriction> 
+  </xs:simpleType>
+  <xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="D"> 
+    <xs:restriction base="xs:date"/> 
+  </xs:simpleType>
+  <xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="C300"> 
+    <xs:restriction base="xs:string"> 
+      <xs:maxLength value="300"/> 
+    </xs:restriction> 
+  </xs:simpleType>
+  <xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="C600"> 
+    <xs:restriction base="xs:string"> 
+      <xs:maxLength value="600"/> 
+    </xs:restriction> 
+  </xs:simpleType>
+  <xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="C32"> 
+    <xs:restriction base="xs:string"> 
+      <xs:maxLength value="32"/> 
+    </xs:restriction> 
+  </xs:simpleType>
+  <xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="C50"> 
+    <xs:restriction base="xs:string"> 
+      <xs:maxLength value="50"/> 
+    </xs:restriction> 
+  </xs:simpleType>
+  <xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="N"> 
+    <xs:restriction base="xs:int"/> 
+  </xs:simpleType>
+  <xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="N01">
+        <xs:restriction base="xs:int"> 
+           <xs:enumeration value="0"/>
+           <xs:enumeration value="1"/>  
+        </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="N12">
+        <xs:restriction base="xs:int"> 
+           <xs:enumeration value="1"/>
+           <xs:enumeration value="2"/>  
+        </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="总页数">
+  <!-- 对文件附件数量进行限制，数量必须大于1 -->
+        <xs:restriction base="xs:int"> 
+         <xs:minInclusive value="0"/>
+        </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="FileName">
+  <!-- 对文件名进行约束，文件名必须是指定后缀 -->
+        <xs:restriction base="xs:string"> 
+         <xs:maxLength value="300"/>
+         <xs:pattern value=".+\.(pdf|PDF|doc|DOC|docx|DOCX|tif|TIF|tiff|TIFF|wps|WPS|jpg|JPG|jpeg|JPEG|bmp|BMP|png|PNG|mp3|MP3|wma|WMA|ra|RA|rm|RM|rmvb|RMVB|txt|TXT|htm|HTM|html|HTML)"></xs:pattern>
+        </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="档案信息">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="立案日期" type="D" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="结案日期" type="D" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="档案或卷宗" type="N01" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="案件标识" type="案件标识" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="承办人" type="C300" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="案号" type="C50" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="总页数" type="总页数" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="案件类别" type="N" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="案件类型" type="C32" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="目录信息" type="目录列表" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="文件信息" type="文件列表" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

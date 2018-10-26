@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.filewatcher.mapper.LogMapper">
+	
+	<insert id="addLog" parameterType="map">
+		insert into XTBAPT.JHK_LOG(TASK_ID, LOG_TIME, MSG, FLAG)
+		values(#{taskId}, sysdate, #{msg}, #{flag})
+	</insert>
+</mapper>

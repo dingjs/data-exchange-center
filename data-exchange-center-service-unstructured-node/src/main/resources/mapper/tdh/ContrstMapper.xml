@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.unstructured.node.mapper.tdh.ContrstMapper">
+	<!-- Result Map -->
+	<resultMap id="TempEajJz" type="data.exchange.center.service.unstructured.node.domain.TempEajJz">
+		<result column="AHDM" 		property="AHDM" />
+		<result column="AJLX" 		property="AJLX" />
+		<result column="XH" 		property="XH" />
+		<result column="STLB" 		property="STLB" />
+		<result column="LB" 		property="LB" />
+		<result column="STBH" 		property="STBH" 		javaType="integer"  	jdbcType="INTEGER" />
+		<result column="MC" 		property="MC" />
+		<result column="BZ" 		property="BZ" />
+		<result column="ZZSJ" 		property="ZZSJ" 		javaType="date"  		jdbcType="TIMESTAMP"/>
+		<result column="ZZR" 		property="ZZR" />
+		<result column="ZJXGR" 		property="ZJXGR" />
+		<result column="TJR"		property="TJR" />
+		<result column="TJRQ" 		property="TJRQ" 		javaType="date"  		jdbcType="TIMESTAMP"/>
+		<result column="ZFJBS" 		property="ZFJBS" />
+		<result column="JXPXH" 		property="JXPXH" 		javaType="integer"  	jdbcType="INTEGER" />
+		<result column="JDZT" 		property="JDZT" />
+		<result column="YSBH" 		property="YSBH" 		javaType="integer"  	jdbcType="INTEGER" />
+		<result column="WJMC" 		property="WJMC" />
+		<result column="WJGS" 		property="WJGS" />
+		<result column="WJDX" 		property="WJDX" 		javaType="float"  		jdbcType="FLOAT" />
+		<result column="YSBZ" 		property="YSBZ" />
+		<result column="LCZT" 		property="LCZT" />
+		<result column="LCH" 		property="LCH" />
+		<result column="SLH" 		property="SLH" />
+		<result column="LASTUPDATE" property="LASTUPDATE" 	javaType="date"  		jdbcType="TIMESTAMP"/>
+		<result column="JMXH" 		property="JMXH" 		javaType="float" 		jdbcType="FLOAT"/>
+		<result column="YZZT" 		property="YZZT" />
+		<result column="WJYS" 		property="WJYS" 		javaType="float"  		jdbcType="FLOAT"/>
+		<result column="TQYY" 		property="TQYY" />
+		<result column="SENDID" 	property="SENDID" 		javaType="float"  		jdbcType="FLOAT"/>
+		<result column="SFFBCPWS" 	property="SFFBCPWS" />
+		<result column="QZID" 		property="QZID" 		javaType="float"  		jdbcType="FLOAT"/>
+		<result column="FILENAME" 	property="FILENAME" />
+		<result column="FTPSERVER" 	property="FTPSERVER" />
+		<result column="WJZS" 		property="WJZS" 		javaType="integer"  	jdbcType="INTEGER"/>
+		<result column="WJFS" 		property="WJFS" 		javaType="float"  		jdbcType="FLOAT"/>
+		<result column="WJJS" 		property="WJJS" 		javaType="float"  		jdbcType="FLOAT"/>
+		<result column="WJCS" 		property="WJCS" 		javaType="float"  		jdbcType="FLOAT"/>
+		<result column="NR" 		property="NR" 			javaType="object"  		jdbcType="BLOB"/>
+		<result column="SFDZSD" 	property="SFDZSD" />
+		<result column="TEDTIME" 	property="TEDTIME" 		javaType="integer"  	jdbcType="INTEGER"/>
+		<result column="ETIME" 		property="ETIME" 		javaType="integer"  	jdbcType="INTEGER"/>
+		<result column="GZWCDD" 	property="GZWCDD" />
+		<result column="HDID" 		property="HDID" 		javaType="integer"  	jdbcType="INTEGER"/>
+		<result column="YWXH" 		property="YWXH" />
+		<result column="SFZYXJ" 	property="SFZYXJ" />
+		<result column="YJFYJ"		property="YJFYJ" />
+		<result column="SYDSR"		property="SYDSR" />
+		<result column="HASHCODE" 	property="HASHCODE" />
+		<result column="SFDG" 		property="SFDG" />
+		<result column="LCTQR" 		property="LCTQR" />
+		<result column="YYXHS" 		property="YYXHS" />
+		<result column="FYDM" 		property="FYDM" />
+		<result column="AJZT" 		property="AJZT" />
+	</resultMap>
+	<resultMap id="TempEajJzwjAll" type="data.exchange.center.service.unstructured.node.domain.TempEajJzwjAll">
+		<result column="AHDM"		property="AHDM"/>
+		<result column="XH"			property="XH"/>
+		<result column="AJLX" 		property="AJLX" />
+		<result column="YXXH"		property="YXXH"			javaType="integer"  	jdbcType="INTEGER"/>
+		<result column="FILENAME"   property="FILENAME"/>
+		<result column="FTPSERVER" 	property="FTPSERVER"/>
+		<result column="LOCALFILE"	property="LOCALFILE"/>
+		<result column="PXH"		property="PXH"			javaType="integer"  	jdbcType="INTEGER"/>
+		<result column="WJYS"		property="WJYS" 		javaType="integer"  	jdbcType="INTEGER"/>
+		<result column="SFZYXJ" 	property="SFZYXJ"/>
+		<result column="LASTUPDATE" property="LASTUPDATE" 	javaType="date"  		jdbcType="TIMESTAMP"/>
+		<result column="SLT"		property="SLT" 			javaType="object"  		jdbcType="BLOB"/>
+		<result column="CJR"      	property="CJR"/>
+		<result column="CJSJ"     	property="CJSJ"/>
+		<result column="GKSJ"		property="GKSJ"/>
+		<result column="SFGK"		property="SFGK"/>
+	</resultMap>
+	<resultMap id="TempEajMlxxGc" type="data.exchange.center.service.unstructured.node.domain.TempEajMlxxGc">
+		<result column="LSH"		property="LSH"/>
+		<result column="XH"			property="XH" 			javaType="float"  		jdbcType="FLOAT"/>
+		<result column="JZLB"		property="JZLB"/>
+		<result column="PXH"		property="PXH" 			javaType="float"  		jdbcType="FLOAT"/>
+		<result column="CLBT"		property="CLBT"/>
+		<result column="P1"			property="P1" 			javaType="integer"  	jdbcType="INTEGER"/>
+		<result column="P2"			property="P2" 			javaType="integer"  	jdbcType="INTEGER"/>
+		<result column="CH"			property="CH" 			javaType="integer"  	jdbcType="INTEGER"/>
+		<result column="FLAG"		property="FLAG"/>
+		<result column="LASTUPDATE"	property="LASTUPDATE"	javaType="date"  		jdbcType="TIMESTAMP"/>
+		<result column="JMBH"		property="JMBH"/>
+		<result column="AJLX" 		property="AJLX" />
+	</resultMap>
+	<resultMap id="TempEajMlxx" type="data.exchange.center.service.unstructured.node.domain.TempEajMlxx">
+		<result column="LSH"		property="LSH"/>
+		<result column="XH"			property="XH" 			javaType="float"  		jdbcType="FLOAT"/>
+		<result column="JZLB"		property="JZLB"/>
+		<result column="PXH"		property="PXH" 			javaType="float"  		jdbcType="FLOAT"/>
+		<result column="CLBT"		property="CLBT"/>
+		<result column="P1"			property="P1" 			javaType="integer"  	jdbcType="INTEGER"/>
+		<result column="P2"			property="P2" 			javaType="integer"  	jdbcType="INTEGER"/>
+		<result column="CH"			property="CH" 			javaType="integer"  	jdbcType="INTEGER"/>
+		<result column="FLAG"		property="FLAG"/>
+		<result column="LASTUPDATE"	property="LASTUPDATE"	javaType="date"  		jdbcType="TIMESTAMP"/>
+		<result column="AJLX" 		property="AJLX" />
+	</resultMap>
+	<resultMap id="TempEajSsjcyx" type="data.exchange.center.service.unstructured.node.domain.TempEajSsjcyx">
+		<result column="AJBS"		property="AJBS"/>
+		<result column="ID"			property="ID"				javaType="float"  		jdbcType="FLOAT"/>
+		<result column="FTPPATH"	property="FTPPATH"/>
+		<result column="WJYS"		property="WJYS"				javaType="float"  		jdbcType="FLOAT"/>
+		<result column="YEMA"		property="YEMA"/>
+		<result column="JZLB"		property="JZLB"/>
+		<result column="XH"			property="XH"				javaType="float"  		jdbcType="FLOAT"/>
+		<result column="MC"			property="MC"/>
+		<result column="FILENAME"	property="FILENAME"/>
+		<result column="JMXH"		property="JMXH"/>
+		<result column="LASTUPDATE"	property="LASTUPDATE"		javaType="date"  		jdbcType="TIMESTAMP"/>
+		<result column="AJLX" 		property="AJLX" />
+	</resultMap>
+	<resultMap id="TempEajJzwjAllNew" type="data.exchange.center.service.unstructured.node.domain.TempEajJzwjAllNew">
+		<result column="AHDM"		property="AHDM"/>
+		<result column="AJLX"		property="AJLX"/>
+		<result column="XH"			property="XH"/>
+		<result column="YXXH"		property="YXXH"  			javaType="integer"  	jdbcType="INTEGER"/>
+		<result column="FILENAME"	property="FILENAME"/>
+		<result column="FTPSERVER"	property="FTPSERVER"/>
+		<result column="LOCALFILE"	property="LOCALFILE"/>
+		<result column="PXH"		property="PXH" 				javaType="integer"  	jdbcType="INTEGER"/>
+		<result column="WJYS"		property="WJYS" 			javaType="integer"  	jdbcType="INTEGER"/>
+		<result column="SFZYXJ"		property="SFZYXJ"/>
+		<result column="LASTUPDATE"	property="LASTUPDATE" 		javaType="date"  		jdbcType="TIMESTAMP"/>
+	</resultMap>
+	<select id="getEajJZ" parameterType="String" resultMap="TempEajJz">
+		select * from ecourt.eaj_jz${bh} where ahdm=#{ajbs}
+	</select>
+	<select id="getEajJzwjAll" parameterType="String" resultMap="TempEajJzwjAll">
+		select * from ecourt.eaj_jzwj_all where ahdm=#{ajbs}
+	</select>
+	<select id="getEajJzwjAllNew" parameterType="String" resultMap="TempEajJzwjAllNew">
+		select * from  ecourt.EAJ_JZWJ_ALL_NEW where ahdm=#{ajbs}
+	</select>
+	<select id="getEajMlxx" parameterType="String" resultMap="TempEajMlxx">
+		select * from ecourt.eaj_mlxx where LSH=#{ajbs}
+	</select>
+	<select id="getEajMlxxGc" parameterType="String" resultMap="TempEajMlxxGc">
+		select * from ecourt.eaj_mlxx_gc where LSH=#{ajbs}
+	</select>
+	<select id="getSsjcyx" parameterType="String" resultMap="TempEajSsjcyx">
+		select * from ecourt.eaj_ssjcyx_all_lx where ajbs=#{ajbs}
+	</select>
+	<select id="getAllAjxxCBR" resultType="String" parameterType="String" >
+		SELECT cbrxm
+		  FROM ecourt.EAJ_QS
+		 WHERE AHDM = #{ajbs}
+	</select>
+</mapper>   

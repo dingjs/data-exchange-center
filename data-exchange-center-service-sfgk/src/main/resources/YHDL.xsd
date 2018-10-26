@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CASE:schema xmlns:CASE="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://dataexchange.court.gov.cn/2009/data" targetNamespace="http://dataexchange.court.gov.cn/2009/data" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<CASE:element name="用户登录" type="用户"/>
+	<CASE:complexType name="用户登录记录">
+		<CASE:sequence>
+			<CASE:element name="R" type="用户登录记录1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="用户登录记录1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="法院编号" type="C50"/>
+			<CASE:element name="登录用户" type="C50" minOccurs="0"/>
+			<CASE:element name="登录用户的类型代码" type="N" minOccurs="0"/>
+			<CASE:element name="登录用户的类型名称" type="C300" minOccurs="0"/>
+			<CASE:element name="登录时间" type="DT" minOccurs="0"/>
+			<CASE:element name="登录ip" type="C50" minOccurs="0"/>
+			<CASE:element name="更新时间" type="DT" minOccurs="1"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="用户">
+		<CASE:sequence>
+			<CASE:element name="用户登录记录" type="用户登录记录" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:simpleType name="C32">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="32"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="C50">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="50"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="N">
+		<CASE:restriction base="xsd:int"/>
+	</CASE:simpleType>
+	<CASE:simpleType name="C300">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="300"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="DT">
+		<CASE:restriction base="xsd:dateTime"/>
+	</CASE:simpleType>
+</CASE:schema>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="head"></div>
+    <!-- DataTables -->
+    <link rel="stylesheet" th:href="@{/plugins/datatables/dataTables.bootstrap.css}"/>
+    <title>不迷失-Admin 系统日志</title>
+</head>
+<body class="hold-transition skin-blue sidebar-mini ">
+    <!-- Content Wrapper. Contains page content -->
+    <section class="content-header">
+    <h1>
+        <span>节点注册信息</span>
+    </h1>
+	</section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-body">
+                            <table id="dataTable" class="table table-bordered table-striped" >
+                                <thead>
+                                <tr>				
+									<th>节点ID</th>
+									<th >节点名称</th>
+									<th>节点类型</th>
+									<th>节点IP</th>
+									<th>所属单位</th>
+									<th>DISTRIBUTE</th>
+									<th>KAFKA</th>
+									<th>REDIS</th>
+									<th>ELASTIC</th>
+									<th>REMOTE</th>
+									<th>DISTSTATUS</th>
+									<th>KAFKSTATUS</th>
+									<th>REDISTATUS</th>
+									<th>ELASTATUS</th>
+									<th>RETSTATUS</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="item:${list}">
+                                      <td th:text="${item.nodeid}"></td>
+									  <td th:text="${item.nodename}"></td>
+									  <td th:text="${item.nodetype}"></td>
+									  <td th:text="${item.nodeip}"></td>
+									  <td th:text="${item.deptcode}"></td>
+									  <td th:text="${item.distribute}"></td>
+									  <td th:text="${item.kafka}"></td>
+									  <td th:text="${item.redis}"></td>
+									  <td th:text="${item.elastic}"></td>
+									  <td th:text="${item.remote}"></td>
+									  <td th:text="${item.diststatus}"></td>
+									  <td th:text="${item.kafkstatus}"></td>
+									  <td th:text="${item.redistatus}"></td>
+									  <td th:text="${item.elastatus}"></td>
+									  <td th:text="${item.retstatus}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+
+        </section>
+<!-- jQuery 2.2.3 -->
+<script th:src="@{/plugins/jQuery/jquery-2.2.3.min.js}"></script>
+<script th:src="@{/plugins/slimScroll/jquery.slimscroll.min.js}"></script>
+<script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/plugins/datatables/dataTables.bootstrap.min.js}"></script>
+<script th:src="@{/plugins/iCheck/icheck.min.js}"></script>           
+<script>
+	
+    $(function () {
+        $('#dataTable').DataTable({
+            "paging": true,
+            "destroy":true,
+            //"lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+			"scrollX": true,
+			'language': {    
+	            'emptyTable': '没有数据',    
+	            'loadingRecords': '加载中...',    
+	            'processing': '查询中...',    
+	            'search': '搜索:',    
+	            'lengthMenu': '每页 _MENU_ 条记录',    
+	            'zeroRecords': '没有数据',    
+	            'paginate': {      
+	                    'next':       '下一页',    
+	                    'previous':   '上一页'    
+	                    },    
+	            'info': '第 _PAGE_ 页 / 共 _PAGES_ 页',    
+	            'infoEmpty': '没有数据',    
+	            'infoFiltered': '(从 _MAX_ 条记录中筛选)'    
+	        }  
+        });
+    });
+</script>
+</body>
+</html>

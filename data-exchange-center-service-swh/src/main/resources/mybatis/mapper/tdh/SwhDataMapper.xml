@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.swh.mapper.tdh.SwhDataMapper">
+  <resultMap id="EaJz" type="data.exchange.center.service.swh.domain.EaJz">
+    <id column="AJBS" jdbcType="VARCHAR" property="ajbs" />
+    <id column="XH" jdbcType="VARCHAR" property="xh" />
+    <result column="YXXH" jdbcType="DECIMAL" property="yxxh" />
+    <result column="XSMC" jdbcType="VARCHAR" property="xsmc" />
+    <result column="WJMC" jdbcType="VARCHAR" property="wjmc" />
+    <result column="WJGS" jdbcType="VARCHAR" property="wjgs" />
+    <result column="WJLJ" jdbcType="VARCHAR" property="wjlj" />
+    <result column="SSMLBH" jdbcType="VARCHAR" property="ssmlbh" />
+    <result column="SFSYZQ" jdbcType="DECIMAL" property="sfsyzq" />
+    <result column="SFLB" jdbcType="VARCHAR" property="sflb" />
+  </resultMap>
+  
+     <resultMap id="EaJDaMl" type="data.exchange.center.service.swh.domain.EaJJZMl">
+    <id column="AJBS" jdbcType="VARCHAR" property="ajbs" />
+    <id column="MLBH" jdbcType="VARCHAR" property="mlbh" />
+    <result column="MLMC" jdbcType="VARCHAR" property="mlmc" />
+    <result column="XH" jdbcType="DECIMAL" property="xh" />
+    <result column="KSYS" jdbcType="DECIMAL" property="ksys" />
+    <result column="JSYS" jdbcType="DECIMAL" property="jsys" />
+    <result column="SFSYZQ" jdbcType="DECIMAL" property="sfsyzq" />
+  </resultMap>
+  
+   <resultMap id="EaJDa" type="data.exchange.center.service.swh.domain.EaJDa">
+    <id column="AJBS" jdbcType="VARCHAR" property="ajbs" />
+    <id column="XH" jdbcType="VARCHAR" property="xh" />
+    <result column="XSMC" jdbcType="VARCHAR" property="xsmc" />
+    <result column="WJMC" jdbcType="VARCHAR" property="wjmc" />
+    <result column="WJGS" jdbcType="VARCHAR" property="wjgs" />
+    <result column="WJLJ" jdbcType="VARCHAR" property="wjlj" />
+    <result column="SSMLBH" jdbcType="VARCHAR" property="ssmlbh" />
+    <result column="SFSYZQ" jdbcType="DECIMAL" property="sfsyzq" />
+    <result column="SFLB" jdbcType="VARCHAR" property="sflb" />
+  </resultMap>
+  
+   <resultMap id="EaJzMl" type="data.exchange.center.service.swh.domain.EajDaMl">
+    <id column="AJBS" jdbcType="VARCHAR" property="ajbs" />
+    <id column="XH" jdbcType="DECIMAL" property="xh" />
+    <result column="MLBH" jdbcType="VARCHAR" property="mlbh" />
+    <result column="MLMC" jdbcType="VARCHAR" property="mlmc" />
+    <result column="SFSYZQ" jdbcType="DECIMAL" property="sfsyzq" />
+  </resultMap>
+  <resultMap id="TempEajJz" type="data.exchange.center.service.swh.domain.TempEajJz">
+    <result column="AJBS" jdbcType="VARCHAR" property="AJBS" />
+    <result column="XH" jdbcType="DECIMAL" property="XH" />
+    <result column="YSBZ" jdbcType="VARCHAR" property="YSBZ" />
+    <result column="NR"   javaType="object"  jdbcType="BLOB" property="NR"/>
+  </resultMap>  
+  <select id="getLb" parameterType="map" resultMap="TempEajJz">
+        <![CDATA[
+           Select 
+               ahdm,xh,ysbz,nr
+            From 
+               court_dba.eaj_jz${ws}
+             where 
+                 ahdm =#{ahdm,jdbcType=VARCHAR} and  
+                 xh =#{xh,jdbcType=VARCHAR}
+        ]]>
+ </select>
+  <select id="getEaJz" parameterType="map" resultMap="EaJz">
+        <![CDATA[
+		   Select 
+		        ajbs,XH ,MC XSMC,
+                Decode(MC,Null,(Select Trim(d.CLBT) From court_dba.EAJ_MLXX d Where esl.ajbs = d.lsh and d.JZLB<>'e' And JMXH = d.XH  And Rownum<2)||'-'||YEMA||'.'||Substrb(Substrb(Trim(FTPPATH),-5),Instrb(Substrb(Trim(FTPPATH),-5),'.')+1),EXTDETECT(MC,Substrb(Trim(FTPPATH),-4)) ) WJMC,
+                Substrb(Substrb(Trim(FTPPATH),-5),Instrb(Substrb(Trim(FTPPATH),-5),'.')+1) WJGS,  
+                Trim(FTPFILE)||':'||Replace('/'||FTPPATH,'//','/') WJLJ, 
+                Decode(JMXH,0,Null,JMXH) SSMLBH,Decode(JZLB,'f',2,'z',1,'g',3,'j',4,5)  SFSYZQ
+            From 
+                court_dba.eaj_ssjcyx_all_lx esl 
+            where ajbs =  #{ahdm,jdbcType=VARCHAR}
+        ]]>
+ </select>
+  <select id="getEajJzMl" parameterType="map" resultMap="EaJzMl">
+        <![CDATA[
+            select 
+                lsh as ajbs ,xh as mlbh, Decode(Lengthb(PXH),1,PXH||'.'||CLBT,2,PXH||'.'||CLBT) as mlmc,PXH as xh,p1 kays,p2 jsys,Decode(JZLB,'f',2,'z',1,'g',3,'j',4,5) SFSYZQ
+            from 
+                court_dba.EAJ_MLXX 
+            where lsh =  #{ahdm,jdbcType=VARCHAR}
+        ]]>
+ </select>
+   <select id="getEajDa" parameterType="map" resultMap="EaJDa">
+        <![CDATA[
+			Select  
+			   c.ahdm as ajbs ,c.xh,c.yxxh,d.mc as xsmc,
+			   Decode(Trim(d.mc),Null,EXTDETECT(d.wjmc,'.'||d.wjgs) ,EXTDETECT(d.mc,'.'||d.wjgs)) as WJMC,
+			   Trim(d.WJGS) as WJGS,  Trim(c.FTPFILE)||':'||Replace(''/''||c.Filename,'//','/') as WJLJ,
+			   Decode(Nvl(To_char(d.JMXH),Null),0,Null,Nvl(To_char(d.JMXH),Null)) AS SSMLBH, 
+			   Decode(Trim(d.ZFJBS),'f',2,'z',1,'g',3,'j',4,5) as SFSYZQ,0 as SFLB
+			From 
+			   court_dba.eaj_jzwj_all_new c,court_dba.eaj_jz${ws} d  
+			Where 
+			   c.AHDM = #{ahdm,jdbcType=VARCHAR}  And 
+			   c.AHDM=d.AHDM And c.XH=d.XH  And 
+			   d.ZFJBS <>'e' 
+			union all
+			Select 
+			   ahdm as ajbs ,xh,null yxxh, MC as XSMC,
+			   FILENAME_GC(MC,WJGS,Null) as WJMC,Trim(WJGS) WJGS,''wjlj,
+			   Decode(JMXH,0,Null,JMXH) as SSMLBH,Decode(ZFJBS,'f',2,'z',1,'g',3,'j',4,5) SFSYZQ,case when NR is null then 0 else 1 end as SFLB
+			 From 
+			   court_dba.eaj_jz${ws}
+			 where 
+			     ahdm =#{ahdm,jdbcType=VARCHAR} and  
+			     NR is not  null
+        ]]>
+ </select>
+  <select id="getEaJDaMl" parameterType="map" resultMap="EaJDaMl">
+        <![CDATA[
+            select 
+                lsh as ajbs ,xh as mlbh, Decode(Lengthb(PXH),1,PXH||'.'||CLBT,2,PXH||'.'||CLBT) as mlmc,PXH as xh,Decode(JZLB,'f',2,'z',1,'g',3,'j',4,5) SFSYZQ
+            from 
+                court_dba.EAJ_MLXX_GC
+            where lsh =  #{ahdm,jdbcType=VARCHAR}
+        ]]>
+ </select>
+</mapper>

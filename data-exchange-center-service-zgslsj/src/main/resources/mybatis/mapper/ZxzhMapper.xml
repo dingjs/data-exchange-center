@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.zxzh.mapper.ZxzhMapper">
+	
+	 <insert id="pushZzzhTemporary" parameterType="data.exchange.center.service.zxzh.domain.ZxzhTemporary">
+	    <![CDATA[
+	           INSERT INTO ZXZH.ZXZH_TEMPORARY
+	               (c_lx,c_key,b_data)
+	           VALUES(
+	               #{c_lx, jdbcType=VARCHAR},
+	               #{c_key, jdbcType=VARCHAR},
+	               #{b_data, javaType=Object,jdbcType=BLOB}
+	           )
+	           
+	      ]]>
+    </insert>
+</mapper>

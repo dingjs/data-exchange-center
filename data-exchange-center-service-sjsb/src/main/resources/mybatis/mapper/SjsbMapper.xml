@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="service.sjsb.mapper.SjsbMapper">
+	<resultMap id="outMapAjxxInfo" type="service.sjsb.domain.AjxxInfo">
+		<result column="ajbs"                   property="ajbs"                  javaType="string"                jdbcType="VARCHAR" />
+		<result column="ajlx"                   property="ajlx"                  javaType="string"                jdbcType="VARCHAR" />
+  		<result column="jzajlx"                 property="jzajlx"                javaType="string"                jdbcType="VARCHAR" />
+  		<result column="fydm"                   property="fydm"                  javaType="string"                jdbcType="VARCHAR" />
+  	</resultMap>
+  	<resultMap id="outMapStwj" type="service.sjsb.domain.Stwj">
+		<result column="xh"                     property="xh"                    javaType="string"                jdbcType="VARCHAR" />
+		<result column="wjmc"                   property="wjmc"                  javaType="string"                jdbcType="VARCHAR" />
+  		<result column="ssmlbh"                 property="ssmlbh"                javaType="string"                jdbcType="VARCHAR" />
+  		<result column="sfsyzq"                 property="sfsyzq"                javaType="string"                jdbcType="VARCHAR" />
+  		<result column="wjdx"                   property="wjdx"                  javaType="string"                jdbcType="VARCHAR" />
+  	</resultMap>
+  	<resultMap id="outMapDaMlxx" type="service.sjsb.domain.DaMlxx">
+		<result column="mlbh"                   property="mlbh"                  javaType="string"                jdbcType="VARCHAR" />
+		<result column="fmlbh"                  property="fmlbh"                 javaType="string"                jdbcType="VARCHAR" />
+		<result column="mlmc"                   property="mlmc"                  javaType="string"                jdbcType="VARCHAR" />
+  		<result column="sfsyzq"                 property="sfsyzq"                javaType="string"                jdbcType="VARCHAR" />
+  		<result column="xh"                     property="xh"                    javaType="string"                jdbcType="VARCHAR" />
+  	</resultMap>
+  	<resultMap id="outMapJzMlxx" type="service.sjsb.domain.JzMlxx">
+		<result column="mlbh"                   property="mlbh"                  javaType="string"                jdbcType="VARCHAR" />
+		<result column="fmlbh"                  property="fmlbh"                 javaType="string"                jdbcType="VARCHAR" />
+		<result column="mlmc"                   property="mlmc"                  javaType="string"                jdbcType="VARCHAR" />
+  		<result column="sfsyzq"                 property="sfsyzq"                javaType="string"                jdbcType="VARCHAR" />
+  		<result column="xh"                     property="xh"                    javaType="string"                jdbcType="VARCHAR" />
+  		<result column="ksys"                   property="ksys"                  javaType="string"                jdbcType="VARCHAR" />
+  		<result column="jsys"                   property="jsys"                  javaType="string"                jdbcType="VARCHAR" />
+  	</resultMap>
+  	<resultMap id="outMapAjxx" type="service.sjsb.domain.Ajxx">
+		<result column="dm"                     property="dm"                    javaType="string"                jdbcType="VARCHAR" />
+		<result column="ah"                     property="ah"                    javaType="string"                jdbcType="VARCHAR" />
+		<result column="cbr"                    property="cbr"                   javaType="string"                jdbcType="VARCHAR" />
+  		<result column="larq"                   property="larq"                  javaType="string"                jdbcType="VARCHAR" />
+  		<result column="jarq"                   property="jarq"                  javaType="string"                jdbcType="VARCHAR" />
+  		<result column="ajlb"                   property="ajlb"                  javaType="string"                jdbcType="VARCHAR" />
+  	</resultMap>
+	<resultMap id="outMapInteger" type="java.util.HashMap">
+		<result column="anFlag"       	        property="anFlag"  	             javaType="int"       	          jdbcType="INTEGER" />
+	</resultMap>
+	<select id="getAjbs" parameterType="java.util.Map" resultMap="outMapAjxxInfo">
+		<![CDATA[
+		SELECT T2.AJBS, T2.AJLX, T3.C_JZAJLX JZAJLX, T2.DEPTCODE FYDM
+		  FROM SGY.BUF_EAJ T1,
+		       SGY.BUF_EAJ_FJGH T2,
+               DCADM.DC_AJLXLIST T3
+         WHERE 1 = 1
+           AND T1.AJBS = T2.AJBS
+           AND T3.C_AJLX = T2.AJLX
+           AND T2.JZQL = 1
+           AND T1.JARQ IS NOT NULL
+           AND TO_CHAR(T2.LASTUPDATE,'yyyy-MM-dd') = TO_CHAR(SYSDATE-1,'yyyy-MM-dd')
+        ]]>
+        <!-- 2018年9月18日11:51:36 
+        	增加 AND T1.JARQ IS NOT NULL
+        	不上报结案日期为空的案件
+        -->
+	</select>
+	<!--  AND T1.DEPTCODE = '510000' AND TO_CHAR(T2.LASTUPDATE,'yyyy-MM-dd') <= TO_CHAR(SYSDATE-1,'yyyy-MM-dd')-->
+	<select id="getAjData" parameterType="java.util.Map" statementType="CALLABLE" >
+		<![CDATA[
+		{CALL  DCADM.DC_ZGDZJZ.GETWJXX(
+			#{ajbs, mode=IN, jdbcType=VARCHAR},
+			#{ajlx, mode=IN, jdbcType=VARCHAR},
+			#{fydm, mode=IN, jdbcType=VARCHAR},
+			#{v_cursor1, mode=OUT,jdbcType=INTEGER, javaType=int,         resultMap=outMapInteger},
+			#{v_cursor2, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,   resultMap=outMapAjxx},
+			#{v_cursor3, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,   resultMap=outMapAjxx},
+			#{v_cursor4, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,   resultMap=outMapStwj},
+			#{v_cursor5, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,   resultMap=outMapStwj},
+			#{v_cursor6, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,   resultMap=outMapDaMlxx},
+			#{v_cursor7, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,   resultMap=outMapJzMlxx}
+		)}
+		]]>
+	</select>
+	<insert id="addSjsbFile" parameterType="java.util.Map">
+		INSERT INTO DCADM.SJSB_FJGH(ID, REG_TIME, ZIPPATH)
+		VALUES(#{uuid}, sysdate, #{zippath})
+	</insert>
+	<select id="getSjsbFile" resultType="string">
+		SELECT ZIPPATH
+		  FROM DCADM.SJSB_FJGH
+		 WHERE TO_CHAR(REG_TIME, 'yyyy-MM-dd') = TO_CHAR(SYSDATE, 'yyyy-MM-dd')
+	</select>
+	<select id="getDeleteSjsbFile" resultType="string">
+		<![CDATA[
+		SELECT ZIPPATH
+		  FROM DCADM.SJSB_FJGH
+		 WHERE TO_CHAR(REG_TIME, 'yyyy-MM-dd') <= TO_CHAR(SYSDATE-7, 'yyyy-MM-dd')
+		]]>
+	</select>
+	
+</mapper>

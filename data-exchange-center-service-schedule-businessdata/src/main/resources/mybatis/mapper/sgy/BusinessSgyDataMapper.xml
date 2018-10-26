@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.businessdata.mapper.sgy.BusinessSgyDataMapper">
+
+	<select id="getPcaj"   parameterType="String" resultType="int">
+		<![CDATA[
+		SELECT sum(count)  count  from（
+			     SELECT 
+			        COUNT(C_OBJID) count
+			      FROM 
+			        DCADM.DC_CHK_OBJCHKLOCK 
+			      WHERE 
+			        C_OBJID = #{ajbs}
+			        and(n_srvid = 10 or n_srvid = 16)
+			   union all
+				   SELECT 
+				         COUNT(AJBS) count 
+				   FROM 
+				        SGY.buf_external2xml
+				    WHERE AJBS  =  #{ajbs}
+			  union all
+                   SELECT 
+                         COUNT(AJBS) count 
+                   FROM 
+                        SGY.BUF_AJSC2XML
+                    WHERE AJBS  =  #{ajbs}
+				    )
+		]]>
+	</select>
+	<select id="getAhcf" parameterType="java.util.Map" resultType="int">
+		<![CDATA[
+			SELECT 
+				count(ajbs) 
+			FROM 
+				SGY.BUF_EAJ  
+			WHERE 
+				AJBS <> #{ajbs}  AND 
+				AH = #{ah}
+		]]>
+	</select>
+	
+    <insert id="pushExternal2xmlToSGY" parameterType="data.exchange.center.service.businessdata.domain.DcMonXmlOutAll">
+       insert into sgy.buf_external2xml
+                   (ajbs, 
+                    ajlx, 
+                    fydm,
+                    ajzt, 
+                    ah, 
+                    larq, 
+                    jarq, 
+                    xmlnr, 
+                    createtime, 
+                    lastupdate, 
+                    type, 
+                    uuid, 
+                    sendtime, 
+                    inputsrc, 
+                    destschema, 
+                    ajsource, 
+                    xmltype)
+                    values(
+                    #{ajbs,         jdbcType=VARCHAR},
+                    #{ajlx,         jdbcType=VARCHAR},
+                    #{fydm,         jdbcType=VARCHAR},
+                    #{ajzt,         jdbcType=VARCHAR},
+                    #{ah,           jdbcType=VARCHAR},
+                    #{larq,         jdbcType=TIMESTAMP},
+                    #{jarq,         jdbcType=TIMESTAMP},
+                    #{xmlnr,        javaType=Object,jdbcType=BLOB},
+                    #{createtime,   jdbcType=TIMESTAMP},
+                    #{lastupdate,   jdbcType=TIMESTAMP},
+                    #{type,         jdbcType=VARCHAR},
+                    #{uuid,         jdbcType=VARCHAR},
+                    #{sendtime,     jdbcType=TIMESTAMP},
+                    #{inputsrc,     jdbcType=VARCHAR},
+                    #{destschema,   jdbcType=VARCHAR},
+                    #{ajsource,     jdbcType=VARCHAR},
+                    #{xmltype,      jdbcType=VARCHAR}
+                    )
+    </insert>
+    
+    <select id="getDelPcaj"   parameterType="String" resultType="int">
+        <![CDATA[
+        SELECT sum(count)  count  from（
+                 SELECT 
+                    COUNT(C_OBJID) count
+                  FROM 
+                    DCADM.DC_CHK_OBJCHKLOCK 
+                  WHERE 
+                    C_SRVENAME = #{server} AND 
+                    C_OBJID = #{ajbs}
+               union all
+                   SELECT 
+                         COUNT(AJBS) count 
+                   FROM 
+                        SGY.buf_external2xml
+                    WHERE AJBS  =  #{ajbs}
+               union all
+                   SELECT 
+                         COUNT(AJBS) count 
+                   FROM 
+                        SGY.BUF_AJSC2XML
+                    WHERE AJBS  =  #{ajbs}
+                    )
+        ]]>
+    </select>
+      <insert id="pushAjsc2xmlToSGY" parameterType="data.exchange.center.service.businessdata.domain.DCMonXmlOutDel">
+       insert into sgy.BUF_AJSC2XML
+                   (ajbs, 
+                    ajlx, 
+                    fydm,
+                    xmlnr, 
+                    lastupdate, 
+                    uuid, 
+                    sendtime, 
+                    inputsrc, 
+                    destschema, 
+                    ajsource, 
+                    xmltype)
+                    values(
+                    #{ajbs,         jdbcType=VARCHAR},
+                    #{ajlx,         jdbcType=VARCHAR},
+                    #{fydm,         jdbcType=VARCHAR},
+                    #{xmlnr,        javaType=Object,jdbcType=BLOB},
+                    #{lastupdate,   jdbcType=TIMESTAMP},
+                    #{uuid,         jdbcType=VARCHAR},
+                    #{sendtime,     jdbcType=TIMESTAMP},
+                    #{inputsrc,     jdbcType=VARCHAR},
+                    #{destschema,   jdbcType=VARCHAR},
+                    #{ajsource,     jdbcType=VARCHAR},
+                    #{xmltype,      jdbcType=VARCHAR}
+                    )
+    </insert>
+     <select id="getzzjgPcaj"   parameterType="String" resultType="int">
+        <![CDATA[
+        SELECT sum(count)  count  from（
+                 SELECT 
+                    COUNT(C_OBJID) count
+                  FROM 
+                    DCADM.DC_CHK_OBJCHKLOCK 
+                  WHERE 
+                    C_SRVENAME = #{server} AND 
+                    C_OBJID = #{dm}
+               union all
+                   SELECT 
+                         COUNT(dm) count 
+                   FROM 
+                        SGY.BUF_ZZJGRY2XML
+                    WHERE dm  =  #{dm}
+                    )
+        ]]>
+    </select>
+    <insert id="pushZzjg2xmlToSGY" parameterType="data.exchange.center.service.businessdata.domain.DCMonXmlOutZzjg">
+       insert into sgy.BUF_ZZJGRY2XML
+                   (dm, 
+                    lx, 
+                    fydm,
+                    xmlnr, 
+                    lastupdate, 
+                    uuid, 
+                    sendtime, 
+                    inputsrc, 
+                    destschema, 
+                    ajsource, 
+                    xmltype)
+                    values(
+                    #{dm,           jdbcType=VARCHAR},
+                    #{lx,           jdbcType=VARCHAR},
+                    #{fydm,         jdbcType=VARCHAR},
+                    #{xmlnr,        javaType=Object,jdbcType=BLOB},
+                    #{lastupdate,   jdbcType=TIMESTAMP},
+                    #{uuid,         jdbcType=VARCHAR},
+                    #{sendtime,     jdbcType=TIMESTAMP},
+                    #{inputsrc,     jdbcType=VARCHAR},
+                    #{destschema,   jdbcType=VARCHAR},
+                    #{ajsource,     jdbcType=VARCHAR},
+                    #{xmltype,      jdbcType=VARCHAR}
+                    )
+    </insert>
+</mapper>

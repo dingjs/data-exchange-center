@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.listener.mapper.DeleteBusinessDataMapper">
+	<resultMap id="outMapInteger" type="java.util.HashMap">
+		<result column="anFlag"       	 property="anFlag"  	javaType="int"       	 jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="outMapString" type="java.util.HashMap">
+		<result column="avErrmsg"        property="avErrmsg"    javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<delete id="delete_BUF_EXTERNAL2XML" parameterType="String">
+		DELETE FROM SGY.BUF_EXTERNAL2XML 
+		 WHERE AJBS = #{ajbs}
+	</delete>
+	<delete id="delete_BUF_AJSC2XML" parameterType="String">
+		DELETE FROM SGY.BUF_AJSC2XML 
+		 WHERE AJBS = #{ajbs}
+	</delete>
+	<delete id="delete_BUF_ZZJGRY2XML" parameterType="String">
+		DELETE FROM SGY.BUF_ZZJGRY2XML 
+		 WHERE DM = #{ajbs}
+	</delete>
+	<select id="delete_FJGH" parameterType="java.util.Map" statementType="CALLABLE" useCache="false">
+		<![CDATA[
+		{CALL  DCADM.DC_CHECK.CLSCHKBYAJ(
+			#{ajbs,      mode=IN,  jdbcType=VARCHAR},
+			#{ajlx,      mode=IN,  jdbcType=VARCHAR},
+			#{v_cursor1, mode=OUT, jdbcType=NUMERIC, javaType=int,    resultMap=outMapInteger},
+			#{v_cursor2, mode=OUT, jdbcType=VARCHAR, javaType=String, resultMap=outMapString}
+		)}
+		]]>
+	</select>
+</mapper>

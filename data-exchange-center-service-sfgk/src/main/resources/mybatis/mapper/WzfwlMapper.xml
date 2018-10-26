@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.sfgk.mapper.WzfwlMapper">
+
+	<resultMap id="outMapXzWzfwl" type="data.exchange.center.service.sfgk.domain.wzfwl.Wzfwl">
+		<result column="bh"    property="bh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="fybh"    property="fybh"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="fwl"    property="fwl"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="tjfwlddyrq"    property="tjfwlddyrq"    javaType="string"    jdbcType="VARCHAR" />
+		<result column="gxsj"    property="gxsj"    javaType="string"    jdbcType="VARCHAR" />
+  	</resultMap>
+  	<select id="getWzfwl" resultMap="outMapXzWzfwl">
+  		SELECT 1 bh, 3000 fybh, val fwl, 
+  		       to_char(sysdate,'yyyy-MM-dd') tjfwlddyrq, 
+  		       to_char(sysdate,'yyyy-MM-dd hh:mm:ss') gxsj  
+  		  FROM sfgk.tu_dm_kz WHERE dm = 'TOTAL_CNT'
+           AND fydm = '320100'
+  	</select>
+</mapper>

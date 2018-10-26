@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.listener.mapper.DataMapper">
+	
+	<select id="getDataFromTdh" parameterType="java.util.Map" statementType="CALLABLE" >
+		<![CDATA[
+		{CALL  XTBAPT.XTPT_JCYTOFY(
+			#{taskId,    mode=IN, jdbcType=VARCHAR},
+			#{v_cursor1, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapBsxx},
+			#{v_cursor2, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapGsxx},
+			#{v_cursor3, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapDsrxx},
+			#{v_cursor4, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapJzxx}
+		)}
+		]]>
+	</select>
+	
+	<select id="getBusinessData" resultType="java.util.Map">
+		
+	</select>
+	
+	<select id="getSpztData" resultType="java.util.Map">
+		
+	</select>
+</mapper>

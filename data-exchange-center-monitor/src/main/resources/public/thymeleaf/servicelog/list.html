@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   
+    <!-- DataTables -->
+    <link rel="stylesheet" th:href="@{/plugins/datatables/dataTables.bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{/plugins/datepicker/datepicker3.css}"/>
+    <title>高院服务中心服务日志</title>
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini ">
+
+
+    <!-- Content Wrapper. Contains page content -->
+
+    <section class="content-header">
+    <h1>
+        <span>服务日志信息</span>
+    </h1>
+	</section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-body">
+							 <div class="dataTables_filter" id="searchDiv" style="float:right;width:75%">
+                      			<div class="btn-group" style="float:right">
+									<button type="button" onclick="sybData()" class="btn btn-warning" data-btn-type="search">查询</button>
+								</div>
+							     <div class="col-sm-3"  style="float:right;width:15%">
+		                            <select id="level" class="form-control select2" >
+		                                 <option selected="selected" value="ALL" id="level">ALL</option>
+		                                 <option value="INFO"  >INFO</option>
+		                                 <option value="DEBUG" >DEBUG</option>
+		                                 <option value="ERROR" >ERROR</option>
+		                                 <option value="WARN"  >WARN</option>
+		                                 <option value="TARCE" >TARCE</option>
+		                            </select>
+		                        </div>
+									<div class="input-group" style="float:right ;width:25%">
+											<input type="text" class="form-control"  name="searchDate" id="searchDate"
+												placeholder="请选择日期时间"></input>
+									</div>
+									<!-- <input size="16" type="text" value=""  class="form_time"/> -->
+		                         <input  class="form-control" placeholder="请输入服务名称" name="systemNameid" id="systemNameid" type="search" likeOption="true"></input>
+								 <input class="form-control" placeholder="请输入IP"  name="ip" id="ip"  type="search" likeOption="true"></input>						
+							</div>
+                            <table id="dataTable" class="table table-bordered table-striped" >
+                                <thead>
+                                <tr>				
+									<th>id</th>
+									<th>服务名称</th>
+									<th>主机名</th>
+									<th>IP</th>
+									<th>时间</th>
+									<th>级别</th>
+									<th>类名</th>
+									<th>方法名</th>
+									<th>行数</th>
+									<th>日志内容</th>
+									
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="item:${list}">
+                                    <td th:text="${item.uuid}"></td>
+                                    <td th:text="${item.systemName}"></td>
+                                    <td th:text="${item.hostName}"></td>
+									<td th:text="${item.ip}"></td>
+									<td th:text="${item.time}"></td>
+									<td th:text="${item.level}"></td>
+									<td th:text="${item.className}"></td>
+									<td th:text="${item.methodName}"></td>
+									<td th:text="${item.line}"></td>
+									<td th:text="${item.message}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+
+        </section>
+        <!-- /.content -->
+
+<!-- page script -->
+<script th:src="@{/plugins/datepicker/bootstrap-datepicker.js}"></script>
+<script th:src="@{/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js}"></script>
+               
+<script>
+	function sybData(){
+			var table=$('#dataTable').DataTable();
+			table.destroy();
+			var level= $("#level").val()=="" ? null:$("#level").val();
+			var systemName= $("#systemNameid").val() =="" ? null :$("#systemNameid").val();
+			var ip= $("#ip").val() =="" ? null:  $("#ip").val();
+			var searchDate= $("#searchDate").val() =="" ? null:  $("#searchDate").val();
+			table=$('#dataTable').DataTable({
+			       "paging": true,
+		            "destroy":true,
+		            //"lengthChange": false,
+		            "searching": false,
+		            "ordering": true,
+		            "info": true,
+		            "autoWidth": false,
+					"scrollX": true,
+				"ajax":{
+					url:"/servicelog/findLog",
+					type : "GET",  
+					data:{level : level,systemName:systemName,ip:ip,searchDate:searchDate}
+				},  
+				"columns"	: [
+        	        { "data": "uuid" },
+        	        { "data": "systemName" },
+        	        { "data": "hostName" },             
+        	        { "data": "ip" },             
+        	        { "data": "time" },            
+        	        { "data": "level" },
+        	        { "data": "className" },
+        	        { "data": "methodName" },
+        	        { "data": "line" },
+        	        { "data": "message" }
+        	        ],
+        	       'language': {    
+        	            'emptyTable': '没有数据',    
+        	            'loadingRecords': '加载中...',    
+        	            'processing': '查询中...',    
+        	            'search': '搜索:',    
+        	            'lengthMenu': '每页 _MENU_ 条记录',    
+        	            'zeroRecords': '没有数据',    
+        	            'paginate': {      
+        	                    'next':       '下一页',    
+        	                    'previous':   '上一页'    
+        	                    },    
+        	            'info': '第 _PAGE_ 页 / 共 _PAGES_ 页',    
+        	            'infoEmpty': '没有数据',    
+        	            'infoFiltered': '(从 _MAX_ 条记录中筛选)'    
+        	        } 
+			});
+			
+		
+	}
+
+    $(function () {
+        $('#dataTable').DataTable({
+            "paging": true,
+            "destroy":true,
+            //"lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+			"scrollX": true,
+			'language': {    
+	            'emptyTable': '没有数据',    
+	            'loadingRecords': '加载中...',    
+	            'processing': '查询中...',    
+	            'search': '搜索:',    
+	            'lengthMenu': '每页 _MENU_ 条记录',    
+	            'zeroRecords': '没有数据',    
+	            'paginate': {      
+	                    'next':       '下一页',    
+	                    'previous':   '上一页'    
+	                    },    
+	            'info': '第 _PAGE_ 页 / 共 _PAGES_ 页',    
+	            'infoEmpty': '没有数据',    
+	            'infoFiltered': '(从 _MAX_ 条记录中筛选)'    
+	        }  
+        });
+    });
+    $("#searchDate").datepicker({
+        language: "zh-CN",
+        autoclose: true,//选中之后自动隐藏日期选择框
+        clearBtn: true,//清除按钮
+        todayBtn: true,//今日按钮
+        format: "yyyy-mm-dd",
+        defaultDate : new Date(),
+	    endDate:new Date()
+        //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+    });
+</script>
+</body>
+</html>

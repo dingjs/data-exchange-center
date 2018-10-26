@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.unstructured.node.mapper.sgy.TimerMapper">
+	<resultMap id="BaseResultMap" type="data.exchange.center.service.unstructured.node.domain.TaskInfo">
+		<result column="N_TASKID" javaType="integer"  jdbcType="INTEGER" property="nTaskid" />
+    	<result column="C_TASKNAME" jdbcType="VARCHAR" property="cTaskname" />
+    	<result column="C_DESC" jdbcType="VARCHAR" property="cDesc" />
+    	<result column="C_APPCODE" jdbcType="VARCHAR" property="cAppcode" />
+    	<result column="N_NODEID" jdbcType="DECIMAL" property="nNodeid" />
+   		<result column="C_LOOP" jdbcType="VARCHAR" property="cLoop" />
+    	<result column="N_TASKCNT" javaType="integer"  	jdbcType="INTEGER" property="nTaskcnt" />
+   		<result column="N_TASKLEV" javaType="integer"  	jdbcType="INTEGER" property="nTasklev" />
+    	<result column="N_STATUS" jdbcType="DECIMAL" property="nStatus" />
+    	<result column="C_ENABLE" jdbcType="VARCHAR" property="cEnable" />
+    	<result column="C_USERID" jdbcType="VARCHAR" property="cUserid" />
+    	<result column="D_CREATE" jdbcType="TIMESTAMP" property="dCreate" />
+    	<result column="D_UPDATE" jdbcType="TIMESTAMP" property="dUpdate" />
+    	<result column="C_FYDM" jdbcType="VARCHAR" property="cFydm" />
+	</resultMap>
+	<resultMap id="SubTaskMap" type="data.exchange.center.service.unstructured.node.domain.SubTask">
+			<result column="N_TASKID"	javaType="integer"  	jdbcType="INTEGER"		property="ntaskid"/>
+			<result column="N_ORDER"	javaType="integer"  	jdbcType="INTEGER"		property="norder"/>
+			<result column="C_DESC"		jdbcType="VARCHAR"		property="cdesc"/>
+			<result column="C_TYPE"		jdbcType="VARCHAR"		property="ctype"/>
+			<result column="C_DETAIL"	jdbcType="VARCHAR"		property="cdetail"/>
+			<result column="C_RETMSG"	jdbcType="VARCHAR"		property="cretmsg"/>
+			<result column="D_STAMP"	jdbcType="TIMESTAMP"	property="dstamp"/>
+			<result column="D_UPDATE" jdbcType="TIMESTAMP" property="dUpdate" />
+	</resultMap>
+	<select id="getTask" parameterType="string" resultMap="BaseResultMap">
+		SELECT N_TASKID, C_TASKNAME, C_DESC, 
+               C_APPCODE, N_NODEID, C_LOOP, 
+               N_TASKCNT, N_TASKLEV, N_STATUS, 
+               C_ENABLE, C_USERID, D_CREATE, 
+               D_UPDATE,C_FYDM
+          FROM DCADM.DC_REG_TASK 
+          WHERE C_FYDM = #{fydm}
+	</select>
+	<select id="getSubbTask" parameterType="int" resultMap="SubTaskMap">
+		SELECT	N_TASKID,
+				N_ORDER,
+				C_DESC,
+				C_TYPE,
+				C_DETAIL,
+				C_RETMSG,
+				D_STAMP
+         FROM DCADM.DC_REG_SUBTASK
+         WHERE N_TASKID = #{taskId}
+	</select>
+</mapper>

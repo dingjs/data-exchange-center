@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<短信通知 xmlns="http://dataexchange.court.gov.cn/2009/data" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dataexchange.court.gov.cn/2009/data ktgg.xsd">
+   <短信通知记录>
+      <R>
+         <编号>123</编号>
+         <案件编号>123</案件编号>
+         <案件标识>123</案件标识>
+         <接收人>123</接收人>
+         <接收人手机号>123</接收人手机号>
+         <接收人类型代码>123</接收人类型代码>
+         <接收人类型名称>2012-12-13T12:12:12</接收人类型名称>
+         <法院编号>123</法院编号>
+         <短信内容>2012-12-13T12:12:12</短信内容>
+         <发送时间>2012-12-13T12:12:12</发送时间>
+      </R>
+   </短信通知记录>
+</短信通知>

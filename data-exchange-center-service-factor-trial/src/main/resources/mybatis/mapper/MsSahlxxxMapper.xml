@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.factor.trial.mapper.MsSahlxxxMapper">
+
+  <resultMap id="msSahlxxx" type="data.exchange.center.service.factor.trial.domain.MsSahlxx">
+     <result column="AH" jdbcType="VARCHAR" property="ah" />
+    <result column="AJBS" jdbcType="DECIMAL" property="ajbs" />
+    <result column="AJGK" jdbcType="VARCHAR" property="ajgk" />
+    <result column="AJLB" jdbcType="VARCHAR" property="ajlb" />
+    <result column="AJLY" jdbcType="VARCHAR" property="ajly" />
+    <result column="AJLY_2015" jdbcType="VARCHAR" property="ajly2015" />
+    <result column="AJLYX" jdbcType="VARCHAR" property="ajlyx" />
+    <result column="AJZLX" jdbcType="DECIMAL" property="ajzlx" />
+    <result column="APP_CODE" jdbcType="DECIMAL" property="appCode" />
+    <result column="AZ" jdbcType="DECIMAL" property="az" />
+    <result column="BJDAJLX" jdbcType="DECIMAL" property="bjdajlx" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+    <result column="CDZSFLWSBH" jdbcType="VARCHAR" property="cdzsflwsbh" />
+    <result column="CXQS" jdbcType="DECIMAL" property="cxqs" />
+    <result column="DEPT_CODE" jdbcType="VARCHAR" property="deptCode" />
+    <result column="FYJC" jdbcType="VARCHAR" property="fyjc" />
+    <result column="GSJG" jdbcType="DECIMAL" property="gsjg" />
+    <result column="HS" jdbcType="VARCHAR" property="hs" />
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="JDZSRQ" jdbcType="DECIMAL" property="jdzsrq" />
+    <result column="JZSL" jdbcType="DECIMAL" property="jzsl" />
+    <result column="LAAY" jdbcType="DECIMAL" property="laay" />
+    <result column="LAAYZS" jdbcType="DECIMAL" property="laayzs" />
+    <result column="LABM" jdbcType="DECIMAL" property="labm" />
+    <result column="LABMBS" jdbcType="DECIMAL" property="labmbs" />
+    <result column="LARQ" jdbcType="VARCHAR" property="larq" />
+    <result column="LASPRQ" jdbcType="VARCHAR" property="lasprq" />
+    <result column="NH" jdbcType="DECIMAL" property="nh" />
+    <result column="QSBDJE" jdbcType="DECIMAL" property="qsbdje" />
+    <result column="QSBDW" jdbcType="VARCHAR" property="qsbdw" />
+    <result column="REG_TIME" jdbcType="TIMESTAMP" property="regTime" />
+    <result column="SADJR" jdbcType="VARCHAR" property="sadjr" />
+    <result column="SATJ" jdbcType="DECIMAL" property="satj" />
+    <result column="SCR" jdbcType="DECIMAL" property="scr" />
+    <result column="SCRQ" jdbcType="VARCHAR" property="scrq" />
+    <result column="SCYJ" jdbcType="DECIMAL" property="scyj" />
+    <result column="SDCLRQ" jdbcType="VARCHAR" property="sdclrq" />
+    <result column="SDSQRQ" jdbcType="TIMESTAMP" property="sdsqrq" />
+    <result column="SDSZRQ" jdbcType="TIMESTAMP" property="sdszrq" />
+    <result column="SDZL" jdbcType="DECIMAL" property="sdzl" />
+    <result column="SFSQTJ" jdbcType="DECIMAL" property="sfsqtj" />
+    <result column="SPLCYGK" jdbcType="DECIMAL" property="splcygk" />
+    <result column="SPR" jdbcType="DECIMAL" property="spr" />
+    <result column="SPYJ" jdbcType="VARCHAR" property="spyj" />
+    <result column="SQBDJE" jdbcType="DECIMAL" property="sqbdje" />
+    <result column="SQPCSX" jdbcType="DECIMAL" property="sqpcsx" />
+    <result column="SQRLX" jdbcType="DECIMAL" property="sqrlx" />
+    <result column="SQSX" jdbcType="DECIMAL" property="sqsx" />
+    <result column="SSAJ" jdbcType="DECIMAL" property="ssaj" />
+    <result column="SSBDJE" jdbcType="DECIMAL" property="ssbdje" />
+    <result column="SSBDW" jdbcType="VARCHAR" property="ssbdw" />
+    <result column="SSBDXW" jdbcType="DECIMAL" property="ssbdxw" />
+    <result column="SSFW" jdbcType="DECIMAL" property="ssfw" />
+    <result column="SSJD" jdbcType="TIMESTAMP" property="ssjd" />
+    <result column="SSLY" jdbcType="TIMESTAMP" property="ssly" />
+    <result column="SSQQ" jdbcType="DECIMAL" property="ssqq" />
+    <result column="SSRLX" jdbcType="DECIMAL" property="ssrlx" />
+    <result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+    <result column="XSSFW" jdbcType="TIMESTAMP" property="xssfw" />
+    <result column="ZSFS" jdbcType="TIMESTAMP" property="zsfs" />
+    <result column="ZSLX" jdbcType="VARCHAR" property="zslx" />
+    <result column="ZSSCAJLY" jdbcType="DECIMAL" property="zsscajly" />
+    <result column="ZSSCAJLY_2015" jdbcType="TIMESTAMP" property="zsscajly2015" />
+    <result column="AJSLF" jdbcType="DECIMAL" property="ajslf" />
+  </resultMap>
+  <resultMap id="laxx" type="data.exchange.center.service.factor.trial.domain.Laxx">
+	    <id column="AJBS" jdbcType="VARCHAR" property="ajbs" />
+	    <result column="AJLX" jdbcType="VARCHAR" property="ajlx" />
+	    <result column="DEPTCODE" jdbcType="VARCHAR" property="deptcode" />
+	    <result column="REGDATE" jdbcType="TIMESTAMP" property="regdate" />
+	    <result column="LASTUPDATE" jdbcType="TIMESTAMP" property="lastupdate" />
+	    <result column="CONTENTUPD" jdbcType="TIMESTAMP" property="contentupd" />
+	    <result column="AH" jdbcType="VARCHAR" property="ah" />
+	    <result column="AJJZJD" jdbcType="VARCHAR" property="ajjzjd" />
+	    <result column="LARQ" jdbcType="TIMESTAMP" property="larq" />
+	    <result column="JARQ" jdbcType="TIMESTAMP" property="jarq" />
+	    <result column="LAAY" jdbcType="DECIMAL" property="laay" />
+	    <result column="CBSPTBS" jdbcType="DECIMAL" property="cbsptbs" />
+	    <result column="CBSPT" jdbcType="VARCHAR" property="cbspt" />
+	    <result column="CBR" jdbcType="DECIMAL" property="cbr" />
+  </resultMap>
+  	<resultMap id="outMapInteger" type="java.util.HashMap">
+		<result column="anFlag"       	 property="anFlag"  	javaType="int"       	 jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="outMapString" type="java.util.HashMap">
+		<result column="avErrmsg"        property="avErrmsg"    javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+      <select id="getAjInfo" parameterType="java.util.Map" statementType="CALLABLE">
+		<![CDATA[
+		{CALL  DCADM.SERVICE_YAOSU_JTZS(
+			#{larq,      mode=IN, jdbcType=VARCHAR},
+			#{ajjd,      mode=IN, jdbcType=VARCHAR},
+			#{v_cursor1, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=msSahlxxx},
+			#{v_cursor2, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=laxx},
+			#{v_cursor3, mode=OUT,jdbcType=INTEGER, javaType=int,      resultMap=outMapInteger},
+			#{v_cursor4, mode=OUT,jdbcType=VARCHAR, javaType=String,   resultMap=outMapString}
+		)}
+		]]>
+	</select>
+ 
+</mapper>

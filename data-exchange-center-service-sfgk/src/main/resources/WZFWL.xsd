@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CASE:schema xmlns:CASE="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://dataexchange.court.gov.cn/2009/data" targetNamespace="http://dataexchange.court.gov.cn/2009/data" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<CASE:element name="网站访问" type="访问"/>
+	<CASE:complexType name="网站访问量">
+		<CASE:sequence>
+			<CASE:element name="R" type="网站访问量1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="网站访问量1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="法院编号" type="C50"/>
+			<CASE:element name="访问量" type="N" minOccurs="0"/>
+			<CASE:element name="统计访问量的对应日期" type="D" minOccurs="0"/>
+			<CASE:element name="更新时间" type="DT" minOccurs="1"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="访问">
+		<CASE:sequence>
+			<CASE:element name="网站访问量" type="网站访问量" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:simpleType name="C32">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="32"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="C50">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="50"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="N">
+		<CASE:restriction base="xsd:int"/>
+	</CASE:simpleType>
+	<CASE:simpleType name="D">
+		<CASE:restriction base="xsd:date"/>
+	</CASE:simpleType>
+	<CASE:simpleType name="DT">
+		<CASE:restriction base="xsd:dateTime"/>
+	</CASE:simpleType>
+</CASE:schema>

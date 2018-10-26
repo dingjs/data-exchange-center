@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.ommp.mapper.UserMapper">
+	<resultMap id="retUser" type="data.exchange.center.ommp.domain.SystemUser">
+		<result column="id"                 property="id"                  javaType="int"           jdbcType="INTEGER" />
+		<result column="username"           property="username"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="password"           property="password"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="role"               property="role"                javaType="string"        jdbcType="VARCHAR" />
+		
+	</resultMap>
+	
+	<select id="findUserByUserName" parameterType="java.lang.String" resultMap="retUser">
+		SELECT ID, USERNAME, PASSWORD, ROLE 
+		  FROM DCADM.OMMP_USER
+		 WHERE USERNAME = #{username}
+	</select>
+</mapper>

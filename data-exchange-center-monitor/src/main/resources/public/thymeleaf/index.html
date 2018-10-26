@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>高院服务中心管理中心</title>
+    <div th:remove="all">
+        <title>数据服务中心</title>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+        <!-- Bootstrap 3.3.6 -->
+        <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="../dist/third/font-awesome.min.css"/>
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="../dist/third/ionicons.min.css"/>
+
+        <!-- Theme style -->
+        <link rel="stylesheet" href="../dist/css/AdminLTE.min.css"/>
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+             folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css"/>
+	    <link rel="stylesheet" th:href="@{/plugins/datatables/c.css}"/>
+	    <link rel="stylesheet" th:href="@{/plugins/datepicker/datepicker3.css}"/>
+	    <link rel="stylesheet" th:href="@{/plugins/datatables/dataTables.bootstrap.css}"/>
+        <!-- iCheck -->
+        <link rel="stylesheet" href="../plugins/iCheck/square/blue.css"/>
+   	
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </div>
+    <div th:replace="head"></div>
+	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>    
+    <!-- 引入 echarts.js -->
+    <script src="../echarts/echarts.js"></script>
+    <style>
+		a{text-decoration:none; color:inherit;}
+		ul{margin:0; padding:0;}
+		ul li{list-style:none;}
+		.scroll-txt{width:100%px; height:30px; border:0px solid #ccc; color:#484848; position:relative;  overflow:hidden;}
+		.scroll-txt .font-inner{position:absolute; left:8px; top:0;}
+		.scroll-txt .font-inner li{height:30px; line-height:30px;}
+		.scroll-txt .dot{position:absolute; right:10px; top:5px; font-size:18px; font-weight:bold;}
+		.scroll-txt a:hover{color:#0C6796;}
+	</style>
+	<script>
+		$(document).ready(function(){
+			var index = 0;
+			var autoTimer = 0;//全局变量 目的实现左右点击同步
+			var clickEndFlag = true;//设置每条走完才能再点击
+
+			var oInner = $(".font-inner");
+			var oLi = $(".font-inner li");
+
+			//克隆第一个放到最后（实现无缝）
+			oLi.eq(0).clone(true).appendTo(oInner);
+
+			//alert(oLi.length);//5
+			//alert($(".font-inner li").length);//6
+
+			var liHeight = $(".scroll-txt").height();//获取视口的高度
+			var totalHeight = (oLi.length * oLi.eq(0).height());//获取li的总高度
+
+			//给ul赋值高度
+			oInner.height(totalHeight);
+			function tab(){
+				oInner.stop().animate({
+					top: -index * liHeight
+				},400,function(){
+					clickEndFlag = true;//上一条走完才为true
+					if(index == oLi.length) {
+						oInner.css({top: 0});
+						index = 0;
+					}
+				})
+			}
+			function next() {
+				index++;
+				if(index > oLi.length) {
+					index = 0;
+				}
+				tab();
+			}
+			autoTimer = setInterval(next,3000);
+			$(".font-inner a").hover(function(){
+				clearInterval(autoTimer);
+			},function() {
+				autoTimer = setInterval(next,3000);
+			});
+			$(".scroll-txt .lt,.scroll-txt .gt").hover(function(){
+				clearInterval(autoTimer);
+			},function(){
+				autoTimer = setInterval(next,3000);
+			});
+		});
+	</script>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini ">
+	
+<div class="wrapper">
+
+    <header class="main-header" th:remove="all">
+        <!-- Logo -->
+        <a href="@{/}" class="logo">
+            <span class="logo-mini"><b>中心管理平台</b></span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>中心管理平台</b></span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="@{/profile}" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="hidden-xs" th:text="${user.username}">root</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+  
+    <div th:replace="header"></div>
+    <div th:replace="sidebar"></div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" id="content-wrapper">
+        <!-- Main content -->
+        <section class="content">
+        	<div class="scroll-txt">
+				<ul class="font-inner">
+					<li><a href="#">1、四川省高级人民法院数据服务中心管理平台系统上线了~~~~~~~~~~~~~~~~~</a></li>
+					<li><a href="#">2、调用两条新闻并设定时间上下切换</a></li>
+					<li><a href="#">3、调用两条新闻并设定时间上下切换</a></li>
+					<li><a href="#">4、调用两条新闻并设定时间上下切换</a></li>
+					<li><a href="#">5、调用两条新闻并设定时间上下切换</a></li>
+					<li><a href="#">6、调用两条新闻并设定时间上下切换</a></li>
+					<li><a href="#">7、调用两条新闻并设定时间上下切换</a></li>
+				</ul>
+			</div>
+			<!-- 隔行 -->
+			<div class="row">
+				<p></p>
+			</div>
+            <!-- Info boxes -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                    	<span class="info-box-icon bg-yellow">
+							<i class="fa fa-files-o"></i>
+						</span>
+                       
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">今日新收案件数量</span>
+                            <p></p>
+                            <span class="info-box-number" th:text="${newCase}"></span>件
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">今日更新案件数量</span>
+                            <p></p>
+                            <span class="info-box-number" th:text="${updateCase}"></span>件
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix visible-sm-block"></div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-green">
+                        	<i class="ion ion-ios-cart-outline"></i>
+                        </span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">今日删除案件数</span>
+                            <p></p>
+                            <span class="info-box-number" th:text="${deleteCase}"></span>件
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+			<div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        
+                        <div class="box-body">
+						 <div class="dataTables_filter" id="searchDiv" style="float:left;width:100%">
+							     <div class="input-group" style="float:left;margin: 0px 10px">
+		                            <select id="tjfs" class="form-control select2" style="float:left ; width:100%"  onchange="gradeChange()">
+		                                 <option selected="selected" value="1">司法统计</option>
+		                                 <option value="2"  >数据中心数据更新</option>
+		                                 <option value="3" >数据质量统计</option>
+		                                 <option value="4" >电子卷宗统计</option>
+		                            </select>
+		                        </div>
+									<div class="input-group" style="float:left ;width:25%">
+										<input type="text" class="form-control"  name="searchDate" id="searchDate"
+										placeholder="请选择统计时间"></input>
+									</div>
+								</div>
+							
+            				<div id="echartsSc" style="width: 100%px;height:800px; margin:0 auto;text-align:center;"></div>
+                        </div>
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    
+    <footer class="main-footer">
+	    <div class="pull-right hidden-xs">
+	      <b>Version</b> 2.3.8
+	    </div>
+    <strong>Copyright &copy; 2017 <a href="http://150.0.2.164">Xinya</a>.</strong> All rights
+    	reserved.
+  	</footer>
+    <!-- /.content-wrapper -->
+</div>
+<div th:replace="script"></div>
+<!-- AdminLTE App -->
+<script th:src="@{/dist/js/app.min.js}"></script>
+<script th:src="@{/plugins/datepicker/bootstrap-datepicker.js}"></script>
+<script th:src="@{/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js}"></script>
+<script type="text/javascript">
+/*<![CDATA[*/		
+							    
+								var myChart = echarts.init(document.getElementById('echartsSc'));
+								myChart.showLoading();
+								myChart.on('click', function (params) {
+								    var city = params.name;
+								    var tjfs= $("#tjfs").val()=="" ? null:$("#tjfs").val();
+							    	if(tjfs==1){
+							    		loadChartSftj(city);
+							    	}else if(tjfs==2){
+							    		loadChartSjgx(city);
+							    	}else if(tjfs==3){
+							    		loadChartZltj(city);
+							    	}else if(tjfs==4){
+							    		loadChartDzjz(city);
+							    	}
+								    
+								});
+								$.get('../echarts/json/四川省.json', function (geoJson) {
+									myChart.hideLoading();
+									echarts.registerMap('SC', geoJson);
+									myChart.setOption(option = {
+										title: {
+											text: '司法统计',
+											subtext: '数据来自四川省高级人民法院数据中心',
+											x: 'center'
+	            							//sublink: 'http://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF%E8%A1%8C%E6%94%BF%E5%8D%80%E5%8A%83#cite_note-12'
+	        							},
+	        							tooltip: {
+	            							trigger: 'item',
+	            							formatter: function(params){
+	            			                    //定义一个res变量来保存最终返回的字符结果,并且先把地区名称放到里面
+	            			                    var res=params.name+'<br />';
+	            			                    //定义一个变量来保存series数据系列
+	            			                    var myseries=option.series;
+	            			                    //循环遍历series数据系列
+	            			                    for(var i=0;i<myseries.length;i++){
+	            			                        //在内部继续循环series[i],从data中判断：当地区名称等于params.name的时候就将当前数据和名称添加到res中供显示
+	            			                        for(var k=0;k<myseries[i].data.length;k++){
+	            			                        	
+	            			                            //console.log(myseries[i].data[k].name);
+	            			                            //如果data数据中的name和地区名称一样
+	            			                            if(myseries[i].data[k].name==params.name){
+	            			                                //将series数据系列每一项中的name和数据系列中当前地区的数据添加到res中
+	            			                                res+=myseries[i].name+':'+myseries[i].data[k].value+'<br />';
+	            			                            }
+	            			                        }
+	            			                    }
+	            			                    //返回res
+	            			                    //console.log(res);
+	            			                    return res;
+	            							}
+	        							},markPoint: 
+	        								{ symbolSize: 2, large: true,
+	        				                   effect: { show: true },
+	        			                    data: []
+	        			                },
+	        							legend: {
+	        						        orient: 'vertical',
+	        						        left: 'left',
+	        						        data:['新收','旧存','已结','未结']
+	        						    },
+	        							toolbox: {
+	            							show: true,
+	            							orient: 'vertical',
+	            							left: 'right',
+	            							top: 'center',
+	            							 feature: {
+	            						            dataView: {readOnly: false},
+	            						            restore: {},
+	            						            saveAsImage: {}
+	            						        }
+	        							},
+	        							visualMap: {
+	        								show: false,
+	        								min: 300,
+	           								max: 5000,
+	            							text:['高','低'],
+	            							realtime: false,
+	            							calculable: true,
+	            							inRange: {
+	            								color: ['lightskyblue','yellow', 'orangered']
+	            							}
+	        							},
+	        							series: [{
+	        								name: '新收',
+	        								type: 'map',
+	        								roam: false,
+	        								showLegendSymbol: false,
+	        								mapType: 'SC', // 自定义扩展图表类型
+	        								itemStyle:{
+	        									normal:{label:{show:true}},
+	        									emphasis:{label:{show:true}}
+	        								},
+	        									data:getAjtj('','xs')
+	        								},{
+		        								name: '旧存',
+		        								type: 'map',
+		        								roam: false,
+		        								showLegendSymbol: false,
+		        								mapType: 'SC', // 自定义扩展图表类型
+		        								itemStyle:{
+		        									normal:{label:{show:true}},
+		        									emphasis:{label:{show:true}}
+		        								},
+		        									data:getAjtj('','jc')
+		        							},{
+		        								name: '已结',
+		        								type: 'map',
+		        								roam: false,
+		        								showLegendSymbol: false,
+		        								mapType: 'SC', // 自定义扩展图表类型
+		        								itemStyle:{
+		        									normal:{label:{show:true}},
+		        									emphasis:{label:{show:true}}
+		        								},
+		        									data:getAjtj('','yj')
+		        							},{
+		        								name: '未结',
+		        								type: 'map',
+		        								roam: false,
+		        								showLegendSymbol: false,
+		        								mapType: 'SC', // 自定义扩展图表类型
+		        								itemStyle:{
+		        									normal:{label:{show:true}},
+		        									emphasis:{label:{show:true}}
+		        								},
+		        									data:getAjtj('','wj')
+		        							}
+		        							
+	        							]
+	        						});
+									window.onresize = myChart.resize;
+									$('echartsSc').resize(myChart.resize);
+								});
+								
+								function loadChartSftj(city){
+									var citypath='../echarts/json/'+city+'.json';
+									$.get(citypath, function (geoJson) {
+										myChart.hideLoading();
+										echarts.registerMap('SC', geoJson);
+										myChart.setOption(option = {
+											title: {
+												text: '司法统计',
+												subtext: '数据来自四川省高级人民法院数据中心',
+												x: 'center'
+		            							//sublink: 'http://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF%E8%A1%8C%E6%94%BF%E5%8D%80%E5%8A%83#cite_note-12'
+		        							},
+		        							tooltip: {
+		            							trigger: 'item',
+		            							formatter: function(params){
+		            			                    //定义一个res变量来保存最终返回的字符结果,并且先把地区名称放到里面
+		            			                    var res=params.name+'<br />';
+		            			                    //定义一个变量来保存series数据系列
+		            			                    var myseries=option.series;
+		            			                    //循环遍历series数据系列
+		            			                    for(var i=0;i<myseries.length;i++){
+		            			                        //在内部继续循环series[i],从data中判断：当地区名称等于params.name的时候就将当前数据和名称添加到res中供显示
+		            			                        for(var k=0;k<myseries[i].data.length;k++){
+		            			                        	
+		            			                            //console.log(myseries[i].data[k].name);
+		            			                            //如果data数据中的name和地区名称一样
+		            			                            if(myseries[i].data[k].name==params.name){
+		            			                                //将series数据系列每一项中的name和数据系列中当前地区的数据添加到res中
+		            			                                res+=myseries[i].name+':'+myseries[i].data[k].value+'<br />';
+		            			                            }
+		            			                        }
+		            			                    }
+		            			                    //返回res
+		            			                    //console.log(res);
+		            			                    return res;
+		            							}
+		        							},
+		        							markPoint: {//动态标记
+		        								 symbolSize: 2, large: true,
+			        				                   effect: { show: true },
+			        			                    data: []
+		        			                },
+		        							legend: {
+		        						        orient: 'vertical',
+		        						        left: 'left',
+		        						        data:['新收','旧存','已结','未结']
+		        						    },
+		        							toolbox: {
+		        								 show: true,
+		        							     orient: 'vertical',
+		        							     left: 'right',
+		        							     top: 'center',
+		            							feature: {
+		                							dataView: {readOnly: false},
+		                							restore: {},
+		                							saveAsImage: {}
+		            							}
+		        							},
+		        							visualMap: {
+		        								show: false,
+		        								min: 300,
+		           								max: 5000,
+		            							text:['高','低'],
+		            							realtime: false,
+		            							calculable: true,
+		            							inRange: {
+		            								color: ['lightskyblue','yellow', 'orangered']
+		            							}
+		        							},
+		        							series: [{
+		        								name: '新收',
+		        								type: 'map',
+		        								mapType: 'SC', // 自定义扩展图表类型
+		        								showLegendSymbol: false,
+		        								itemStyle:{
+		        									normal:{label:{show:true}},
+		        									emphasis:{label:{show:true}}
+		        								},
+		        									data:getAjtj(city,'xs')
+		        								},{
+			        								name: '旧存',
+			        								type: 'map',
+			        								mapType: 'SC', // 自定义扩展图表类型
+			        								showLegendSymbol: false,
+			        								itemStyle:{
+			        									normal:{label:{show:true}},
+			        									emphasis:{label:{show:true}}
+			        								},
+			        									data:getAjtj(city,'jc')
+			        							},{
+			        								name: '已结',
+			        								type: 'map',
+			        								mapType: 'SC', // 自定义扩展图表类型
+			        								showLegendSymbol: false,
+			        								itemStyle:{
+			        									normal:{label:{show:true}},
+			        									emphasis:{label:{show:true}}
+			        								},
+			        									data:getAjtj(city,'yj')
+			        							},{
+			        								name: '未结',
+			        								type: 'map',
+			        								mapType: 'SC', // 自定义扩展图表类型
+			        								showLegendSymbol: false,
+			        								itemStyle:{
+			        									normal:{label:{show:true}},
+			        									emphasis:{label:{show:true}}
+			        								},
+			        									data:getAjtj(city,'wj')
+			        							}
+			        							
+		        							]
+		        						});
+										window.onresize = myChart.resize;
+										$('echartsSc').resize(myChart.resize);
+									});
+								};
+								//数据中心数据更新
+								function loadChartSjgx(city){
+									var citypath='../echarts/json/'+city+'.json';
+									$.get(citypath, function (geoJson) {
+										myChart.hideLoading();
+										echarts.registerMap('SC', geoJson);
+										myChart.setOption(option = {
+											title: {
+												text: '数据中心数据更新',
+												subtext: '数据来自四川省高级人民法院数据中心',
+												x: 'center'
+		            							//sublink: 'http://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF%E8%A1%8C%E6%94%BF%E5%8D%80%E5%8A%83#cite_note-12'
+		        							},
+		        							tooltip: {
+		            							trigger: 'item',
+		            							formatter: function(params){
+		            			                    //定义一个res变量来保存最终返回的字符结果,并且先把地区名称放到里面
+		            			                    var res=params.name+'<br />';
+		            			                    //定义一个变量来保存series数据系列
+		            			                    var myseries=option.series;
+		            			                    //循环遍历series数据系列
+		            			                    for(var i=0;i<myseries.length;i++){
+		            			                        //在内部继续循环series[i],从data中判断：当地区名称等于params.name的时候就将当前数据和名称添加到res中供显示
+		            			                        for(var k=0;k<myseries[i].data.length;k++){
+		            			                        	
+		            			                            //console.log(myseries[i].data[k].name);
+		            			                            //如果data数据中的name和地区名称一样
+		            			                            if(myseries[i].data[k].name==params.name){
+		            			                                //将series数据系列每一项中的name和数据系列中当前地区的数据添加到res中
+		            			                                res+=myseries[i].name+':'+myseries[i].data[k].value+'<br />';
+		            			                            }
+		            			                        }
+		            			                    }
+		            			                    //返回res
+		            			                    //console.log(res);
+		            			                    return res;
+		            							}
+		        							},
+		        							legend: {
+		        						        orient: 'vertical',
+		        						        left: 'left',
+		        						        data:['今日新收案件数','更新案件数','删除案件数']
+		        						    },
+		        							toolbox: {
+		        								 show: true,
+		        							     orient: 'vertical',
+		        							     left: 'right',
+		        							     top: 'center',
+		            							feature: {
+		                							dataView: {readOnly: false},
+		                							restore: {},
+		                							saveAsImage: {}
+		            							}
+		        							},
+		        							visualMap: {
+		        								show: false,
+		        								min: 300,
+		           								max: 5000,
+		            							text:['高','低'],
+		            							realtime: false,
+		            							calculable: true,
+		            							inRange: {
+		            								color: ['lightskyblue','yellow', 'orangered']
+		            							}
+		        							},
+		        							series: [{
+		        								name: '今日新收案件数',
+		        								type: 'map',
+		        								showLegendSymbol: false,
+		        								mapType: 'SC', // 自定义扩展图表类型
+		        								itemStyle:{
+		        									normal:{label:{show:true}},
+		        									emphasis:{label:{show:true}}
+		        								},
+		        								data:getAjtj(city,'xs')
+		        								},
+		        							{
+		        								name: '更新案件数',
+		        								type: 'map',
+		        								showLegendSymbol: false,
+		        								mapType: 'SC', // 自定义扩展图表类型
+		        								itemStyle:{
+		        									normal:{label:{show:true}},
+		        									emphasis:{label:{show:true}}
+		        								},
+		        								data:getAjtj(city,'xs')
+		        								},
+		        								{
+			        								name: '删除案件数',
+			        								type: 'map',
+			        								showLegendSymbol: false,
+			        								mapType: 'SC', // 自定义扩展图表类型
+			        								itemStyle:{
+			        									normal:{label:{show:true}},
+			        									emphasis:{label:{show:true}}
+			        								},
+			        								data:getAjtj(city,'xs')
+			        								}
+			        							
+		        							]
+		        						});
+										window.onresize = myChart.resize;
+										$('echartsSc').resize(myChart.resize);
+									});
+								};
+								
+								//数据质量统计
+								function loadChartZltj(city){
+									var citypath='../echarts/json/'+city+'.json';
+									$.get(citypath, function (geoJson) {
+										myChart.hideLoading();
+										echarts.registerMap('SC', geoJson);
+										myChart.setOption(option = {
+											title: {
+												text: '数据质量统计',
+												subtext: '数据来自四川省高级人民法院数据中心',
+												x: 'center'
+		            							//sublink: 'http://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF%E8%A1%8C%E6%94%BF%E5%8D%80%E5%8A%83#cite_note-12'
+		        							},
+		        							tooltip: {
+		            							trigger: 'item',
+		            							formatter: function(params){
+		            			                    //定义一个res变量来保存最终返回的字符结果,并且先把地区名称放到里面
+		            			                    var res=params.name+'<br />';
+		            			                    //定义一个变量来保存series数据系列
+		            			                    var myseries=option.series;
+		            			                    //循环遍历series数据系列
+		            			                    for(var i=0;i<myseries.length;i++){
+		            			                        //在内部继续循环series[i],从data中判断：当地区名称等于params.name的时候就将当前数据和名称添加到res中供显示
+		            			                        for(var k=0;k<myseries[i].data.length;k++){
+		            			                        	
+		            			                            //console.log(myseries[i].data[k].name);
+		            			                            //如果data数据中的name和地区名称一样
+		            			                            if(myseries[i].data[k].name==params.name){
+		            			                                //将series数据系列每一项中的name和数据系列中当前地区的数据添加到res中
+		            			                                res+=myseries[i].name+':'+myseries[i].data[k].value+'<br />';
+		            			                            }
+		            			                        }
+		            			                    }
+		            			                    //返回res
+		            			                    //console.log(res);
+		            			                    return res;
+		            							}
+		        							},
+		        							legend: {
+		        						        orient: 'vertical',
+		        						        left: 'left',
+		        						        data:['错误数','已校正数']
+		        						    },
+		        							toolbox: {
+		        								 show: true,
+		        							     orient: 'vertical',
+		        							     left: 'right',
+		        							     top: 'center',
+		            							feature: {
+		                							dataView: {readOnly: false},
+		                							restore: {},
+		                							saveAsImage: {}
+		            							}
+		        							},
+		        							visualMap: {
+		        								show: false,
+		        								min: 300,
+		           								max: 5000,
+		            							text:['高','低'],
+		            							realtime: false,
+		            							calculable: true,
+		            							inRange: {
+		            								color: ['lightskyblue','yellow', 'orangered']
+		            							}
+		        							},
+		        							series: [
+		        								{
+		        								name: '错误数',
+		        								type: 'map',
+		        								showLegendSymbol: false,
+		        								mapType: 'SC', // 自定义扩展图表类型
+		        								itemStyle:{
+		        									normal:{label:{show:true}},
+		        									emphasis:{label:{show:true}}
+		        								},
+		        								data:getAjtj(city,'xs')
+		        								},
+		        								{
+			        								name: '已校正数',
+			        								type: 'map',
+			        								showLegendSymbol: false,
+			        								mapType: 'SC', // 自定义扩展图表类型
+			        								itemStyle:{
+			        									normal:{label:{show:true}},
+			        									emphasis:{label:{show:true}}
+			        								},
+			        								data:getAjtj(city,'xs')
+			        								}
+			        							
+		        							]
+		        						});
+										window.onresize = myChart.resize;
+										$('echartsSc').resize(myChart.resize);
+									});
+								};
+								//电子卷宗统计
+								function loadChartDzjz(city){
+									var citypath='../echarts/json/'+city+'.json';
+									$.get(citypath, function (geoJson) {
+										myChart.hideLoading();
+										
+										echarts.registerMap('SC', geoJson);
+										myChart.setOption(option = {
+											title: {
+												text: '电子卷宗统计',
+												subtext: '数据来自四川省高级人民法院数据中心',
+												x: 'center'
+		            							//sublink: 'http://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF%E8%A1%8C%E6%94%BF%E5%8D%80%E5%8A%83#cite_note-12'
+		        							},
+		        							tooltip: {
+		            							trigger: 'item',
+		            							formatter: function(params){
+		            			                    //定义一个res变量来保存最终返回的字符结果,并且先把地区名称放到里面
+		            			                    var res=params.name+'<br />';
+		            			                    //定义一个变量来保存series数据系列
+		            			                    var myseries=option.series;
+		            			                    //循环遍历series数据系列
+		            			                    for(var i=0;i<myseries.length;i++){
+		            			                        //在内部继续循环series[i],从data中判断：当地区名称等于params.name的时候就将当前数据和名称添加到res中供显示
+		            			                        for(var k=0;k<myseries[i].data.length;k++){
+		            			                        	
+		            			                            //console.log(myseries[i].data[k].name);
+		            			                            //如果data数据中的name和地区名称一样
+		            			                            if(myseries[i].data[k].name==params.name){
+		            			                                //将series数据系列每一项中的name和数据系列中当前地区的数据添加到res中
+		            			                                res+=myseries[i].name+':'+myseries[i].data[k].value+'<br />';
+		            			                            }
+		            			                        }
+		            			                    }
+		            			                    //返回res
+		            			                    //console.log(res);
+		            			                    return res;
+		            							}
+		        							},
+		        							legend: {
+		        						        orient: 'vertical',
+		        						        left: 'left',
+		        						        data:['新增数','更新数']
+		        						    },
+		        							toolbox: {
+		        								 show: true,
+		        							     orient: 'vertical',
+		        							     left: 'right',
+		        							     top: 'center',
+		            							feature: {
+		                							dataView: {readOnly: false},
+		                							restore: {},
+		                							saveAsImage: {}
+		            							}
+		        							},
+		        							visualMap: {
+		        								show: false,
+		        								min: 300,
+		           								max: 5000,
+		            							text:['高','低'],
+		            							realtime: false,
+		            							calculable: true,
+		            							inRange: {
+		            								color: ['lightskyblue','yellow', 'orangered']
+		            							}
+		        							},
+		        							series: [
+		        								{
+		        								name: '新增数',
+		        								type: 'map',
+		        								showLegendSymbol: false,
+		        								mapType: 'SC', // 自定义扩展图表类型
+		        								itemStyle:{
+		        									normal:{label:{show:true}},
+		        									emphasis:{label:{show:true}}
+		        								},
+		        									data:getAjtj(city,'xs')
+		        								},
+		        								{
+			        								name: '更新数',
+			        								type: 'map',
+			        								showLegendSymbol: false,
+			        								mapType: 'SC', // 自定义扩展图表类型
+			        								itemStyle:{
+			        									normal:{label:{show:true}},
+			        									emphasis:{label:{show:true}}
+			        								},
+			        									data:getAjtj(city,'xs')
+			        								}
+			        							
+		        							]
+		        						});
+										window.onresize = myChart.resize;
+										$('echartsSc').resize(myChart.resize);
+									});
+								};
+							
+									function getAjtj(fymc,ajzt){
+										var url="";
+										if( fymc=="" || fymc =="四川省"){
+											url="/getAjtj";
+										}else{
+											url="/getFqjs";
+										}
+										var arr=[];
+									    $.ajax({
+									   	 type : "get",
+									        async : false, //同步执行
+									        url : url,
+									        data : {fymc:fymc,ajzt:ajzt},
+									        dataType : "json", //返回数据形式为json
+									        success : function(result) {
+									            if (result) {
+									                 for(var i=0;i<result.length;i++){
+									               	  var data = result[i];
+									                     arr.push({name:data.name,value:data.value});
+									                  }
+									             	
+									               }
+									          },
+									    })
+									    return arr;
+									    };
+								    function gradeChange(){
+								    	var tjfs= $("#tjfs").val()=="" ? null:$("#tjfs").val();
+								    	if(tjfs==1){
+								    		loadChartSftj("四川省");
+								    	}else if(tjfs==2){
+								    		loadChartSjgx("四川省");
+								    	}else if(tjfs==3){
+								    		loadChartZltj("四川省");
+								    	}else if(tjfs==4){
+								    		loadChartDzjz("四川省");
+								    	}
+								    };
+								    function gradeFrom(serverurl){
+								    	if(serverurl !=""){
+								        var html="";
+								    	$.ajax({
+								    		type : "get",
+								    		url:serverurl,
+								    		async : false, //同步执行
+								    		success : function(result) {
+								    			html=result;
+								    		}
+								    	})
+								    	$("#content-wrapper").html(html)
+								    	}
+								    };
+								    
+								    
+								    $("#searchDate").datepicker({
+								    	   language:  'zh-CN',
+								            format: 'yyyy-mm',
+								            weekStart: 1,
+								            todayBtn:  1,
+								            autoclose: 1,
+								            todayHighlight: 1,
+								            startView: 1, //这里就设置了默认视图为年视图
+								            minView: 1, //设置最小视图为年视图
+								            forceParse: 0,
+								           defaultDate : new Date(),
+								           endDate:new Date()
+								    });
+								 /*]]>*/
+							</script>
+</body>
+</html>

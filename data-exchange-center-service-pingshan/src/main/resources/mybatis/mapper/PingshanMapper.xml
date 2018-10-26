@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.pingshan.mapper.PingshanMapper">
+	<select id="getYhxx" parameterType="java.util.Map" resultType="java.util.Map">
+	<![CDATA[
+		SELECT 	RYBZ,XM,DLBZ,MM,XB,CSRQ,MZ,WHCD,HYZK,SFZHM,ZZMM,XZJB,
+				ZW,ZSBZ,DHHM,YX,FGDJ,FJDJ,SZJG,BZ
+	 	FROM 
+	 			SPZT_ZZRY
+		WHERE 
+			DEPT_CODE =512535
+	 ]]>
+	</select>
+	<select id="getBmxx" parameterType="java.util.Map" resultType="java.util.Map">
+	<![CDATA[
+		SELECT 
+				JGBZ,JGMC,JGLX,YX,JGJB,SJJGBZ,JGZN,BZ,ZZJGBZ,FYBZ,DM
+		 FROM 
+		 		SPZT_ZZJG
+		 WHERE 
+		 		DEPT_CODE =512535
+	 ]]>
+	</select>
+		<select id="getFybm" parameterType="java.util.Map" resultType="java.util.Map">
+	<![CDATA[
+		SELECT 
+				FYBZ,DM,JGLX,FYMC,YX,DQM,BZ,FYJC
+		 FROM 
+		 		SPZT_FYBM
+		 WHERE 
+		 		DEPT_CODE =512535
+
+	 ]]>
+	</select>
+	<select id="getAjbsList" parameterType="java.util.Map" resultType="java.util.Map">
+	<![CDATA[
+	 SELECT  
+        EAJ.AJBS,AJLX,AH,LAAY,LARQ ,UPDATETIME 
+      FROM 
+        BUF_EAJ EAJ
+      WHERE 
+        deptcode = '512535' and AJLX IN('11','12','13','21','22','23','31','32','33','42','51')
+      AND UPDATETIME >to_date(#{tjsj,jdbcType=VARCHAR, javaType=String},'yyyy-MM-dd hh24:MI:ss')
+      ]]>
+	</select>
+	<select id="getDelAj" parameterType="java.util.Map" resultType="java.util.Map">
+		<![CDATA[
+		 SELECT  
+	       		AJBS
+	      FROM 
+	        AJSCXX_AJSCXX
+	      WHERE 
+	        dept_code = '512535' and AJLX IN('11','12','13','21','22','23','31','32','33','42','51')
+	      AND UPDATE_TIME >to_date(#{tjsj,jdbcType=VARCHAR, javaType=String},'yyyy-MM-dd hh24:MI:ss')
+	      ]]>
+	</select>
+	<select id="getYASTML" parameterType="java.util.Map" resultType="java.util.Map">
+	    <![CDATA[
+			 SELECT 
+				 AJBS,XH,LY,BS,JS,LX,MC,RYBM,XB,CSRQ,NL,GJ,MZ,SF,SFZHM,
+				 XYJRSF,JGZWXZ,JGGBJB,QTZJZL,QTZJHM,ZY,WHCD,HYZK,
+				 ZZMM,XZJB,SZDW,ZW,TSSF,TSSLHBL,HJSZD,JL,LDRY,WCNRJTBJ,
+				 JTJJZK,BM,CSD,YJ,SSSQ,GJDQ,ZZJGDM,DWXZ,TSHY,FDDBR,DBRZJZL,
+				 DBRZJHM,JGBM,DZ,YZBM,LXDH,DZYX,QTLXFF
+			 FROM 
+				YASTML_YASTML
+			WHERE 
+				AJBS = ${ajbs} and dept_code = '512535' 
+	      ]]>
+    </select>
+	<select id="getXSYSSAHLAXX" parameterType="java.util.Map" resultType="java.util.Map">
+	    <![CDATA[
+			 SELECT AJBS,AH,SATJ,SSXZ,AJLY,SDSZRQ,QSZZM,QSS,SAJZCL,CXQS,JYSYJYCX,LABMBS,LABM,
+					SADJR,SCR,SCRQ,SCYJ,SPR,LASPRQ,SPYJ,LARQ,CBRBPRQ,AJLB,NH,AZ,FYJC,HS,AJGK,BZ,GSJG,AJLYX,SPLCYGK
+			 FROM 
+				XSYS_SAHLAXX 
+			WHERE 
+				AJBS = ${ajbs} and dept_code = '512535' 
+	      ]]>
+    </select>
+	<select id="getXSYSAJSLQK" parameterType="java.util.Map" resultType="java.util.Map">
+		 SELECT AJBS,JSRQ,CBSPTBS,CBSPT,CBR,SYCX,BGRTYRZCX,GXYJ,TQZJJH,FYSJDQZJ,
+				DYSJ,AJSJ,AJDXYX,GTFZ,TABGRBZAYY,AJJZ,SLBG,GKSL,BGKSLYY,WTSX,
+				STFY,SZDHYSFY,KTSL,SFTQYZTJSWH,SFWLFZ,AJSFSJ,DLSPRQ,SFJBSL,
+				SFZDTSAJ,SFFDMSSS,SFDWFZ,SFGTFZ,SFSS,SFPSYCJ,GTFZRS,SFTZCL,
+				TZSPSJ,TZCLR,TZCLYJ,SFYZCL,YZSPYJ,YZCLR,YZCLYJ,AJSJRS,
+				BQQFSJGB,FARQ,SFGG,SFSJWCNR,SFSJJY
+		 FROM 
+				XSYS_AJSLQK  
+		 WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getXSYSBAQX" parameterType="java.util.Map" resultType="java.util.Map">
+		 SELECT AJBS,SXQSRQ,SXJMRQ,LAQXJMRQ,SLJSRQ,FDLAQX,SJLATS,
+				LACQTS,FDSXTS,SJSLTS,CSXTS,CSXBS,CSXYY,SFCSX
+		 FROM 
+				XSYS_BAQX  
+		WHERE
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getXSYSXSFDMSSSGK" parameterType="java.util.Map" resultType="java.util.Map">
+	  SELECT AJBS,TQSSRQ,TQRLX,YGR,BGR,TCPCZE,LASPYJ,LASPRQ,JARQ,JAFS,SXRQ,FDMSSSCLQK
+	  FROM 
+			XSYS_XSFDMSSSGK
+	  WHERE 
+			AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getXSYSJAQK" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	AJBS,JARQ,AY,JAFS,BYSLYY,BHZSYY,CSLX,CSCLSY,JASY,PJWHSS,SXRQ,
+				JAAYZS,YAAYBM,SSSFYX,SPZSQRQ,TZSQRQ,YZSQRQ,YZQFRQ,BZ,JAFSX,
+				CPWSSFJYKZXNR,SFYJAWS,WJAWSLY
+		FROM 
+				XSYS_JAQK
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getXSESSAHLAXX" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	AJBS,AH,SSXZ,AJLY,SDSZRQ,ZZM,SAJZCL,LABMBS,LABM,SADJR,SCR,SCRQ,
+				SCYJ,SPR,LASPRQ,SPYJ,LARQ,AJLB,YSCS,NH,AZ,HS,FYJC,BZ,AJGK,GSJG,
+				AJLYX,SYMSWFSD,ZDCPSX,SPLCYGK
+		FROM 
+				XSES_SAHLAXX
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getXSESAJSLQK" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	AJBS,JSRQ,CBSPTBS,CBSPT,CBR,TQZJJH,FYSJDQZJ,DYSJ,AJSJ,
+				AJDXYX,GTFZ,TABGRBZAYY,AJJZ,SLBG,GKSL,BGKSLYY,WTSX,STFY,
+				SZDHYSFY,KTSL,SFTQYZTJSWH,SFWLFZ,SFCA,AJSFSJ,DLSPRQ,SFJBSL,
+				SFZDTSAJ,SFFDMSSS,SFDWFZ,SFGTFZ,GTFZRS,SFTZCL,TZSPSJ,TZCLR,
+				TZCLYJ,SFYZCL,YZSPYJ,YZCLR,YZCLYJ,AJSJRS,BQQFSJGB,YCBSPT,YCBR,FARQ,SFSJWCNR,SFSJJY
+		FROM 
+				XSES_AJSLQK
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'	
+	</select>
+	<select id="getXSERAJSLQK" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT	AJBS,SXQSRQ,SXJMRQ,LAQXJMRQ,SLJSRQ,FDLAQX,
+				SJLATS,LACQTS,FDSXTS,SJSLTS,CSXTS,CSXBS,CSXYY
+		FROM 
+				XSER_AJSLQK
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getXSESJAQK" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT  AJBS,JARQ,JARQ,AY,JAFS,GPYY,FHCSYY,CXYCDDCL,CSLX,CSCLSY,ZZSY,PJWHSS,
+				SXRQ,ESGPQK,WCRS,GPRS,JZRS,JQRS,MXRS,WZRS,QTRS,LXBD,SSBQHZJBZRS,
+				GPQTRS,JAAYZS,JAAYBM,SSSFYX,SPZSQRQ,TZSQRQ,YZSQRQ,BZ,JAFSX,SFYJAWS,WJAWSLY
+		FROM
+				XSES_JAQK
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getXSZSSAHLAXX" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	AJBS,AH,SSXZ,AJLY,ZSFS,ZSLX,SDCLRQ,ZM,SAJZCL,LABM,SADJR,
+				SPR,LASPRQ,SPYJ,LARQ,JDZSRQ,JDZSFLWSBH,NH,AZ,HS,AJLB,BZ,
+				AJGK,GSJG,AJLY_2015,SPLCYGK
+		FROM 
+				XSZS_SAHLAXX
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getXSZSAJSLQK" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	AJBS,JSRQ,CBSPTBS,CBSPT,CBR,TQZJJH,FYSJDQZJ,DYSJ,
+				AJSJ,AJDXYX,GTFZ,TABGRBZAYY,AJJZ,SLBG,GKSL,BGKSLYY,
+				WTSX,STFY,SZDHYSFY,KTSL,SFTQYZTJSWH,SFWLFZ,SFCA,AJSFSJ,
+				DLSPRQ,SFJBSL,SFZDTSAJ,SFFDMSSS,SFDWFZ,SFGTFZ,GTFZRS,SFTZCL,
+				TZSPSJ,TZCLR,TZCLYJ,SFYZCL,YZSPYJ,YZCLR,YZCLYJ,AJSJRS,BQQFSJGB,
+				YCBSPT,YCBR,FARQ,SLCX,SFSJWCNR,SFSJJY
+		FROM 
+				XSZS_AJSLQK
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getXSZSJAFS" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	AJBS,JARQ,AY,JAFS,GPYY,FHCSYY,CXYCDDCL,CSLX,CSCLSY,
+				JASY,SYSFY,SXRQ,YSXRQ,JAAYZS,JAAYBM,SPZSQRQ,TZSQRQ,
+				YZSQRQ,PJWHSS,WCRS,GPRS,JZRS,JQRS,MXRS,WZRS,QTRS,LXBD,
+				SSBQHZJBZRS,GPQTRS,JAFSX,SFYJAWS,WJAWSLY,JAFS_2015
+		FROM 
+				XSZS_JAQK
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getMSYSSAHLAXX" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	AJBS,AH,SATJ,SFSQTJ,AJLY,SDSZRQ,LAAY,SAJZCL,
+				CXQS,SDZL,SSBDXW,QSBDW,QSBDJE,AJSLF,LABMBS,LABM,
+				SADJR,SCR,SCRQ,SCYJ,SPR,LASPRQ,SPYJ,LARQ,LAAYZS,
+				BZ,SSLY,SSQQ,AJLB,NH,AZ,FYJC,HS,AJGK,SSAJ,JZSL,GSJG,
+				AJLYX,SPLCYGK
+		FROM 
+				MSYS_SAHLAXX
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getMSYSAJSLQK" parameterType="java.util.Map" resultType="java.util.Map">
+		 SELECT AJBS,JSRQ,CBSPTBS,CBSPT,CBR,SYCX,PTCXJYS,GXYJ,TQZJJH,
+				FYSJDQZJ,DYSJ,AJSJ,AJDXYX,GTSSLX,HBSLSY,SLBG,GKSL,
+				BGKSLYY,WTSX,STFY,SZDHYSFY,KTSL,SFTQYZTJSWH,TCGXYYRMC,
+				SFGYQS,SFWS,SW,GYQYGZ,SFTZCL,TZSPSJ,TZCLR,TZCLYJ,SFYZCL,
+				YZSPYJ,YZCLR,YZCLYJ,YCBSPT,YCBR,FARQ,SFSRCXZS,SFSJZSCQ,SFXESS,SFZXYYZS
+		FROM 
+				MSYS_AJSLQK
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getMSYSQTHJTSSQK" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	AJBS,QTSSRS,QLDJGGKDRQ,GGQX,QLDJRS
+		FROM 
+				MSYS_QTHJTSSQK
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getMSYSBAQX" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	AJBS,SXQSRQ,SXJMRQ,LAQXJMRQ,SLJSRQ,FDLAQX,SJLATS,LACQTS,FDSXTS,SJSLTS,CSXTS,CSXBS,CSXYY,SFCSX
+		FROM 
+				MSYS_BAQX
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getMSYSJAQK" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	AJBS,JABDJE,JARQ,AY,JAFS,HYJAFS,ZCYGSSQQ,BYSLYY,CSLX,
+				CSCLSY,ZJSY,CPWSSFJYKZXNR,SXRQ,JAAYZS,YAAYBM,
+				YZQFRQ,DBYSLCDSS,JAFSX,SFYJAWS,WJAWSLY
+		FROM 
+				MSYS_JAQK
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getMSESSAHLAXX" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	AJBS,AH,SSFW,SSRLX,SDSZRQ,LAAY,SAJZCL,SSBDW,SSBDJE,
+				AJSLF,LABMBS,LABM,SADJR,SPR,LASPRQ,SPYJ,LARQ,LAAYZS,
+				BZ,SDZL,SSLY,SSQQ,JZSL,GSJG,AJGK,AJLYX,XSSFW,SPLCYGK
+		FROM 
+				MSES_SAHLAXX
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getMSESAJSLQK" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT  AJBS,JSRQ,CBSPTBS,CBSPT,CBR,TQZJJH,FYSJDQZJ,DYSJ,AJSJ,
+				AJDXYX,GTSSLX,SLBG,GKSL,BGKSLYY,WTSX,STFY,SZDHYSFY,
+				KTSL,SFTQYZTJSWH,SFCA,SFTZCL,TZSPSJ,TZCLR,TZCLYJ,
+				SFYZCL,YZSPYJ,YZCLR,YZCLYJ,GYQYGZ,SFWS,SFGG,SFXS,FARQ
+		FROM 
+				MSES_AJSLQK
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getMSESJAQK" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT  AJBS,JABDJE,JARQ,AY,ZCYSYGSSQQ,JAFS,GPYY,FHCSYY,
+				CXYCDDCL,CSLX,CSCLSY,ZJSY,ESTJSY,SXRQ,JAAYZS,
+				YAAYBM,ESGPQK,CPWSSFJYKZXNR,XFFY,JAFSX,SFYJAWS,WJAWSLY
+		FROM 
+				MSES_JAQK
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getMSZSSAHLAXX" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT  AJBS,AH,AJLY,ZSFS,ZSLX,SDCLRQ,LAAY,SAJZCL,QSBDW,QSBDJE,AJSLF,
+				LABMBS,LABM,SADJR,SPR,LASPRQ,SPYJ,LARQ,LAAYZS,BZ,SSLY,
+				SSQQ,AJLB,NH,AZ,FYJC,HS,AJGK,CDZSFLWSBH,JDZSRQ,JZSL,GSJG,
+				ZSSCAJLY,AJLY_2015,ZSSCAJLY_2015,SPLCYGK
+		FROM 
+				MSZS_SAHLAXX
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getMSZSJAQK" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT  AJBS,JABDJE,JARQ,AY,JAFS,GPYY,FHCSYY,CXYCDDCL,CSLX,
+				CSCLSY,ZJSY,ZSTJSY,SXRQ,JAAYZS,YAAYBM,ESGPQK,
+				CPWSSFJYKZXNR,XFFY,JAFSX,SFYJAWS,WJAWSLY,JAFS_2015
+		FROM 
+				MSZS_JAQK
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getXZYSSAHLAXX" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT  AJBS,AH,SATJ,AJLY,XZGLFW,SDSZRQ,LAAY,SAJZCL,CXQS,SSBDXW,
+				TQXZPC,QSBDW,QSBDJE,AJSLF,LABMBS,LABM,SADJR,SCR,SCRQ,
+				SCYJ,SPR,LASPRQ,SPYJ,LARQ,NH,AZ,HS,AJLB,SSLY,SSQQ,LAAYZS,
+				BZ,GSJG,AJLYX,SFSQTJ,YBJJMSZY,YBYQSCGFXWJ,SPLCYGK
+		FROM 
+				XZYS_SAHLAXX
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getXZYSAJSLQK" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT  AJBS,JSRQ,CBSPTBS,CBSPT,CBR,GXYJ,TQZJJH,FYSJDQZJ,DYSJ,AJSJ,
+				AJDXYX,GTSSLX,HBSLSY,SLBG,GKSL,BGKSLYY,WTSX,STFY,SZDHYSFY,
+				KTSL,SFTQYZTJSWH,AJJZ,BQQFSJGB,SFJBSL,SFCA,SFSS,SFWS,SFKTCD,
+				SFPSYCJ,SFGG,SFSW,SFTZCL,TZSPSJ,TZCLR,TZCLYJ,SFYZCL,YZSPYJ,
+				YZCLR,YZCLYJ,CBRBPRQ,GTSS,JTSS,FARQ
+		FROM 
+				XZYS_AJSLQK
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getXZYSJAQK" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT  AJBS,JARQ,AY,JAFS,BYSLYY,CSLX,ZZSY,BGBSYY,SXRQ,
+				ZCYGSSQQ,PJWHSS,CSLY,JAAYZS,JAAYBM,SPZSQRQ,
+				TZSQRQ,YZSQRQ,YZQFRQ,DBYSLCDSS,CPWSSFJYKZXNR,JAFSX,SFYJAWS,WJAWSLY
+		FROM 
+				XZYS_JAQK
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getXZESSAHLAXX" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT  AJBS,AH,XZGLFW,SDSZRQ,LAAY,SAJZCL,SSBDXW,TQXZPC,
+				QSBDW,QSBDJE,AJSLF,LABMBS,LABM,SADJR,SPR,LASPRQ,
+				SPYJ,LARQ,NH,AZ,HS,AJLB,SCR,SCRQ,SCYJ,LAAYZS,SSLY,
+				SSQQ,GSJG,AJLYX,SPLCYGK
+		FROM 
+				XZES_SAHLAXX
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getXZESJAQK" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT  AJBS,JARQ,AY,JAFS,GPYY,FHCSYY,CXYCDDCL,CSLX,ZJSY,ESTJSY,
+				BGBSYY,SXRQ,JAAYZS,ZCYGSSQQ,BZ,CPWSSFJYKZXNR,XFFY,JAFSX,SFYJAWS,WJAWSLY
+		FROM 
+				XZES_JAQK
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getXZZSSAHLAXX" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT  AJBS,AH,SATJ,AJLY,ZSFS,ZSLX,SSFW,XZGLFW,SDSZRQ,LAAY,SAJZCL,SSBDXW,
+				TQXZPC,QSBDW,QSBDJE,AJSLF,LABMBS,LABM,SADJR,SPR,LASPRQ,SPYJ,
+				LARQ,NH,AZ,HS,AJLB,SCR,SCRQ,SCYJ,LAAYZS,CDZSFLWSBH,SSLY,SSQQ,
+				GSJG,ZSSCAJLY,AJLY_2015,ZSSCAJLY_2015,SPLCYGK
+		FROM 
+				XZZS_SAHLAXX
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getXZZSJAQK" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT  AJBS,JARQ,AY,JAFS,GPYY,FHCSYY,CXYCDDCL,CSLX,ZJSY,ZSTJSY,
+				BGBSYY,SXRQ,JAAYZS,ZCYGSSQQ,PJWHSS,ESCDJG,ESGPQK,SPZSQRQ,
+				TZSQRQ,YZSQRQ,YZQFRQ,JAAYBM,YSSXRQ,CSLY,CPWSSFJYKZXNR,XFFY,
+				JAFSX,SFYJAWS,WJAWSLY,JAFS_2015
+		FROM 
+				XZZS_JAQK
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getSFPCSAHLAXX" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT  AJBS,AJBS,AH,SATJ,AJLY,SDCLRQ,SQS,SAJZCL,LAAY,SQSY,QQPCLX,
+				QQPCJE,LABMBS,LABM,SADJR,SCR,SCRQ,SCYJ,SPR,LASPRQ,SPYJ,
+				LARQ,NH,AZ,HS,AJLB,LAAYZS,SJAJLB,SLCX,BZ,SSLY,SSQQ,QQPCDX,
+				QQJTYQ,AJLX,GSJG,AJZLX,AJLYX,SPLCYGK
+		FROM 
+				SFPC_SAHLAXX
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getSFPCJAQK" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	AJBS,JARQ,AY,JAFS,CXBGYY,PCFS,JSSHFWJ,SFXSPC,
+				BYSLYY,JDPCJE,SXRQ,JAAYZS,JAAYBM,BZ,JAFSX,SFYJAWS,WJAWSLY
+		FROM 
+				SFPC_JAQK
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getZXAJSAHLAXX" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT  AJBS,AH,SATJ,ZXYJ,ZXHZSY,AJLY,YZXFY,ZXYJZW,FLWSWH,WSZHLXQX,
+				SDCLRQ,SQS,SAJZCL,CXSQHFZX,SQZXBDXW,SQZXBDW,SQZXBDJE,LAAY,
+				LABMBS,LABM,SADJR,SCR,SCRQ,SCYJ,SPR,LASPRQ,SPYJ,LARQ,NH,AZ,
+				HS,AJLB,LAAYZS,ZCZXYJDDWMC,AJZXF,GSJG,AJZLX,AJLYX,XZXYJ,SQCYLXLX,SQCYLXJ,CCBQCDLX,ZXSX,SPLCYGK
+		FROM 
+				ZXAJ_SAHLAXX
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getZXAJAJZXQK" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT  AJBS,JSRQ,CBSPTBS,CBSPT,CBR,GXYJ,TQZJJH,FYSJDQZJ,DYSJ,
+				AJSJ,AJDXYX,WTSX,STFY,SZDHYSFY,KTSL,ZXBZCS,SBZQRQ,
+				SBZQJE,YWRLXCN,HJRQ,SQRFQZQRQ,SQRFQZQJE,ZXFS,FQZX,
+				ZDLXJE,FHJE,BXZXJE,WZXJE,SFPSYCJ,SFWS,DSRKJZX,ZXNR,
+				SFTZCL,TZSPSJ,TZCLR,TZCLYJ,SFYZCL,YZSPYJ,YZCLR,YZCLYJ,
+				JLRS,FKRS,ZDJGFS,FARQ
+		FROM 
+				ZXAJ_AJZXQK
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getZXAJWTZXYSTHF" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT	 AJBS,WTRQ,WTYY,HFRQ,HFNR,WTFYDCL,WTFY,DJR,DJRQ,BZ
+		FROM 
+				ZXAJ_WTZXYSTHF
+					 
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getZXAJZDZX" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT AJBS,ZDRQ,WTYY,ZDFY
+		FROM 
+				ZXAJ_ZDZX
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getZXAJBAQX" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT  AJBS,XLZXQX,ZHZX,ZHZXQX,ZXQXQSRQ,ZXQXJMRQ,
+				LAQXJMRQ,SLJSRQ,FDLAQX,SJLATS,LACQTS,FDZXQX,SJZXTS,ZXCQTS,ZXCQBS,ZXCQYY
+		FROM 
+				ZXAJ_BAQX
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getZXAJJAQK" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	AJBS,JARQ,AY,JAFS,BYSLYY,ZCBYZXLY,ZQBYZXLY,ZZSY,JABDJE,SJDWJE,
+				TDWDWQK,XWLXQK,SXRQ,SXPJFYJDWMC,JAAYZS,JAAYBM,JAFSX,SFYJAWS,WJAWSLY
+		FROM 
+				ZXAJ_JAQK
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getZXAJSKSXX" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	AJBS,SSFW,SSLX,KSJG,TQSSRQ,TQSSCL,CHSSRQ,YSAJRQ,SJJSRQ,SSR,KSSBH,QTSSLX
+		FROM 
+				ZXAJ_SKSXX
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getZXAJDSR" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	AJBS,XH,SSDW,DSRLX,DSR,XWNL,YHZHLB
+		FROM 
+				ZXAJ_DSR
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getZXAJFTSYJL" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	XH,FTYT,TC,KSSJ,JSSJ,DD,GKKT,DTDSR,JBDTDSR,WLTTDSR,DTBHRHSSDLR,CTZZZR,JJBHHDL,
+				KTDWXC,PTRS,RDDBPTRS,ZXWYPTRS,SWHDTTA,BL,TZCJQK,KTFT
+		FROM 
+				ZXAJ_FTSYJL
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getZXAJFDMSSSPCXX" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	AJBS,BGR,BQQPCJE,PCPCJE,PCFS,PCJFWB,PCJFJE,PCJFRQ,HXSPCLJG
+		FROM 
+				ZXAJ_FDMSSSPCXX
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getZXAJCF" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	AJBS,XH,CFLX,TQFS,CFWSYR,CFQD,NZXBDE,CFSXRQ,CFJMRQ,CFDD,CFFF,BGR,BGDD,
+				BFJFYY,JFRQ,JCCFW,SYCFW,XFYY,CDXFRQ,XFJMRQ,XLXMLB,JCCFYY,XLXMYY,XLXMRQ
+		FROM 
+				ZXAJ_CF
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getZXAJCQ" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT  AJBS,XH,KYLX,TQFS,CCSYQR,KYQD,NZXBDE,KYSXRQ,KYJMRQ,KYDD,BGR,BGDD,
+				BFJKYY,BFJKRQ,BFJKWP,SYKYW,XKYY,CDXKRQ,XKJMRQ,XLXMLB,JCKYYY,XLXMYY,XLXMRQ
+		FROM 
+				ZXAJ_KY
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getZXAJDJ" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT  AJBS,XH,DJLX,TQFS,CCSYQR,DJQD,NZXBDE,DJSXRQ,DJJMRQ,
+				BFJDYY,BFJDRQ,BFJDCP,SYCC,XDYY,CDXDRQ,XDJMRQ,XLXMLB,JCDJYY,XLXMYY,XLXMRQ
+		FROM 
+				ZXAJ_DJ
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getZXAJSDJL" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	AJBS,XH,WS,YSDRQ,SDFS,STFY,GGRQ,JYRQ,SDRQ,SDR,
+				SSDR,QSR,DQR,QSSJ,JBQS,WSDYY,WJMC,SDDD,SDCS,SDJS,SFSW,SDHZR,HZLB,HZRQ
+		FROM 
+				ZXAJ_SDJL
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getFTSYJL" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 	XH,FTYT,TC,KSSJ,JSSJ,DD,GKKT,DTDSR,JBDTDSR,WLTTDSR,DTBHRHSSDLR,CTZZZR,JJBHHDL,
+       			 PTRS,RDDBPTRS,ZXWYPTRS,SWHDTTA,BL,TZCJQK,KTFT
+		FROM 
+				${jalxqz}_FTSYJL
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getMSSDJL" parameterType="java.util.Map" resultType="java.util.Map">
+			SELECT 	AJBS,XH,WS,YSDRQ,SDFS,STFY,GGRQ,JYRQ,SDRQ,SDR,
+				SSDR,QSR,DQR,QSSJ,JBQS,WSDYY
+		FROM 
+				${jalxqz}_SDJL
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	
+	</select>
+	<select id="getSDJL" parameterType="java.util.Map" resultType="java.util.Map">
+			SELECT 	AJBS,XH,WS,YSDRQ,SDFS,STFY,GGRQ,JYRQ,SDRQ,SDR,
+				SSDR,QSR,DQR,QSSJ,JBQS,WSDYY,WJMC,SDDD,SDCS,SDJS,SFSW,SDHZR,HZLB,HZRQ
+		FROM 
+				${jalxqz}_SDJL
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	
+	</select>
+		<select id="getSLJD" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 
+				AJJZJD
+		FROM 
+				${jalxqz}_SLJD
+		WHERE 
+				AJBS = ${ajbs} and dept_code = '512535'
+	</select>
+	<select id="getAjDaj" parameterType="java.util.Map" resultType="java.util.Map">
+	    <![CDATA[
+	      select ms.ajbs,ms.xh,ms.xsmc,ms.wjmc,ms.wjhz, mm.mlmc,mm.mlbh from ${jalxqz}_stwj ms left join 
+	      ${jalxqz}_mlxx mm on(mm.ajbs=ms.ajbs and mm.mlbh=ms.ssmlbh ) where ms.ajbs = #{ajbs} AND mm.DEPT_CODE ='512535'
+	       ]]>
+    </select>
+    <select id="getAjGcj" parameterType="java.util.Map" resultType="java.util.Map">
+	    <![CDATA[
+	      select ms.ajbs,ms.xh,ms.xsmc,ms.wjmc,ms.wjhz, mm.mlmc,mm.mlbh from ${jalxqz}_stwj_gc ms left join 
+	      ${jalxqz}_mlxx_gc mm on(mm.ajbs=ms.ajbs and mm.mlbh=ms.ssmlbh ) where ms.ajbs = #{ajbs} AND mm.DEPT_CODE ='512535'
+	       ]]>
+    </select>
+</mapper>

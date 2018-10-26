@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.factor.trial.mapper.LaxxMapper">
+
+<resultMap id="Laxx" type="data.exchange.center.service.factor.trial.domain.Laxx">
+	<result column="ajbs"		property="ajbs"/>
+	<result column="ah"			property="ah"/>
+	<result column="fybm"		property="fybm"/>
+	<result column="larq"		property="larq" 	javaType="date"  		jdbcType="TIMESTAMP"/>
+
+</resultMap>
+
+    <select id="getLaxx" parameterType="map" resultType="Laxx">
+    <![CDATA[
+       select ajbs,ah,deptcode as fybm,larq from buf_eaj where to_char(larq,'yyyymmdd')>=#{ksLasj}
+       and to_char(larq,'yyyymmdd')<=#{jsLasj}
+       ]]>
+    </select>
+     <select id="getSahlaxx" parameterType="map" resultType="Laxx">
+    <![CDATA[
+       select * from $ where to_char(larq,'yyyymmdd')>=#{ksLasj}
+       and to_char(larq,'yyyymmdd')<=#{jsLasj}
+       ]]>
+    </select>
+</mapper>

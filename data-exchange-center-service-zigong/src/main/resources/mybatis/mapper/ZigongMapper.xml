@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.zigong.mapper.ZigongMapper">
+	<resultMap id="outMapAjbsList" type="data.exchange.center.service.zigong.domain.AjbsList">
+		<result column="ajbs"            property="ajbs"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="fydm"            property="fydm"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="ajlx"            property="ajlx"           javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="outMapTqtj" type="data.exchange.center.service.zigong.domain.Tqtj">
+		<result column="AJBS"            property="AJBS"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="AH"              property="AH"             javaType="string"        jdbcType="VARCHAR" />
+		<result column="LAAY"            property="LAAY"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="SFGK"            property="SFGK"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="TC"              property="TC"             javaType="string"        jdbcType="VARCHAR" />
+		
+		<result column="KTFT"            property="KTFT"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="KSSJ"            property="KSSJ"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="JSSJ"            property="JSSJ"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="TJRQ"            property="TJRQ"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="TJR"             property="TJR"            javaType="string"        jdbcType="VARCHAR" />
+		
+		<result column="SJY"             property="SJY"            javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="getAjbsList" parameterType="java.util.Map" resultMap="outMapAjbsList">
+		<![CDATA[
+		select ajbs, deptcode fydm, ajlx 
+		  from sgy.buf_eaj 
+		 where 1 = 1
+		   and deptcode = '510302' 
+		   AND AJLX IN ('11','12','13','14','17','18','21','22','23','31','32','33','34','41','61','71')
+		   and updatetime >= to_date(#{startDate},'yyyymmdd hh24miss')
+           and updatetime <= to_date(#{endDate},'yyyymmdd hh24miss')
+        ]]>
+	</select>
+	<select id="getTqtj" parameterType="java.util.Map" resultMap="outMapTqtj">
+		<![CDATA[
+		SELECT T1.AJBS, T1.AH, T1.LAAY,
+               T2.SFGK, T2.TC, T2.KTFT,
+               T2.KSSJ, T2.JSSJ, T2.TJRQ, T3.XM TJR, T4.MC SJY
+          FROM BUF_EAJ T1
+          LEFT JOIN
+               (SELECT AJBS, LISTAGG( to_char(MC), ',') WITHIN GROUP(ORDER BY MC) MC
+                  FROM YASTML_YASTML
+                 WHERE AJBS = #{ajbs}
+                   AND LY = '1' AND Utl_Raw.Cast_To_Varchar2(JS) LIKE '%9%'
+                   AND instr(Utl_Raw.Cast_To_Varchar2(JS), '19') <= 0
+                   AND instr(Utl_Raw.Cast_To_Varchar2(JS), '29') <= 0
+                   AND instr(Utl_Raw.Cast_To_Varchar2(JS), '39') <= 0
+                 GROUP BY AJBS) T4
+            ON T1.AJBS = T4.AJBS
+          LEFT JOIN
+               ${tbAjlx}_FTSYJL T2
+            ON T1.AJBS = T2.AJBS  
+          LEFT JOIN
+               SPZT_ZZRY T3
+            ON T2.TJR = T3.RYBZ
+         WHERE 1 = 1
+           AND T1.AJBS = #{ajbs}
+		]]>
+	</select>
+	<select id="getTbAjlx" parameterType="java.util.Map" resultType="String">
+		SELECT C_EPREFIX FROM DCADM.DC_AJLXLIST
+		 WHERE C_AJLX = #{ajlx}
+	</select>
+</mapper>

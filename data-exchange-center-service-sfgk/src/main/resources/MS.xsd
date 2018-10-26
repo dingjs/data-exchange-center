@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CASE:schema xmlns:CASE="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://dataexchange.court.gov.cn/2009/data" targetNamespace="http://dataexchange.court.gov.cn/2009/data" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<CASE:element name="民事案件" type="民事"/>
+	<CASE:complexType name="民事案件基本信息">
+		<CASE:sequence>
+			<CASE:element name="唯一主键编号" type="C32"/>
+			<CASE:element name="案件标识" type="C50" minOccurs="0"/>
+			<CASE:element name="案号" type="C50" minOccurs="0"/>
+			<CASE:element name="案件类型代码" type="N" minOccurs="0"/>
+			<CASE:element name="案件类型名称" type="C300" minOccurs="0"/>
+			<CASE:element name="案件类型标识代码" type="N" minOccurs="0"/>
+			<CASE:element name="案件类型标识名称" type="C300" minOccurs="0"/>
+			<CASE:element name="经办法院代码" type="N"/>
+			<CASE:element name="经办法院名称" type="C300"/>
+			<CASE:element name="审判程序代码" type="N" minOccurs="0"/>
+			<CASE:element name="审判程序名称" type="C300" minOccurs="0"/>
+			<CASE:element name="适用程序代码" type="N" minOccurs="0"/>
+			<CASE:element name="适用程序名称" type="C300" minOccurs="0"/>
+			<CASE:element name="案件来源代码" type="N" minOccurs="0"/>
+			<CASE:element name="案件来源名称" type="C300" minOccurs="0"/>
+			<CASE:element name="新案件来源代码" type="N" minOccurs="0"/>
+			<CASE:element name="新案件来源名称" type="C300" minOccurs="0"/>
+			<CASE:element name="立案日期" type="D" minOccurs="0"/>
+			<CASE:element name="立案案由代码" type="N" minOccurs="0"/>
+			<CASE:element name="立案案由名称" type="C300" minOccurs="0"/>
+			<CASE:element name="诉讼标的金额" type="M" minOccurs="0"/>
+			<CASE:element name="案件进展阶段代码" type="N" minOccurs="0"/>
+			<CASE:element name="案件进展阶段名称" type="C300" minOccurs="0"/>
+			<CASE:element name="公开状态代码" type="N" minOccurs="0"/>
+			<CASE:element name="公开状态名称" type="C300" minOccurs="0"/>
+			<CASE:element name="公开日期" type="D" minOccurs="0"/>
+			<CASE:element name="撤销日期" type="D" minOccurs="0"/>
+			<CASE:element name="有效状态代码" type="N" minOccurs="1"/>
+			<CASE:element name="有效状态名称" type="C300" minOccurs="1"/>
+			<CASE:element name="承办审判庭" type="C40" minOccurs="0"/>
+			<CASE:element name="承办人" type="C100" minOccurs="0"/>
+			<CASE:element name="法定审限天数" type="N" minOccurs="0"/>
+			<CASE:element name="审限届满日期" type="D" minOccurs="0"/>
+			<CASE:element name="结案日期" type="D" minOccurs="0"/>
+			<CASE:element name="结案案由代码" type="N" minOccurs="0"/>
+			<CASE:element name="结案案由名称" type="C300" minOccurs="0"/>
+			<CASE:element name="结案方式代码" type="N" minOccurs="0"/>
+			<CASE:element name="结案方式名称" type="C300" minOccurs="0"/>
+			<CASE:element name="新结案方式代码" type="N" minOccurs="0"/>
+			<CASE:element name="新结案方式名称" type="C300" minOccurs="0"/>
+			<CASE:element name="创建时间" type="DT" minOccurs="0"/>
+			<CASE:element name="创建人" type="C300" minOccurs="0"/>
+			<CASE:element name="更新时间" type="DT" minOccurs="1"/>
+			<CASE:element name="更新人" type="C300" minOccurs="1"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="原案情况">
+		<CASE:sequence>
+			<CASE:element name="R" type="原案情况1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="原案情况1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="序号" type="N" minOccurs="0"/>
+			<CASE:element name="案号" type="C50" minOccurs="0"/>
+			<CASE:element name="经办法院代码" type="N" minOccurs="0"/>
+			<CASE:element name="经办法院名称" type="C300" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="管辖处理信息">
+		<CASE:sequence>
+			<CASE:element name="R" type="管辖处理信息1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="管辖处理信息1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="序号" type="N" minOccurs="0"/>
+			<CASE:element name="管辖问题类型代码" type="N" minOccurs="0"/>
+			<CASE:element name="管辖问题类型名称" type="C300" minOccurs="0"/>
+			<CASE:element name="提出管辖异议人" type="C100" minOccurs="0"/>
+			<CASE:element name="提出管辖异议日期" type="D" minOccurs="0"/>
+			<CASE:element name="管辖异议处理结果代码" type="N" minOccurs="0"/>
+			<CASE:element name="管辖异议处理结果名称" type="C300" minOccurs="0"/>
+			<CASE:element name="管辖异议处理日期" type="D" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="抗诉情况">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="抗诉机关" type="C100" minOccurs="0"/>
+			<CASE:element name="提出抗诉日期" type="D" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="上诉情况">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="上诉人" type="C3000" minOccurs="0"/>
+			<CASE:element name="提出上诉日期" type="D" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="庭审信息">
+		<CASE:sequence>
+			<CASE:element name="R" type="庭审信息1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="庭审信息1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="序号" type="N" minOccurs="0"/>
+			<CASE:element name="法庭用途代码" type="N" minOccurs="0"/>
+			<CASE:element name="法庭用途名称" type="C300" minOccurs="0"/>
+			<CASE:element name="开始时间" type="DT" minOccurs="0"/>
+			<CASE:element name="结束时间" type="DT" minOccurs="0"/>
+			<CASE:element name="地点" type="C40" minOccurs="0"/>
+			<CASE:element name="是否公开开庭代码" type="N" minOccurs="0"/>
+			<CASE:element name="是否公开开庭名称" type="C300" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="延长审限">
+		<CASE:sequence>
+			<CASE:element name="R" type="延长审限1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="延长审限1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="序号" type="N" minOccurs="0"/>
+			<CASE:element name="申请日期" type="D" minOccurs="0"/>
+			<CASE:element name="申请事由或原因代码" type="N" minOccurs="0"/>
+			<CASE:element name="申请事由或原因名称" type="C300" minOccurs="0"/>
+			<CASE:element name="延长期间代码" type="N" minOccurs="0"/>
+			<CASE:element name="延长期间名称" type="C300" minOccurs="0"/>
+			<CASE:element name="审批意见" type="C100" minOccurs="0"/>
+			<CASE:element name="开始日期" type="D" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="扣除审限">
+		<CASE:sequence>
+			<CASE:element name="R" type="扣除审限1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="扣除审限1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="序号" type="N" minOccurs="0"/>
+			<CASE:element name="扣除审限类型代码" type="N" minOccurs="0"/>
+			<CASE:element name="扣除审限类型名称" type="C300" minOccurs="0"/>
+			<CASE:element name="扣除审限事由代码" type="N" minOccurs="0"/>
+			<CASE:element name="扣除审限事由名称" type="C300" minOccurs="0"/>
+			<CASE:element name="起始日期" type="D" minOccurs="0"/>
+			<CASE:element name="结束日期" type="D" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="中止恢复">
+		<CASE:sequence>
+			<CASE:element name="R" type="中止恢复1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="中止恢复1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="序号" type="N" minOccurs="0"/>
+			<CASE:element name="中止日期" type="D" minOccurs="0"/>
+			<CASE:element name="中止事由代码" type="N" minOccurs="0"/>
+			<CASE:element name="中止事由名称" type="C300" minOccurs="0"/>
+			<CASE:element name="恢复日期" type="D" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="诉讼费减免缓信息">
+		<CASE:sequence>
+			<CASE:element name="R" type="诉讼费减免缓信息1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="诉讼费减免缓信息1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="序号" type="N" minOccurs="0"/>
+			<CASE:element name="诉讼费救助类型代码" type="N" minOccurs="0"/>
+			<CASE:element name="诉讼费救助类型名称" type="C300" minOccurs="0"/>
+			<CASE:element name="救助申请人" type="C100" minOccurs="0"/>
+			<CASE:element name="救助申请日期" type="D" minOccurs="0"/>
+			<CASE:element name="申请减交数额" type="M" minOccurs="0"/>
+			<CASE:element name="申请缓交期限" type="C100" minOccurs="0"/>
+			<CASE:element name="审批意见" type="C100" minOccurs="0"/>
+			<CASE:element name="审批日期" type="D" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="当事人">
+		<CASE:sequence>
+			<CASE:element name="R" type="当事人1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="当事人1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="序号" type="N" minOccurs="0"/>
+			<CASE:element name="当事人类型代码" type="N" minOccurs="0"/>
+			<CASE:element name="当事人类型名称" type="C300" minOccurs="0"/>
+			<CASE:element name="诉讼地位代码" type="N" minOccurs="0"/>
+			<CASE:element name="诉讼地位名称" type="C300" minOccurs="0"/>
+			<CASE:element name="名称" type="C200" minOccurs="0"/>
+			<CASE:element name="法定代表人" type="C100" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="代理人">
+		<CASE:sequence>
+			<CASE:element name="R" type="代理人1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="代理人1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="序号" type="N" minOccurs="0"/>
+			<CASE:element name="诉讼代理人类型代码" type="N" minOccurs="0"/>
+			<CASE:element name="诉讼代理人类型名称" type="C300" minOccurs="0"/>
+			<CASE:element name="诉讼代理人姓名" type="C100" minOccurs="0"/>
+			<CASE:element name="诉讼代理人单位" type="C200" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="审判组织成员">
+		<CASE:sequence>
+			<CASE:element name="R" type="审判组织成员1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="审判组织成员1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="序号" type="N" minOccurs="0"/>
+			<CASE:element name="姓名" type="C100" minOccurs="0"/>
+			<CASE:element name="角色代码" type="N" minOccurs="0"/>
+			<CASE:element name="角色名称" type="C300" minOccurs="0"/>
+			<CASE:element name="联系电话" type="C100" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="审判组织成员变更">
+		<CASE:sequence>
+			<CASE:element name="R" type="审判组织成员变更1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="审判组织成员变更1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="序号" type="N" minOccurs="0"/>
+			<CASE:element name="原成员" type="C100" minOccurs="0"/>
+			<CASE:element name="变更原因代码" type="N" minOccurs="0"/>
+			<CASE:element name="变更原因名称" type="C300" minOccurs="0"/>
+			<CASE:element name="新成员" type="C100" minOccurs="0"/>
+			<CASE:element name="新成员角色代码" type="N" minOccurs="0"/>
+			<CASE:element name="新成员角色名称" type="C300" minOccurs="0"/>
+			<CASE:element name="变更日期" type="D" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="诉讼保全和先予执行">
+		<CASE:sequence>
+			<CASE:element name="R" type="诉讼保全和先予执行1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="诉讼保全和先予执行1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="序号" type="N" minOccurs="0"/>
+			<CASE:element name="类型代码" type="N" minOccurs="0"/>
+			<CASE:element name="类型名称" type="C300" minOccurs="0"/>
+			<CASE:element name="保全发动方代码" type="N" minOccurs="0"/>
+			<CASE:element name="保全发动方名称" type="C300" minOccurs="0"/>
+			<CASE:element name="申请人" type="C3000" minOccurs="0"/>
+			<CASE:element name="被申请人" type="C3000" minOccurs="0"/>
+			<CASE:element name="申请日期" type="D" minOccurs="0"/>
+			<CASE:element name="申请金额" type="M" minOccurs="0"/>
+			<CASE:element name="申请财产" type="C240" minOccurs="0"/>
+			<CASE:element name="裁定日期" type="D" minOccurs="0"/>
+			<CASE:element name="裁定结果代码" type="N" minOccurs="0"/>
+			<CASE:element name="裁定结果名称" type="C300" minOccurs="0"/>
+			<CASE:element name="保全措施代码" type="C300" minOccurs="0"/>
+			<CASE:element name="保全措施名称" type="C300" minOccurs="0"/>
+			<CASE:element name="先予执行事由代码" type="N" minOccurs="0"/>
+			<CASE:element name="先予执行事由名称" type="C300" minOccurs="0"/>
+			<CASE:element name="执行日期" type="D" minOccurs="0"/>
+			<CASE:element name="实际执行金额" type="M" minOccurs="0"/>
+			<CASE:element name="解除保全日期" type="D" minOccurs="0"/>
+			<CASE:element name="解除保全原因代码" type="C300" minOccurs="0"/>
+			<CASE:element name="解除保全原因名称" type="C300" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="诉讼担保信息">
+		<CASE:sequence>
+			<CASE:element name="R" type="诉讼担保信息1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="诉讼担保信息1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="序号" type="N" minOccurs="0"/>
+			<CASE:element name="当事人" type="C100" minOccurs="0"/>
+			<CASE:element name="事由代码" type="N" minOccurs="0"/>
+			<CASE:element name="事由名称" type="C300" minOccurs="0"/>
+			<CASE:element name="担保人" type="C100" minOccurs="0"/>
+			<CASE:element name="与当事人关系代码" type="N" minOccurs="0"/>
+			<CASE:element name="与当事人关系名称" type="C300" minOccurs="0"/>
+			<CASE:element name="担保方式代码" type="C300" minOccurs="0"/>
+			<CASE:element name="担保方式名称" type="C300" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="回避信息">
+		<CASE:sequence>
+			<CASE:element name="R" type="回避信息1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="回避信息1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="序号" type="N" minOccurs="0"/>
+			<CASE:element name="回避类型代码" type="N" minOccurs="0"/>
+			<CASE:element name="回避类型名称" type="C300" minOccurs="0"/>
+			<CASE:element name="被申请回避角色代码" type="N" minOccurs="0"/>
+			<CASE:element name="被申请回避角色名称" type="C300" minOccurs="0"/>
+			<CASE:element name="被申请回避人" type="C100" minOccurs="0"/>
+			<CASE:element name="回避事由代码" type="C300" minOccurs="0"/>
+			<CASE:element name="回避事由名称" type="C300" minOccurs="0"/>
+			<CASE:element name="回避申请人" type="C100" minOccurs="0"/>
+			<CASE:element name="回避申请日期" type="D" minOccurs="0"/>
+			<CASE:element name="回避决定人代码" type="N" minOccurs="0"/>
+			<CASE:element name="回避决定人名称" type="C300" minOccurs="0"/>
+			<CASE:element name="决定日期" type="D" minOccurs="0"/>
+			<CASE:element name="回避处理结果代码" type="N" minOccurs="0"/>
+			<CASE:element name="回避处理结果名称" type="C300" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="证据信息">
+		<CASE:sequence>
+			<CASE:element name="R" type="证据信息1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="证据信息1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="序号" type="N" minOccurs="0"/>
+			<CASE:element name="证据名称" type="C40" minOccurs="0"/>
+			<CASE:element name="证据类型代码" type="N" minOccurs="0"/>
+			<CASE:element name="证据类型名称" type="C300" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="程序变更">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="变更类型代码" type="N" minOccurs="0"/>
+			<CASE:element name="变更类型名称" type="C300" minOccurs="0"/>
+			<CASE:element name="变更原因代码" type="N" minOccurs="0"/>
+			<CASE:element name="变更原因名称" type="C300" minOccurs="0"/>
+			<CASE:element name="变更日期" type="D" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="复议信息">
+		<CASE:sequence>
+			<CASE:element name="R" type="复议信息1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="复议信息1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="序号" type="N" minOccurs="0"/>
+			<CASE:element name="类型代码" type="N" minOccurs="0"/>
+			<CASE:element name="类型名称" type="C300" minOccurs="0"/>
+			<CASE:element name="申请人" type="C100" minOccurs="0"/>
+			<CASE:element name="申请日期" type="D" minOccurs="0"/>
+			<CASE:element name="处理日期" type="D" minOccurs="0"/>
+			<CASE:element name="处理结果代码" type="N" minOccurs="0"/>
+			<CASE:element name="处理结果名称" type="C300" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="裁判文书上网信息">
+		<CASE:sequence>
+			<CASE:element name="R" type="裁判文书上网信息1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="裁判文书上网信息1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="序号" type="N" minOccurs="0"/>
+			<CASE:element name="文书类型代码" type="N" minOccurs="0"/>
+			<CASE:element name="文书类型名称" type="C300" minOccurs="0"/>
+			<CASE:element name="上网时间" type="DT" minOccurs="0"/>
+			<CASE:element name="查询方式" type="C240" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="送达信息">
+		<CASE:sequence>
+			<CASE:element name="R" type="送达信息1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="送达信息1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="序号" type="N" minOccurs="0"/>
+			<CASE:element name="文书类型代码" type="N" minOccurs="0"/>
+			<CASE:element name="文书类型名称" type="C300" minOccurs="0"/>
+			<CASE:element name="送达方式代码" type="N" minOccurs="0"/>
+			<CASE:element name="送达方式名称" type="C300" minOccurs="0"/>
+			<CASE:element name="受送达人" type="C3000" minOccurs="0"/>
+			<CASE:element name="送达日期" type="D" minOccurs="0"/>
+			<CASE:element name="签收时间" type="DT" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="重整情况">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="申请重整日期" type="D" minOccurs="0"/>
+			<CASE:element name="裁定重整日期" type="D" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="和解情况">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="申请和解日期" type="D" minOccurs="0"/>
+			<CASE:element name="裁定和解日期" type="D" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="破产清算情况">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="宣告破产日期" type="D" minOccurs="0"/>
+			<CASE:element name="裁定终结破产程序日期" type="D" minOccurs="0"/>
+			<CASE:element name="终结破产程序事由代码" type="N" minOccurs="0"/>
+			<CASE:element name="终结破产程序事由名称" type="C300" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="破产管理人">
+		<CASE:sequence>
+			<CASE:element name="R" type="破产管理人1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="破产管理人1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="序号" type="N" minOccurs="0"/>
+			<CASE:element name="管理人类型代码" type="N" minOccurs="0"/>
+			<CASE:element name="管理人类型名称" type="C300" minOccurs="0"/>
+			<CASE:element name="担任管理人职务代码" type="N" minOccurs="0"/>
+			<CASE:element name="担任管理人职务名称" type="C300" minOccurs="0"/>
+			<CASE:element name="破产管理人" type="C100" minOccurs="0"/>
+			<CASE:element name="管理人指定日期" type="D" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="民事">
+		<CASE:sequence>
+			<CASE:element name="民事案件基本信息" type="民事案件基本信息" minOccurs="0"/>
+			<CASE:element name="原案情况" type="原案情况" minOccurs="0"/>
+			<CASE:element name="管辖处理信息" type="管辖处理信息" minOccurs="0"/>
+			<CASE:element name="抗诉情况" type="抗诉情况" minOccurs="0"/>
+			<CASE:element name="上诉情况" type="上诉情况" minOccurs="0"/>
+			<CASE:element name="庭审信息" type="庭审信息" minOccurs="0"/>
+			<CASE:element name="延长审限" type="延长审限" minOccurs="0"/>
+			<CASE:element name="扣除审限" type="扣除审限" minOccurs="0"/>
+			<CASE:element name="中止恢复" type="中止恢复" minOccurs="0"/>
+			<CASE:element name="诉讼费减免缓信息" type="诉讼费减免缓信息" minOccurs="0"/>
+			<CASE:element name="当事人" type="当事人" minOccurs="0"/>
+			<CASE:element name="代理人" type="代理人" minOccurs="0"/>
+			<CASE:element name="审判组织成员" type="审判组织成员" minOccurs="0"/>
+			<CASE:element name="审判组织成员变更" type="审判组织成员变更" minOccurs="0"/>
+			<CASE:element name="诉讼保全和先予执行" type="诉讼保全和先予执行" minOccurs="0"/>
+			<CASE:element name="诉讼担保信息" type="诉讼担保信息" minOccurs="0"/>
+			<CASE:element name="回避信息" type="回避信息" minOccurs="0"/>
+			<CASE:element name="证据信息" type="证据信息" minOccurs="0"/>
+			<CASE:element name="程序变更" type="程序变更" minOccurs="0"/>
+			<CASE:element name="复议信息" type="复议信息" minOccurs="0"/>
+			<CASE:element name="裁判文书上网信息" type="裁判文书上网信息" minOccurs="0"/>
+			<CASE:element name="送达信息" type="送达信息" minOccurs="0"/>
+			<CASE:element name="重整情况" type="重整情况" minOccurs="0"/>
+			<CASE:element name="和解情况" type="和解情况" minOccurs="0"/>
+			<CASE:element name="破产清算情况" type="破产清算情况" minOccurs="0"/>
+			<CASE:element name="破产管理人" type="破产管理人" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:simpleType name="C32">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="32"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="C50">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="50"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="N">
+		<CASE:restriction base="xsd:int"/>
+	</CASE:simpleType>
+	<CASE:simpleType name="C300">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="300"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="D">
+		<CASE:restriction base="xsd:date"/>
+	</CASE:simpleType>
+	<CASE:simpleType name="M">
+		<CASE:restriction base="xsd:decimal">
+			<CASE:minInclusive value="-922337203685477.5808"/>
+			<CASE:maxInclusive value="922337203685477.5807"/>
+			<CASE:totalDigits value="20"/>
+			<CASE:fractionDigits value="4"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="C40">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="40"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="C100">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="100"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="DT">
+		<CASE:restriction base="xsd:dateTime"/>
+	</CASE:simpleType>
+	<CASE:simpleType name="C3000">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="3000"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="C200">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="200"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="C240">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="240"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+</CASE:schema>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- DataTables -->
+    <link rel="stylesheet" th:href="@{/plugins/datatables/dataTables.bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{/plugins/datepicker/datepicker3.css}"/>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini ">
+    <section class="content-header">
+    <h1>
+        <span>卷宗调阅</span>
+    </h1>
+	</section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-body">
+							<div class="dataTables_filter" id="searchDiv" style="float:right;width:75%">
+                      			<div class="btn-group" style="float:right">
+									<button type="button" onclick="sybData()" class="btn btn-warning" data-btn-type="search">查询</button>
+								</div>
+		                        <input  class="form-control" placeholder="请输入要查询的案件标识" name="ajbs" id="ajbs" type="search" likeOption="true"></input>
+							</div>
+                            <table id="dataTable" class="table table-bordered table-striped" >
+                                <thead>
+                                	<tr>				
+										<th>查看</th>
+										<th>案件标识</th>
+										<th>序号</th>
+										<th>生成时间</th>
+										<th>更新时间</th>
+										<th>法院代码</th>
+										<th>数据来源</th>
+										<th>案件类型</th>
+										<th>文件名称</th>
+										<th>文件路径</th>
+										<th>文件后缀</th>
+                                	</tr>
+                                </thead>
+                                <tbody>
+                                	<tr th:each="item:${list}">
+                                    	<td style="text-align: center" onclick="alert(1)">
+                                        	<a th:href="@{/menu/form(id=${item.ajbs})}">
+                                        		<span class="glyphicon glyphicon-edit" th:text="${item.chakan}">查看</span>
+                                        	</a>
+                                    	</td>
+                                    	<!-- <td data-toggle="modal" data-target="#myModal" th:text="${item.fileIdentify}"></td> -->
+                                    	<td th:text="${item.ajbs}"></td>
+                                    	<td th:text="${item.xh}"></td>
+										<td th:text="${#dates.format(item.regTime,'yyyy/MM/dd HH:mm')}"></td>
+										<td th:text="${#dates.format(item.updateTime,'yyyy/MM/dd HH:mm')}"></td>
+										<td th:text="${item.deptCode}"></td>
+										<td th:text="${item.appCode}"></td>
+										<td th:text="${item.ajlx}"></td>
+										<td th:text="${item.mc}"></td>
+										<td th:text="${item.wjlj}"></td>
+										<td th:text="${item.wjhz}"></td>
+                                	</tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </section>
+        <!-- /.content -->
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" style="width:750px; height:550px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					查看文件
+				</h4>
+			</div>
+			<div class="modal-body">
+				<img style="text-align: center" src='/caselook/getFile?key=300000000003408_0' height="200" width="200"></img>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+<div th:replace="script"></div>
+<!-- page script -->
+<script th:src="@{/plugins/datepicker/bootstrap-datepicker.js}"></script>
+<script th:src="@{/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js}"></script>
+               
+<script>
+	
+	function sybData(){
+			var table=$('#dataTable').DataTable();
+			table.destroy();
+			var ajbs= $("#ajbs").val()=="" ? null:$("#ajbs").val();
+			table=$('#dataTable').DataTable({
+			       "paging": true,
+		            "destroy":true,
+		            "searching": false,
+		            "ordering": true,
+		            "info": true,
+		            "autoWidth": false,
+					"scrollX": true,
+				"ajax":{
+					url:"/caselook/getFileList",
+					type : "GET",  
+					data:{ajbs : ajbs}
+				},  
+				"columns"	: [
+					{ "data": "chakan",
+					  "render": function ( data, type, row, meta ) {
+						        return '<a class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">'+data+'</a>';
+					  }
+					},
+					{ "data": "ajbs" },
+					{ "data": "xh" },
+					{ "data": "regTime" },
+					{ "data": "updateTime" },
+					{ "data": "deptCode" },
+					{ "data": "appCode" },
+					{ "data": "ajlx" },
+					{ "data": "mc" },
+					{ "data": "wjlj" },
+					{ "data": "wjhz" }
+        	        ],
+        	       'language': {
+        	    	   'sProcessing': '正在加载中......',
+        	            'emptyTable': '没有数据',    
+        	            'loadingRecords': '加载中...',    
+        	            'processing': '查询中...',    
+        	            'search': '搜索:',    
+        	            'lengthMenu': '每页 _MENU_ 条记录',    
+        	            'zeroRecords': '没有数据',    
+        	            'paginate': {      
+        	                    'next':       '下一页',    
+        	                    'previous':   '上一页'    
+        	                    },    
+        	            'info': '第 _PAGE_ 页 / 共 _PAGES_ 页',    
+        	            'infoEmpty': '没有数据',    
+        	            'infoFiltered': '(从 _MAX_ 条记录中筛选)'    
+        	        } 
+			});
+	}
+
+    $(function () {
+        $('#dataTable').DataTable({
+            "paging": true,
+            "destroy":true,
+            //"lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+			"scrollX": true,
+			'language': {    
+				'sProcessing': '正在加载中......',
+	            'emptyTable': '没有数据',    
+	            'loadingRecords': '加载中...',    
+	            'processing': '查询中...',    
+	            'search': '搜索:',    
+	            'lengthMenu': '每页 _MENU_ 条记录',    
+	            'zeroRecords': '没有数据',    
+	            'paginate': {      
+	                    'next':       '下一页',    
+	                    'previous':   '上一页'    
+	                    },    
+	            'info': '第 _PAGE_ 页 / 共 _PAGES_ 页',    
+	            'infoEmpty': '没有数据',    
+	            'infoFiltered': '(从 _MAX_ 条记录中筛选)'    
+	        }  
+        });
+    });
+    $("#searchDate").datepicker({
+        language: "zh-CN",
+        autoclose: true,//选中之后自动隐藏日期选择框
+        clearBtn: true,//清除按钮
+        todayBtn: true,//今日按钮
+        format: "yyyy-mm-dd",
+        defaultDate : new Date(),
+	    endDate:new Date()
+        //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+    });
+</script>
+</body>
+</html>

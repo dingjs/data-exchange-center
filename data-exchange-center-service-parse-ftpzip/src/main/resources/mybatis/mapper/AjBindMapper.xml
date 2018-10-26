@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.parse.ftpzip.mapper.AjBindMapper">
+	<resultMap id="retMap" type="data.exchange.center.service.parse.ftpzip.domain.RetInfo">
+		<result column="JHBH"           property="JHBH"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="PTAJBH"         property="PTAJBH"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="WSWH"           property="WSWH"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="DSR"            property="DSR"             javaType="string"        jdbcType="VARCHAR" />
+		<result column="AJMC"           property="AJMC"            javaType="string"        jdbcType="VARCHAR" />
+		
+		<result column="FSDW"           property="FSDW"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="JSDW"           property="JSDW"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="JSSJ"           property="JSSJ"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="MSG"            property="MSG"             javaType="string"        jdbcType="VARCHAR" />
+		<result column="AJBS"           property="AJBS"            javaType="string"        jdbcType="VARCHAR" />
+		
+		<result column="FLAG"           property="FLAG"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="FKSJ"           property="FKSJ"            javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="caseMap" type="data.exchange.center.service.parse.ftpzip.domain.RetCount">
+		<result column="jsdw"           property="jsdw"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="ptjszs"         property="ptjszs"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="pttazs"         property="pttazs"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="ptsazs"         property="ptsazs"          javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="queryCount" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(1) 
+		  FROM XTBAPT.INFY_HEAD
+		 WHERE PTAJBH = #{ptajbh}
+	</select>
+	<delete id="deleteBindAjbs" parameterType="java.util.Map">
+		DELETE FROM XTBAPT.FY_BIND
+		 WHERE PTAJBH = #{ptajbh} 
+	</delete>
+	<insert id="insertBindAjbs" parameterType="java.util.Map">
+		INSERT INTO XTBAPT.FY_BIND (JHBH, PTAJBH, AJBS, FLAG, REG_TIME)
+		VALUES(#{jhbh}, #{ptajbh}, #{ajbs}, #{flag}, sysdate)
+	</insert>
+	<select id="queryJhkLog" parameterType="java.util.Map" resultMap="retMap">
+		SELECT T1.JHBH, T1.PTAJBH, T2.WSWH, T3.XM DSR, T4.AJMC,
+               T4.DWMC FSDW, T5.DWMC JSDW, TO_CHAR(T6.LOG_TIME, 'YYYY-MM-DD HH24:MI:SS') JSSJ,
+               CASE WHEN T6.FLAG = 'info' THEN '已接收' ELSE T6.MSG END MSG,
+               T7.AJBS, 
+               CASE T7.FLAG WHEN '1' THEN '已立案'WHEN '2' THEN '已退回' WHEN '0' THEN '已登记' END FLAG, 
+               T7.REG_TIME FKSJ
+         FROM XTBAPT.INFY_HEAD T1
+         LEFT JOIN
+              XTBAPT.FY_BIND T7
+           ON T1.PTAJBH = T7.PTAJBH,
+              XTBAPT.INFY_WS T2,
+              (SELECT JHBH, WMSYS.WM_CONCAT(XM) XM
+                 FROM XTBAPT.INFY_XYR_JBXX
+                GROUP BY JHBH) T3,
+              XTBAPT.INFY_HEAD_JCY T4,
+              XTBAPT.INFY_HEAD_FY T5,
+              XTBAPT.JHK_LOG T6
+        WHERE T1.JHBH = T2.JHBH
+          AND T1.JHBH = T3.JHBH
+          AND T1.JHBH = T4.JHBH
+          AND T1.JHBH = T5.JHBH
+          AND T1.JHBH = T6.TASK_ID
+          AND INSTR(T2.WSFLMC,'起诉书')>0
+		<if test="startDate != null and startDate != '' ">
+         	<![CDATA[AND TO_CHAR(T6.LOG_TIME,'yyyy-MM-dd') >= #{startDate}]]>
+		</if>
+		<if test="endDate != null and endDate != '' ">
+         	<![CDATA[AND TO_CHAR(T6.LOG_TIME,'yyyy-MM-dd') <= #{endDate}]]>
+		</if>
+		<if test="dsr != null and dsr != '' ">
+         	<![CDATA[AND T3.XM LIKE '%${dsr}%']]>
+		</if>
+		<if test="ajbh != null and ajbh != '' ">
+         	<![CDATA[AND T1.PTAJBH LIKE '%${ajbh}%']]>
+		</if>
+		<if test="wsbh != null and wsbh != '' ">
+         	<![CDATA[AND T5.DWMC LIKE '%${wsbh}%']]>
+		</if>
+        ORDER BY T6.LOG_TIME DESC
+	</select>
+	<select id="queryCaseCount" parameterType="java.util.Map" resultMap="caseMap">
+		SELECT TT1.DWMC jsdw, 
+		       TT2.CNT ptjszs, 
+		       CASE WHEN TT3.CNT IS NULL THEN 0 ELSE TT3.CNT END pttazs, 
+		       TT1.CNT ptsazs 
+		  FROM (SELECT DWMC, COUNT(FLAG) CNT 
+		          FROM XTBAPT.INFY_HEAD_FY T1, 
+		               XTBAPT.JHK_LOG T2
+                 WHERE T1.JHBH = T2.TASK_ID
+				<if test="jsdw != null and jsdw != '' ">
+         			<![CDATA[AND T1.DWMC LIKE '%${jsdw}%']]>
+				</if>
+                GROUP BY DWMC)TT1
+           LEFT JOIN
+                (SELECT DWMC, COUNT(FLAG) CNT 
+                   FROM XTBAPT.INFY_HEAD_FY T1, 
+                        XTBAPT.JHK_LOG T2
+                  WHERE T1.JHBH = T2.TASK_ID
+                    AND T2.FLAG = 'info'
+                  GROUP BY DWMC)TT2
+             ON TT1.DWMC = TT2.DWMC
+           LEFT JOIN
+                (SELECT DWMC, COUNT(FLAG) CNT 
+                   FROM XTBAPT.INFY_HEAD_FY T1, 
+                        XTBAPT.JHK_LOG T2
+                  WHERE T1.JHBH = T2.TASK_ID
+                    AND T2.FLAG = 'error'
+                  GROUP BY DWMC)TT3
+             ON TT2.DWMC = TT3.DWMC
+          ORDER BY TT1.DWMC
+	</select>
+</mapper>

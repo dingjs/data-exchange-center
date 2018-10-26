@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <package name="data.exchange.center.service.parse.ftpzip.domain"/>
+    </typeAliases>
+    <mappers>
+        <mapper resource="mybatis/mapper/SfgkMapper.xml"/>
+        <mapper resource="mybatis/mapper/AjgkXsMapper.xml"/>
+		<mapper resource="mybatis/mapper/AjgkMsMapper.xml"/>
+		<mapper resource="mybatis/mapper/AjgkXzMapper.xml"/>
+		<mapper resource="mybatis/mapper/AjgkPcMapper.xml"/>        
+    </mappers>
+</configuration>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.parse.xml.mapper.ParseXmlMapper">
+	<resultMap id="xmlContent" type="data.exchange.center.service.parse.xml.domain.XmlContent">
+		<result column="FYDM"            property="FYDM"        javaType="string"        jdbcType="VARCHAR" />
+		<result column="XMLNR"           property="XMLNR"       javaType="Object"        jdbcType="BLOB" />
+		<result column="CREATETIME"      property="CREATETIME"  javaType="string"        jdbcType="VARCHAR" />
+		<result column="INPUTSRC"        property="INPUTSRC"    javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="getXML" parameterType="java.util.Map" resultMap="xmlContent">
+		SELECT FYDM, XMLNR, CREATETIME, INPUTSRC
+		  FROM SGY.BUF_EXTERNAL2XML 
+		WHERE 1=1
+		  AND XMLTYPE = 0
+		  <if test="map.param!=null and map.param!='' ">
+			  AND AJBS = #{map.param}
+		  </if>
+	</select>
+	<insert id="saveCase" parameterType="java.util.Map">
+		${params.insertSql}
+	</insert>
+	<delete id="deleteTableRecord" parameterType="String">
+		${deleteSql}	
+	</delete>
+</mapper> 

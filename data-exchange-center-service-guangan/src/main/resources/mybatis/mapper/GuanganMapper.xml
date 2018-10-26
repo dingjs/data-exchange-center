@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.guangan.mapper.GuanganMapper">
+	<resultMap id="outMapAjbsInfo" type="data.exchange.center.service.guangan.domain.AjbsInfo">
+		<result column="AJBS"            property="ajbs"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="AH"              property="ah"           javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="outMapAjxx" type="data.exchange.center.service.guangan.domain.Ajxx">
+		<result column="ajbs"            property="ajbs"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="ajlx"            property="ajlx"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="ajlxmc"          property="ajlxmc"       javaType="string"        jdbcType="VARCHAR" />
+		<result column="deptcode"        property="deptcode"     javaType="string"        jdbcType="VARCHAR" />
+		<result column="ah"              property="ah"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="ajjzjd"          property="ajjzjd"       javaType="string"        jdbcType="VARCHAR" />
+		<result column="larq"            property="larq"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="jarq"            property="jarq"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="laay"            property="laay"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="cbspt"           property="cbspt"        javaType="string"        jdbcType="VARCHAR" />
+		<result column="cbr"             property="cbr"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="ajlb"            property="ajlb"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="ajlbname"        property="ajlbName"     javaType="string"        jdbcType="VARCHAR" />
+		<result column="yx"              property="yx"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="jgjb"            property="jgjb"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="yfbz"            property="yfbz"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="dm"              property="dm"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="fb"              property="fb"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="lastupdate"      property="lastupdate"   javaType="string"        jdbcType="VARCHAR" />
+		<result column="qsbdw"           property="qsbdw"        javaType="string"        jdbcType="VARCHAR" />
+		<result column="sqbdje"          property="sqbdje"       javaType="java.math.BigDecimal"        jdbcType="DECIMAL" />
+		<result column="jabdje"          property="jabdje"       javaType="java.math.BigDecimal"        jdbcType="NUMERIC" />
+		<result column="fdsxts"          property="fdsxts"       javaType="string"        jdbcType="VARCHAR" />
+		<result column="sjslts"          property="sjslts"       javaType="string"        jdbcType="VARCHAR" />
+		<result column="aymc"            property="aymc"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="jafsmc"          property="jafsmc"       javaType="string"        jdbcType="VARCHAR" />
+		<result column="jafsdm"          property="jafsdm"       javaType="string"        jdbcType="VARCHAR" />
+		<result column="sycxmc"          property="sycxmc"       javaType="string"        jdbcType="VARCHAR" />
+		<result column="cbrmc"           property="cbrmc"        javaType="string"        jdbcType="VARCHAR" />
+		<result column="sfdtxp"          property="sfdtxp"       javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="outMapSksxx" type="data.exchange.center.service.guangan.domain.Sksxx">
+		<result column="AJBS"            jdbcType="DECIMAL"      property="ajbs" />
+		<result column="UPDATE_TIME"     jdbcType="TIMESTAMP"    property="updateTime" />
+		<result column="DEPT_CODE"       jdbcType="VARCHAR"      property="deptCode" />
+		<result column="APP_CODE"        jdbcType="VARCHAR"      property="appCode" />
+		<result column="SSR1"            jdbcType="DECIMAL"      property="ssr1" />
+		<result column="ID"              jdbcType="VARCHAR"      property="id" />
+		<result column="SSFW"            jdbcType="DECIMAL"      property="ssfw" />
+		<result column="QTSSLX"          jdbcType="DECIMAL"      property="qtsslx" />
+		<result column="SSAJLX"          jdbcType="DECIMAL"      property="ssajlx" />
+		<result column="KSSBH"           jdbcType="VARCHAR"      property="kssbh" />
+		<result column="TQSSRQ"          jdbcType="TIMESTAMP"    property="tqssrq" />
+		<result column="CHSSRQ"          jdbcType="TIMESTAMP"    property="chssrq" />
+		<result column="YSAJRQ"          jdbcType="TIMESTAMP"    property="ysajrq" />
+		<result column="SJJSRQ"          jdbcType="TIMESTAMP"    property="sjjsrq" />
+		<result column="CHKSRQ"          jdbcType="TIMESTAMP"    property="chksrq" />
+		<result column="REG_TIME"        jdbcType="TIMESTAMP"    property="regTime" />
+		<result column="SSLX"            jdbcType="DECIMAL"      property="sslx" />
+		<result column="KSJG"            jdbcType="VARCHAR"      property="ksjg" />
+		<result column="SSRQ"            jdbcType="TIMESTAMP"    property="ssrq" />
+		<result column="SSR"             jdbcType="BLOB"         property="ssr" />
+		<result column="SSCL"            jdbcType="BLOB"         property="sscl" />
+		<result column="TQSSCL"          jdbcType="BLOB"         property="tqsscl" />
+	</resultMap>
+	<resultMap id="outMapCyrxx" type="data.exchange.center.service.guangan.domain.Ajcyrxx">
+		<result column="AJBS"        jdbcType="DECIMAL"    property="ajbs" />
+		<result column="ID"          jdbcType="VARCHAR"    property="id" />
+		<result column="REG_TIME"    jdbcType="TIMESTAMP"  property="regTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP"  property="updateTime" />
+		<result column="DEPT_CODE"   jdbcType="VARCHAR"    property="deptCode" />
+		<result column="APP_CODE"    jdbcType="VARCHAR"    property="appCode" />
+		<result column="XH"          jdbcType="DECIMAL"    property="xh" />
+		<result column="LY"          jdbcType="DECIMAL"    property="ly" />
+		<result column="BS"          jdbcType="DECIMAL"    property="bs" />
+		<result column="LX"          jdbcType="DECIMAL"    property="lx" />
+		<result column="MC"          jdbcType="VARCHAR"    property="mc" />
+		<result column="RYBM"        jdbcType="VARCHAR"    property="rybm" />
+		<result column="XB"          jdbcType="DECIMAL"    property="xb" />
+		<result column="CSRQ"        jdbcType="TIMESTAMP"  property="csrq" />
+		<result column="NL"          jdbcType="DECIMAL"    property="nl" />
+		<result column="GJ"          jdbcType="DECIMAL"    property="gj" />
+		<result column="MZ"          jdbcType="DECIMAL"    property="mz" />
+		<result column="SF"          jdbcType="DECIMAL"    property="sf" />
+		<result column="SFZHM"       jdbcType="VARCHAR"    property="sfzhm" />
+		<result column="XYJRSF"      jdbcType="DECIMAL"    property="xyjrsf" />
+		<result column="JGZWXZ"      jdbcType="DECIMAL"    property="jgzwxz" />
+		<result column="JGGBJB"      jdbcType="DECIMAL"    property="jggbjb" />
+		<result column="QTZJZL"      jdbcType="DECIMAL"    property="qtzjzl" />
+		<result column="QTZJHM"      jdbcType="VARCHAR"    property="qtzjhm" />
+		<result column="ZY"          jdbcType="DECIMAL"    property="zy" />
+		<result column="WHCD"        jdbcType="DECIMAL"    property="whcd" />
+		<result column="HYZK"        jdbcType="DECIMAL"    property="hyzk" />
+		<result column="ZZMM"        jdbcType="DECIMAL"    property="zzmm" />
+		<result column="XZJB"        jdbcType="DECIMAL"    property="xzjb" />
+		<result column="SZDW"        jdbcType="VARCHAR"    property="szdw" />
+		<result column="ZW"          jdbcType="VARCHAR"    property="zw" />
+		<result column="TSSF"        jdbcType="DECIMAL"    property="tssf" />
+		<result column="TSSLHBL"     jdbcType="DECIMAL"    property="tsslhbl" />
+		<result column="HJSZD"       jdbcType="VARCHAR"    property="hjszd" />
+		<result column="LDRY"        jdbcType="DECIMAL"    property="ldry" />
+		<result column="WCNRJTBJ"    jdbcType="DECIMAL"    property="wcnrjtbj" />
+		<result column="JTJJZK"      jdbcType="DECIMAL"    property="jtjjzk" />
+		<result column="BM"          jdbcType="VARCHAR"    property="bm" />
+		<result column="CSD"         jdbcType="VARCHAR"    property="csd" />
+		<result column="YJ"          jdbcType="VARCHAR"    property="yj" />
+		<result column="SSSQ"        jdbcType="VARCHAR"    property="sssq" />
+		<result column="GJDQ"        jdbcType="DECIMAL"    property="gjdq" />
+		<result column="ZZJGDM"      jdbcType="VARCHAR"    property="zzjgdm" />
+		<result column="DWXZ"        jdbcType="DECIMAL"    property="dwxz" />
+		<result column="TSHY"        jdbcType="DECIMAL"    property="tshy" />
+		<result column="FDDBR"       jdbcType="VARCHAR"    property="fddbr" />
+		<result column="DBRZJZL"     jdbcType="DECIMAL"    property="dbrzjzl" />
+		<result column="DBRZJHM"     jdbcType="VARCHAR"    property="dbrzjhm" />
+		<result column="JGBM"        jdbcType="VARCHAR"    property="jgbm" />
+		<result column="DZ"          jdbcType="VARCHAR"    property="dz" />
+		<result column="YZBM"        jdbcType="VARCHAR"    property="yzbm" />
+		<result column="LXDH"        jdbcType="VARCHAR"    property="lxdh" />
+		<result column="DZYX"        jdbcType="VARCHAR"    property="dzyx" />
+		<result column="QTLXFF"      jdbcType="VARCHAR"    property="qtlxff" />
+		<result column="LSXM"        jdbcType="VARCHAR"    property="lsxm" />
+		<result column="LSMC"        jdbcType="VARCHAR"    property="lsmc" />
+		<result column="LSZCD"       jdbcType="VARCHAR"    property="lszcd" />
+		<result column="SFFLYZ"      jdbcType="VARCHAR"    property="sfflyz" />
+	</resultMap>
+	<resultMap id="outMapZxak" type="data.exchange.center.service.guangan.domain.Zxakxx">
+		<result column="AJBS"        jdbcType="DECIMAL"    property="ajbs" />
+		<result column="ID"          jdbcType="VARCHAR"    property="id" />
+		<result column="REG_TIME"    jdbcType="TIMESTAMP"  property="regTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP"  property="updateTime" />
+		<result column="DEPT_CODE"   jdbcType="VARCHAR"    property="deptCode" />
+		<result column="APP_CODE"    jdbcType="VARCHAR"    property="appCode" />
+		<result column="KWLX"        jdbcType="DECIMAL"    property="kwlx" />
+		<result column="KWSYRHJSR"   jdbcType="VARCHAR"    property="kwsyrhjsr" />
+		<result column="JNHFFJE"     jdbcType="DECIMAL"    property="jnhffje" />
+		<result column="JFZHJZH"     jdbcType="VARCHAR"    property="jfzhjzh" />
+		<result column="JNHFFWP"     jdbcType="VARCHAR"    property="jnhffwp" />
+		<result column="JNHFFRQ"     jdbcType="TIMESTAMP"  property="jnhffrq" />
+	</resultMap>
+	<resultMap id="outMapZxcsxx" type="data.exchange.center.service.guangan.domain.Zxcsxx">
+		<result column="AJBS"        jdbcType="DECIMAL"    property="ajbs" />
+		<result column="ID"          jdbcType="VARCHAR"    property="id" />
+		<result column="REG_TIME"    jdbcType="TIMESTAMP"  property="regTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP"  property="updateTime" />
+		<result column="DEPT_CODE"   jdbcType="VARCHAR"    property="deptCode" />
+		<result column="APP_CODE"    jdbcType="VARCHAR"    property="appCode" />
+		<result column="JSRQ"        jdbcType="TIMESTAMP"  property="jsrq" />
+		<result column="CBSPTBS"     jdbcType="DECIMAL"    property="cbsptbs" />
+		<result column="CBSPT"       jdbcType="VARCHAR"    property="cbspt" />
+		<result column="CBR"         jdbcType="DECIMAL"    property="cbr" />
+		<result column="GXYJ"        jdbcType="DECIMAL"    property="gxyj" />
+		<result column="TQZJJH"      jdbcType="DECIMAL"    property="tqzjjh" />
+		<result column="FYSJDQZJ"    jdbcType="DECIMAL"    property="fysjdqzj" />
+		<result column="DYSJ"        jdbcType="DECIMAL"    property="dysj" />
+		<result column="AJSJ"        jdbcType="DECIMAL"    property="ajsj" />
+		<result column="AJDXYX"      jdbcType="DECIMAL"    property="ajdxyx" />
+		<result column="WTSX"        jdbcType="DECIMAL"    property="wtsx" />
+		<result column="STFY"        jdbcType="DECIMAL"    property="stfy" />
+		<result column="SZDHYSFY"    jdbcType="DECIMAL"    property="szdhysfy" />
+		<result column="KTSL"        jdbcType="DECIMAL"    property="ktsl" />
+		<result column="ZXBZCS"      jdbcType="DECIMAL"    property="zxbzcs" />
+		<result column="SBZQRQ"      jdbcType="TIMESTAMP"  property="sbzqrq" />
+		<result column="SBZQJE"      jdbcType="DECIMAL"    property="sbzqje" />
+		<result column="YWRLXCN"     jdbcType="DECIMAL"    property="ywrlxcn" />
+		<result column="HJRQ"        jdbcType="TIMESTAMP"  property="hjrq" />
+		<result column="SQRFQZQRQ"   jdbcType="TIMESTAMP"  property="sqrfqzqrq" />
+		<result column="SQRFQZQJE"   jdbcType="DECIMAL"    property="sqrfqzqje" />
+		<result column="ZXFS"        jdbcType="DECIMAL"    property="zxfs" />
+		<result column="FQZX"        jdbcType="DECIMAL"    property="fqzx" />
+		<result column="ZDLXJE"      jdbcType="DECIMAL"    property="zdlxje" />
+		<result column="FHJE"        jdbcType="DECIMAL"    property="fhje" />
+		<result column="BXZXJE"      jdbcType="DECIMAL"    property="bxzxje" />
+		<result column="WZXJE"       jdbcType="DECIMAL"    property="wzxje" />
+		<result column="SFPSYCJ"     jdbcType="DECIMAL"    property="sfpsycj" />
+		<result column="SFWS"        jdbcType="DECIMAL"    property="sfws" />
+		<result column="DSRKJZX"     jdbcType="DECIMAL"    property="dsrkjzx" />
+		<result column="ZXNR"        jdbcType="VARCHAR"    property="zxnr" />
+		<result column="SFTZCL"      jdbcType="DECIMAL"    property="sftzcl" />
+		<result column="TZSPSJ"      jdbcType="TIMESTAMP"  property="tzspsj" />
+		<result column="TZCLR"       jdbcType="DECIMAL"    property="tzclr" />
+		<result column="TZCLYJ"      jdbcType="VARCHAR"    property="tzclyj" />
+		<result column="SFYZCL"      jdbcType="DECIMAL"    property="sfyzcl" />
+		<result column="YZSPYJ"      jdbcType="TIMESTAMP"  property="yzspyj" />
+		<result column="YZCLR"       jdbcType="DECIMAL"    property="yzclr" />
+		<result column="YZCLYJ"      jdbcType="VARCHAR"    property="yzclyj" />
+		<result column="JLRS"        jdbcType="DECIMAL"    property="jlrs" />
+		<result column="FKRS"        jdbcType="DECIMAL"    property="fkrs" />
+		<result column="ZDJGFS"      jdbcType="VARCHAR"    property="zdjgfs" />
+		<result column="FARQ"        jdbcType="TIMESTAMP"  property="farq" />
+	</resultMap>
+	<resultMap id="outMapYsqk" type="data.exchange.center.service.guangan.domain.Ysqk">
+		<result column="AJBS"        jdbcType="DECIMAL"    property="ajbs" />
+		<result column="AH"          jdbcType="VARCHAR"    property="ah" />
+		<result column="SPCX"        jdbcType="VARCHAR"    property="spcx" />
+	</resultMap>
+	<resultMap id="outMapInteger" type="java.util.HashMap">
+		<result column="anFlag"      property="anFlag"     javaType="int"       	 jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="outMapString" type="java.util.HashMap">
+		<result column="avErrmsg"    property="avErrmsg"   javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="outMapFybm" type="data.exchange.center.service.guangan.domain.Fybm">
+		<result column="ID"           jdbcType="VARCHAR"      property="id" />
+		<result column="REG_TIME"     jdbcType="TIMESTAMP"    property="regTime" />
+		<result column="UPDATE_TIME"  jdbcType="TIMESTAMP"    property="updateTime" />
+		<result column="DEPT_CODE"    jdbcType="VARCHAR"      property="deptCode" />
+		<result column="APP_CODE"     jdbcType="VARCHAR"      property="appCode" />
+		<result column="FYBZ"         jdbcType="DECIMAL"      property="fybz" />
+		<result column="DM"           jdbcType="DECIMAL"      property="dm" />
+		<result column="JGLX"         jdbcType="DECIMAL"      property="jglx" />
+		<result column="FYMC"         jdbcType="VARCHAR"      property="fymc" />
+		<result column="YX"           jdbcType="DECIMAL"      property="yx" />
+		<result column="DQM"          jdbcType="VARCHAR"      property="dqm" />
+		<result column="BZ"           jdbcType="VARCHAR"      property="bz" />
+		<result column="FYJC"         jdbcType="VARCHAR"      property="fyjc" />
+	</resultMap>
+	<resultMap id="outMapZzjg" type="data.exchange.center.service.guangan.domain.Zzjg">
+		<result column="ID"           jdbcType="VARCHAR"      property="id" />
+		<result column="REG_TIME"     jdbcType="TIMESTAMP"    property="regTime" />
+		<result column="UPDATE_TIME"  jdbcType="TIMESTAMP"    property="updateTime" />
+		<result column="DEPT_CODE"    jdbcType="VARCHAR"      property="deptCode" />
+		<result column="APP_CODE"     jdbcType="VARCHAR"      property="appCode" />
+		<result column="JGBZ"         jdbcType="VARCHAR"      property="jgbz" />
+		<result column="JGMC"         jdbcType="VARCHAR"      property="jgmc" />
+		<result column="JGLX"         jdbcType="DECIMAL"      property="jglx" />
+		<result column="YX"           jdbcType="DECIMAL"      property="yx" />
+		<result column="JGJB"         jdbcType="DECIMAL"      property="jgjb" />
+		<result column="SJJGBZ"       jdbcType="VARCHAR"      property="sjjgbz" />
+		<result column="JGZN"         jdbcType="VARCHAR"      property="jgzn" />
+		<result column="BZ"           jdbcType="VARCHAR"      property="bz" />
+		<result column="ZZJGBZ"       jdbcType="DECIMAL"      property="zzjgbz" />
+		<result column="FYBZ"         jdbcType="DECIMAL"      property="fybz" />
+		<result column="DM"           jdbcType="DECIMAL"      property="dm" />
+	</resultMap>
+	<resultMap id="outMapDaxxGc" type="data.exchange.center.service.guangan.domain.jz.DaxxGc">
+		<result column="AJBS" jdbcType="DECIMAL" property="ajbs" />
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="REG_TIME" jdbcType="TIMESTAMP" property="regTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="DEPT_CODE" jdbcType="VARCHAR" property="deptCode" />
+		<result column="APP_CODE" jdbcType="VARCHAR" property="appCode" />
+		<result column="AH" jdbcType="VARCHAR" property="ah" />
+		<result column="LARQ" jdbcType="TIMESTAMP" property="larq" />
+		<result column="CBR" jdbcType="VARCHAR" property="cbr" />
+		<result column="AJLX" jdbcType="DECIMAL" property="ajlx" />
+		<result column="ZYS" jdbcType="DECIMAL" property="zys" />
+		<result column="AJLB" jdbcType="VARCHAR" property="ajlb" />
+		<result column="DAHJZ" jdbcType="DECIMAL" property="dahjz" />
+	</resultMap>
+	<resultMap id="outMapDaxx" type="data.exchange.center.service.guangan.domain.jz.Daxx">
+		<result column="AJBS" jdbcType="DECIMAL" property="ajbs" />
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="REG_TIME" jdbcType="TIMESTAMP" property="regTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="DEPT_CODE" jdbcType="VARCHAR" property="deptCode" />
+		<result column="APP_CODE" jdbcType="VARCHAR" property="appCode" />
+		<result column="AH" jdbcType="VARCHAR" property="ah" />
+		<result column="LARQ" jdbcType="TIMESTAMP" property="larq" />
+		<result column="CBR" jdbcType="VARCHAR" property="cbr" />
+		<result column="AJLX" jdbcType="DECIMAL" property="ajlx" />
+		<result column="ZYS" jdbcType="DECIMAL" property="zys" />
+		<result column="AJLB" jdbcType="VARCHAR" property="ajlb" />
+		<result column="DAHJZ" jdbcType="DECIMAL" property="dahjz" />
+	</resultMap>
+	<resultMap id="outMapMlxxGc" type="data.exchange.center.service.guangan.domain.jz.MlxxGc">
+		<result column="AJBS" jdbcType="DECIMAL" property="ajbs" />
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="REG_TIME" jdbcType="TIMESTAMP" property="regTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="DEPT_CODE" jdbcType="VARCHAR" property="deptCode" />
+		<result column="APP_CODE" jdbcType="VARCHAR" property="appCode" />
+		<result column="MLBH" jdbcType="VARCHAR" property="mlbh" />
+		<result column="FMLBH" jdbcType="VARCHAR" property="fmlbh" />
+		<result column="MLMC" jdbcType="VARCHAR" property="mlmc" />
+		<result column="XH" jdbcType="DECIMAL" property="xh" />
+		<result column="KSYS" jdbcType="DECIMAL" property="ksys" />
+		<result column="JSYS" jdbcType="DECIMAL" property="jsys" />
+		<result column="SFSYZQ" jdbcType="DECIMAL" property="sfsyzq" />
+	</resultMap>
+	<resultMap id="outMapMlxx" type="data.exchange.center.service.guangan.domain.jz.Mlxx">
+		<result column="AJBS" jdbcType="DECIMAL" property="ajbs" />
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="REG_TIME" jdbcType="TIMESTAMP" property="regTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="DEPT_CODE" jdbcType="VARCHAR" property="deptCode" />
+		<result column="APP_CODE" jdbcType="VARCHAR" property="appCode" />
+		<result column="MLBH" jdbcType="VARCHAR" property="mlbh" />
+		<result column="FMLBH" jdbcType="VARCHAR" property="fmlbh" />
+		<result column="MLMC" jdbcType="VARCHAR" property="mlmc" />
+		<result column="XH" jdbcType="DECIMAL" property="xh" />
+		<result column="KSYS" jdbcType="DECIMAL" property="ksys" />
+		<result column="JSYS" jdbcType="DECIMAL" property="jsys" />
+		<result column="SFSYZQ" jdbcType="DECIMAL" property="sfsyzq" />
+	</resultMap>
+	<resultMap id="outMapStwjGc" type="data.exchange.center.service.guangan.domain.jz.StwjGc">
+		<result column="AJBS" jdbcType="DECIMAL" property="ajbs" />
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="REG_TIME" jdbcType="TIMESTAMP" property="regTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="DEPT_CODE" jdbcType="VARCHAR" property="deptCode" />
+		<result column="APP_CODE" jdbcType="VARCHAR" property="appCode" />
+		<result column="XH" jdbcType="DECIMAL" property="xh" />
+		<result column="STLB" jdbcType="DECIMAL" property="stlb" />
+		<result column="STBH" jdbcType="DECIMAL" property="stbh" />
+		<result column="XSMC" jdbcType="VARCHAR" property="xsmc" />
+		<result column="WJMC" jdbcType="VARCHAR" property="wjmc" />
+		<result column="WJGS" jdbcType="DECIMAL" property="wjgs" />
+		<result column="WJLJ" jdbcType="VARCHAR" property="wjlj" />
+		<result column="WJDX" jdbcType="DECIMAL" property="wjdx" />
+		<result column="CJR" jdbcType="DECIMAL" property="cjr" />
+		<result column="CJSJ" jdbcType="TIMESTAMP" property="cjsj" />
+		<result column="ZJXGR" jdbcType="DECIMAL" property="zjxgr" />
+		<result column="ZJXGSJ" jdbcType="TIMESTAMP" property="zjxgsj" />
+		<result column="BZ" jdbcType="VARCHAR" property="bz" />
+		<result column="WJHZ" jdbcType="VARCHAR" property="wjhz" />
+		<result column="ZYMLLJ" jdbcType="VARCHAR" property="zymllj" />
+		<result column="SSMLBH" jdbcType="VARCHAR" property="ssmlbh" />
+		<result column="SFSYZQ" jdbcType="DECIMAL" property="sfsyzq" />
+	</resultMap>
+	<resultMap id="outMapStwj" type="data.exchange.center.service.guangan.domain.jz.Stwj">
+		<result column="AJBS" jdbcType="DECIMAL" property="ajbs" />
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="REG_TIME" jdbcType="TIMESTAMP" property="regTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="DEPT_CODE" jdbcType="VARCHAR" property="deptCode" />
+		<result column="APP_CODE" jdbcType="VARCHAR" property="appCode" />
+		<result column="XH" jdbcType="DECIMAL" property="xh" />
+		<result column="STLB" jdbcType="DECIMAL" property="stlb" />
+		<result column="STBH" jdbcType="DECIMAL" property="stbh" />
+		<result column="XSMC" jdbcType="VARCHAR" property="xsmc" />
+		<result column="WJMC" jdbcType="VARCHAR" property="wjmc" />
+		<result column="WJGS" jdbcType="DECIMAL" property="wjgs" />
+		<result column="WJLJ" jdbcType="VARCHAR" property="wjlj" />
+		<result column="WJDX" jdbcType="DECIMAL" property="wjdx" />
+		<result column="CJR" jdbcType="DECIMAL" property="cjr" />
+		<result column="CJSJ" jdbcType="TIMESTAMP" property="cjsj" />
+		<result column="ZJXGR" jdbcType="DECIMAL" property="zjxgr" />
+		<result column="ZJXGSJ" jdbcType="TIMESTAMP" property="zjxgsj" />
+		<result column="BZ" jdbcType="VARCHAR" property="bz" />
+		<result column="WJHZ" jdbcType="VARCHAR" property="wjhz" />
+		<result column="ZYMLLJ" jdbcType="VARCHAR" property="zymllj" />
+		<result column="SSMLBH" jdbcType="VARCHAR" property="ssmlbh" />
+		<result column="SFSYZQ" jdbcType="DECIMAL" property="sfsyzq" />
+		<result column="WJNR" jdbcType="BLOB" property="wjnr" />
+	</resultMap>
+	<resultMap id="outMapJc" type="data.exchange.center.service.guangan.domain.zxaj.Jc">
+		<result column="AJBS" jdbcType="DECIMAL" property="ajbs" />
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="REG_TIME" jdbcType="TIMESTAMP" property="regTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="DEPT_CODE" jdbcType="VARCHAR" property="deptCode" />
+		<result column="APP_CODE" jdbcType="VARCHAR" property="appCode" />
+		<result column="XH" jdbcType="DECIMAL" property="xh" />
+		<result column="BJCR" jdbcType="VARCHAR" property="bjcr" />
+		<result column="JCYY" jdbcType="VARCHAR" property="jcyy" />
+		<result column="JCDD" jdbcType="VARCHAR" property="jcdd" />
+		<result column="KSSJ" jdbcType="TIMESTAMP" property="kssj" />
+		<result column="JSSJ" jdbcType="TIMESTAMP" property="jssj" />
+	</resultMap>
+	<resultMap id="outMapSc" type="data.exchange.center.service.guangan.domain.zxaj.Sc">
+		<result column="AJBS" jdbcType="DECIMAL" property="ajbs" />
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="REG_TIME" jdbcType="TIMESTAMP" property="regTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="DEPT_CODE" jdbcType="VARCHAR" property="deptCode" />
+		<result column="APP_CODE" jdbcType="VARCHAR" property="appCode" />
+		<result column="XH" jdbcType="DECIMAL" property="xh" />
+		<result column="BSCR" jdbcType="VARCHAR" property="bscr" />
+		<result column="ZCR" jdbcType="VARCHAR" property="zcr" />
+		<result column="ZCRSF" jdbcType="VARCHAR" property="zcrsf" />
+		<result column="ZCRZW" jdbcType="VARCHAR" property="zcrzw" />
+		<result column="SCSJ" jdbcType="TIMESTAMP" property="scsj" />
+		<result column="SCDD" jdbcType="VARCHAR" property="scdd" />
+		<result column="NSCBDW" jdbcType="VARCHAR" property="nscbdw" />
+		<result column="QZKQ" jdbcType="DECIMAL" property="qzkq" />
+		<result column="TQDX" jdbcType="VARCHAR" property="tqdx" />
+		<result column="GHRQ" jdbcType="TIMESTAMP" property="ghrq" />
+		<result column="SCJG" jdbcType="VARCHAR" property="scjg" />
+	</resultMap>
+	<resultMap id="outMapFk" type="data.exchange.center.service.guangan.domain.zxaj.Fk">
+		<result column="AJBS" jdbcType="DECIMAL" property="ajbs" />
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="REG_TIME" jdbcType="TIMESTAMP" property="regTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="DEPT_CODE" jdbcType="VARCHAR" property="deptCode" />
+		<result column="APP_CODE" jdbcType="VARCHAR" property="appCode" />
+		<result column="XH" jdbcType="DECIMAL" property="xh" />
+		<result column="BFKR" jdbcType="VARCHAR" property="bfkr" />
+		<result column="FKYY" jdbcType="DECIMAL" property="fkyy" />
+		<result column="FKRQ" jdbcType="TIMESTAMP" property="fkrq" />
+		<result column="FKJE" jdbcType="DECIMAL" property="fkje" />
+		<result column="LXRQ" jdbcType="TIMESTAMP" property="lxrq" />
+		<result column="LXJE" jdbcType="DECIMAL" property="lxje" />
+		<result column="FYNR" jdbcType="VARCHAR" property="fynr" />
+		<result column="FYFY" jdbcType="DECIMAL" property="fyfy" />
+		<result column="FYJG" jdbcType="DECIMAL" property="fyjg" />
+		<result column="DFRQ" jdbcType="TIMESTAMP" property="dfrq" />
+		<result column="CLJG" jdbcType="VARCHAR" property="cljg" />
+		<result column="DJR" jdbcType="DECIMAL" property="djr" />
+		<result column="DJRQ" jdbcType="TIMESTAMP" property="djrq" />
+		<result column="FLTK" jdbcType="VARCHAR" property="fltk" />
+		<result column="BZ" jdbcType="VARCHAR" property="bz" />
+	</resultMap>
+	<resultMap id="outMapJl" type="data.exchange.center.service.guangan.domain.zxaj.Jl">
+		<result column="AJBS" jdbcType="DECIMAL" property="ajbs" />
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="REG_TIME" jdbcType="TIMESTAMP" property="regTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="DEPT_CODE" jdbcType="VARCHAR" property="deptCode" />
+		<result column="APP_CODE" jdbcType="VARCHAR" property="appCode" />
+		<result column="XH" jdbcType="DECIMAL" property="xh" />
+		<result column="BJLR" jdbcType="VARCHAR" property="bjlr" />
+		<result column="JLDD" jdbcType="VARCHAR" property="jldd" />
+		<result column="JLYY" jdbcType="DECIMAL" property="jlyy" />
+		<result column="KSRQ" jdbcType="TIMESTAMP" property="ksrq" />
+		<result column="JLDQR" jdbcType="TIMESTAMP" property="jldqr" />
+		<result column="JCRQ" jdbcType="TIMESTAMP" property="jcrq" />
+		<result column="JCYY" jdbcType="VARCHAR" property="jcyy" />
+		<result column="FYNR" jdbcType="VARCHAR" property="fynr" />
+		<result column="FYFY" jdbcType="DECIMAL" property="fyfy" />
+		<result column="FYJG" jdbcType="DECIMAL" property="fyjg" />
+		<result column="DFRQ" jdbcType="TIMESTAMP" property="dfrq" />
+		<result column="CLJG" jdbcType="VARCHAR" property="cljg" />
+		<result column="DJR" jdbcType="DECIMAL" property="djr" />
+		<result column="DJRQ" jdbcType="TIMESTAMP" property="djrq" />
+		<result column="JLTS" jdbcType="DECIMAL" property="jlts" />
+		<result column="FDFLWS" jdbcType="VARCHAR" property="fdflws" />
+		<result column="ZXR" jdbcType="VARCHAR" property="zxr" />
+		<result column="GAJ" jdbcType="VARCHAR" property="gaj" />
+		<result column="BZ" jdbcType="VARCHAR" property="bz" />
+	</resultMap>
+	
+	
+    <select id="getAjbsInfo" parameterType="java.util.Map" statementType="CALLABLE">
+		<![CDATA[
+		{CALL  DCADM.SERVICE_GUANGAN(
+			#{ajbs,      mode=IN, jdbcType=VARCHAR},
+			#{v_cursor1, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapAjxx},
+			#{v_cursor2, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapSksxx},
+			#{v_cursor3, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapCyrxx},
+			#{v_cursor4, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapZxcsxx},
+			#{v_cursor5, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapZxak},
+			#{v_cursor6, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapYsqk},
+			#{v_cursor9, mode=OUT,jdbcType=INTEGER, javaType=int,      resultMap=outMapInteger},
+			#{v_cursor10,mode=OUT,jdbcType=VARCHAR, javaType=String,   resultMap=outMapString}
+		)}
+		]]>
+	</select>
+	
+	<select id="getUpdateAjbs" parameterType="java.util.Map" resultMap="outMapAjbsInfo">
+		<![CDATA[
+		SELECT AJBS, AH 
+		  FROM SGY.BUF_EAJ 
+		 WHERE 1 = 1
+		   AND LASTUPDATE >= TO_DATE(#{startDate},'YYYYMMDD')
+		   AND LASTUPDATE <  TO_DATE(#{endDate},  'YYYYMMDD')
+		   AND DEPTCODE   LIKE '5126%'
+		]]>
+	</select>
+	
+	<select id="getSpzt" parameterType="java.util.Map" statementType="CALLABLE">
+		<![CDATA[
+		{CALL  DCADM.SERVICE_GUANGAN_SPZT(
+			#{v_cursor1, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapFybm},
+			#{v_cursor2, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapZzjg}
+		)}
+		]]>
+	</select>
+	<select id="getYsajxx" parameterType="java.util.Map" statementType="CALLABLE">
+		<![CDATA[
+		{CALL  DCADM.SERVICE_GUANGAN_YSAJ(
+			#{ah,      mode=IN, jdbcType=VARCHAR},
+			#{v_cursor1, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapAjxx},
+			#{v_cursor2, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapSksxx},
+			#{v_cursor3, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapCyrxx},
+			#{v_cursor4, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapZxcsxx},
+			#{v_cursor5, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapZxak},
+			#{v_cursor6, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapYsqk},
+			#{v_cursor7, mode=OUT,jdbcType=INTEGER, javaType=int,      resultMap=outMapInteger},
+			#{v_cursor8, mode=OUT,jdbcType=VARCHAR, javaType=String,   resultMap=outMapString}
+		)}
+		]]>
+	</select>
+	<select id="getAjscList" parameterType="string" resultMap="outMapString">
+		SELECT DISTINCT AJBS 
+		  FROM SGY.AJSCXX_AJSCXX 
+		 WHERE DEPT_CODE 
+		  LIKE '5126%' 
+		   AND TO_CHAR(UPDATE_TIME,'YYYYMMDD')=#{date}
+	</select>
+	
+	<select id="getJzxx" parameterType="java.util.Map" statementType="CALLABLE">
+		<![CDATA[
+		{CALL  DCADM.SERVICE_GUANGAN_JZ(
+			#{ajbs,      mode=IN, jdbcType=VARCHAR},
+			#{v_cursor1, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapDaxx},
+			#{v_cursor2, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapDaxxGc},
+			#{v_cursor3, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapMlxx},
+			#{v_cursor4, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapMlxxGc},
+			#{v_cursor5, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapStwj},
+			#{v_cursor6, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapStwjGc}
+		)}
+		]]>
+	</select>
+	
+	<select id="getZx" parameterType="java.util.Map" statementType="CALLABLE">
+		<![CDATA[
+		{CALL  DCADM.SERVICE_GUANGAN_ZX(
+			#{ajbs,      mode=IN, jdbcType=VARCHAR},
+			#{v_cursor1, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapJc},
+			#{v_cursor2, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapSc},
+			#{v_cursor3, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapFk},
+			#{v_cursor4, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapJl}
+		)}
+		]]>
+	</select>
+</mapper>

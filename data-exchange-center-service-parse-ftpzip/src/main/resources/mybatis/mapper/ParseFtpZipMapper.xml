@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.parse.ftpzip.mapper.ParseFtpZipMapper">
+	<resultMap id="fileInfoResultMap" type="data.exchange.center.service.parse.ftpzip.domain.FileInfo">
+		<result column="task_id"              property="taskId"             javaType="string"                jdbcType="VARCHAR" />
+		<result column="file_name"            property="fileName"           javaType="string"                jdbcType="VARCHAR" />
+		<result column="file_size"            property="fileSize"           javaType="string"                jdbcType="INTEGER" />
+		<result column="reg_time"             property="date"               javaType="java.util.Date"        jdbcType="TIMESTAMP" />
+		<result column="file_type"            property="type"               javaType="string"                jdbcType="VARCHAR" />
+		<result column="file_path"            property="filePath"           javaType="string"                jdbcType="VARCHAR" />
+		<result column="insert_time"          property="insertTime"         javaType="java.util.Date"        jdbcType="TIMESTAMP" />
+  	</resultMap>
+	<resultMap id="ftpInfoResultMap" type="data.exchange.center.service.parse.ftpzip.domain.FtpInfo">
+		<result column="C_FTPNAME"     jdbcType="VARCHAR"       property="cFtpname" />
+		<result column="C_FTPALIAS"    jdbcType="VARCHAR"       property="cFtpalias" />
+		<result column="C_USERNAME"    jdbcType="VARCHAR"       property="cUsername" />
+		<result column="C_PASSWORD"    jdbcType="VARCHAR"       property="cPassword" />
+		<result column="C_HOSTNAME"    jdbcType="VARCHAR"       property="cHostname" />
+		<result column="C_IP"          jdbcType="VARCHAR"       property="cIp" />
+		<result column="N_PORT"        jdbcType="VARCHAR"       property="nPort" />
+		<result column="C_PATH"        jdbcType="VARCHAR"       property="cPath" />
+		<result column="C_ENCODING"    jdbcType="VARCHAR"       property="cEncoding" />
+		<result column="N_PASSIVE"     jdbcType="VARCHAR"       property="nPassive" />
+		<result column="N_POOLSIZE"    jdbcType="VARCHAR"       property="nPoolsize" />
+		<result column="N_TRANSTYPE"   jdbcType="VARCHAR"       property="nTranstype" />
+		<result column="N_TIMEOUT"     jdbcType="VARCHAR"       property="nTimeout" />
+		<result column="N_EXTERNAL"    jdbcType="VARCHAR"       property="nExternal" />
+		<result column="C_DESC"        jdbcType="VARCHAR"       property="cDesc" />
+	</resultMap>
+	<resultMap id="ftpPathInfoResultMap" type="data.exchange.center.service.parse.ftpzip.domain.FtpPathInfo">
+		<result column="jzbh"          jdbcType="VARCHAR"              property="jzbh" />
+		<result column="mlbh"          jdbcType="VARCHAR"              property="mlbh" />
+		<result column="wjxh"          jdbcType="VARCHAR"              property="wjxh" />
+		<result column="wjlj"          jdbcType="VARCHAR"              property="wjlj" />
+		<result column="wjmc"          jdbcType="VARCHAR"              property="wjmc" />
+		<result column="wjxsmc"        jdbcType="VARCHAR"              property="wjxsmc" />
+		<result column="wjhz"          jdbcType="VARCHAR"              property="wjhz" />
+		<result column="wjsxh"         jdbcType="VARCHAR"              property="wjsxh" />
+		<result column="wjdx"          jdbcType="VARCHAR"              property="wjdx" />
+		<result column="wjlx"          jdbcType="VARCHAR"              property="wjlx" />
+		<result column="wjtm"          jdbcType="VARCHAR"              property="wjtm" />
+		<result column="wjym"          jdbcType="VARCHAR"              property="wjym" />
+		<result column="jhbh"          jdbcType="VARCHAR"              property="jhbh" />
+		<result column="reg_time"      jdbcType="TIMESTAMP"            property="reg_time" />
+	</resultMap>
+	<resultMap id="outMapBsxx" type="data.exchange.center.service.parse.ftpzip.domain.Bsxx">
+		<result column="CASENO"        jdbcType="VARCHAR"              property="CASENO" />
+		<result column="FSDW"          jdbcType="VARCHAR"              property="FSDW" />
+		<result column="FSDWMC"        jdbcType="VARCHAR"              property="FSDWMC" />
+		<result column="JSDW"          jdbcType="VARCHAR"              property="JSDW" />
+		<result column="JSDWMC"        jdbcType="VARCHAR"              property="JSDWMC" />
+		<result column="LEIX"          jdbcType="VARCHAR"              property="LEIX" />
+	</resultMap>
+	<resultMap id="outMapGsxx" type="data.exchange.center.service.parse.ftpzip.domain.Gsxx">
+		<result column="GSZZM"         jdbcType="VARCHAR"              property="GSZZM" />
+		<result column="DSRC"          jdbcType="VARCHAR"              property="DSRC" />
+		<result column="GSSBH"         jdbcType="VARCHAR"              property="GSSBH" />
+		<result column="GSJG"          jdbcType="VARCHAR"              property="GSJG" />
+	</resultMap>
+	<resultMap id="outMapDsrxx" type="data.exchange.center.service.parse.ftpzip.domain.Dsrxx">
+		<result column="XM"            jdbcType="VARCHAR"              property="XM" />
+		<result column="XB"            jdbcType="VARCHAR"              property="XB" />
+		<result column="DZ"            jdbcType="VARCHAR"              property="DZ" />
+		<result column="MZ"            jdbcType="VARCHAR"              property="MZ" />
+		<result column="SF"            jdbcType="VARCHAR"              property="SF" />
+		<result column="ZY"            jdbcType="VARCHAR"              property="ZY" />
+		<result column="GJ"            jdbcType="VARCHAR"              property="GJ" />
+		<result column="SFZHM"         jdbcType="VARCHAR"              property="SFZHM" />
+		<result column="FZNL"          jdbcType="VARCHAR"              property="FZNL" />
+		<result column="ZKZM"          jdbcType="VARCHAR"              property="ZKZM" />
+	</resultMap>
+	<resultMap id="outMapJzxx" type="data.exchange.center.service.parse.ftpzip.domain.Jzxx">
+		<result column="LX"            jdbcType="VARCHAR"              property="LX" />
+		<result column="WSXH"          jdbcType="VARCHAR"              property="WSXH" />
+		<result column="CLBT"          jdbcType="VARCHAR"              property="CLBT" />
+		<result column="PATH"          jdbcType="VARCHAR"              property="PATH" />
+		<result column="WSMC"          jdbcType="VARCHAR"              property="WSMC" />
+		<result column="WJGS"          jdbcType="VARCHAR"              property="WJGS" />
+	</resultMap>
+	<resultMap id="outMapCallBackInfo" type="data.exchange.center.service.parse.ftpzip.domain.CallBackInfo">
+		<result column="xtptbh"        jdbcType="VARCHAR"              property="xtptbh" />
+		<result column="lcjdbh"        jdbcType="VARCHAR"              property="lcjdbh" />
+		<result column="lcslbh"        jdbcType="VARCHAR"              property="lcslbh" />
+		<result column="rwh"           jdbcType="VARCHAR"              property="rwh" />
+		<result column="jsdwbm"        jdbcType="VARCHAR"              property="jsdwbm" />
+		<result column="jsdwlx"        jdbcType="VARCHAR"              property="jsdwlx" />
+		<result column="jsdwmc"        jdbcType="VARCHAR"              property="jsdwmc" />
+		<result column="fsdwlx"        jdbcType="VARCHAR"              property="fsdwlx" />
+		<result column="fsdwbm"        jdbcType="VARCHAR"              property="fsdwbm" />
+		<result column="fsdwmc"        jdbcType="VARCHAR"              property="fsdwmc" />
+		<result column="jgzt"          jdbcType="VARCHAR"              property="jgzt" />
+		<result column="ztms"          jdbcType="VARCHAR"              property="ztms" />
+		<result column="fhsj"          jdbcType="VARCHAR"              property="fhsj" />
+	</resultMap>
+	
+	<select id="getFileInfo" parameterType="String" resultMap="fileInfoResultMap">
+		SELECT * 
+		  FROM XTBAPT.JHK_FTPFILE_INFO
+		 where task_id = #{taskId}
+	</select>
+	<select id="getFtpInfoByFtpAlias" parameterType="String" resultMap="ftpInfoResultMap">
+		SELECT * 
+		  FROM DCADM.DC_REG_FTP
+		 WHERE C_FTPALIAS = #{ftpAlias}
+	</select>
+	<select id="getFtpPathInfo" parameterType="String" resultMap="ftpPathInfoResultMap">
+		select * from XTBAPT.INFY_JZJBXX_JZMLJ_JZMLWJ_JZWJ
+		 where jhbh = #{taskId}
+	</select>
+	<insert id="saveXml" parameterType="String">
+		${insertSql}
+	</insert>
+	<select id="transferTcyToFy" parameterType="java.util.Map" statementType="CALLABLE" >
+		<![CDATA[
+		{CALL  XTBAPT.XTPT_JCYTOFY(
+			#{taskId,    mode=IN, jdbcType=VARCHAR},
+			#{v_cursor1, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapBsxx},
+			#{v_cursor2, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapGsxx},
+			#{v_cursor3, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapDsrxx},
+			#{v_cursor4, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapJzxx}
+		)}
+		]]>
+	</select>
+	<insert id="callBack" parameterType="java.util.Map" >
+		insert into XTBAPT.fytojcy_msg(xtptbh, lcjdbh, lcslbh, rwh, jsdwbm, jsdwlx, jsdwmc,
+			        fsdwlx, fsdwbm, fsdwmc, jgzt, ztms, fhsj, ywlcbm, jdbm)
+			  values(#{xtptbh}, #{lcjdbh}, #{lcslbh}, #{rwh}, #{jsdwbm}, #{jsdwlx}, #{jsdwmc},
+			        #{fsdwlx},  #{fsdwbm}, #{fsdwmc}, #{jgzt},#{ztms},   #{fhsj},
+			        #{ywlcbm},  #{jdbm})
+	</insert>
+	
+	<select id="getCallBackInfo" parameterType="String" resultMap="outMapCallBackInfo">
+		SELECT * 
+		  FROM XTBAPT.FYTOJCY_MSG
+		 WHERE rwh = #{rwh}
+	</select>
+	
+	<insert id="saveErrMsg" parameterType="String">
+		INSERT INTO XTBAPT.FYTOJCY_MSG(XTPTBH, LCJDBH, LCSLBH, RWH, JSDWBM, JSDWLX, JSDWMC,
+		                       FSDWLX, FSDWBM, FSDWMC, JGZT, ZTMS, YWLCBM, JDBM, FHSJ)
+        SELECT T2.PTAJBH, '0901A', SYS_GUID(), T2.JHBH, T3.DWBM, '1',
+               T3.DWMC, '3', T4.DWBM, T4.DWMC, '502', T1.MSG,
+               '0901',T2.JHBH, TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS')
+          FROM XTBAPT.JHK_LOG T1
+          LEFT JOIN 
+               XTBAPT.INFY_HEAD T2 
+            ON T2.JHBH = T1.TASK_ID
+          LEFT JOIN 
+               XTBAPT.INFY_HEAD_JCY T3 
+            ON T2.JHBH = T3.JHBH
+          LEFT JOIN 
+               XTBAPT.INFY_HEAD_FY T4 
+            ON T2.JHBH = T4.JHBH
+         WHERE 1 = 1
+           AND T1.FLAG = 'error'
+           AND T1.TASK_ID = #{taskId}
+	</insert>
+	
+	<delete id="deleteData" parameterType="String">
+		BEGIN
+			DELETE FROM XTBAPT.INFY_HEAD                     WHERE JHBH    = #{taskId};
+			DELETE FROM XTBAPT.INFY_HEAD_FY                  WHERE JHBH    = #{taskId};
+			DELETE FROM XTBAPT.INFY_HEAD_GA                  WHERE JHBH    = #{taskId};
+			DELETE FROM XTBAPT.INFY_HEAD_JCY                 WHERE JHBH    = #{taskId};
+			DELETE FROM XTBAPT.INFY_HEAD_ZF                  WHERE JHBH    = #{taskId};
+			DELETE FROM XTBAPT.INFY_JZJBXX                   WHERE JHBH    = #{taskId};
+			DELETE FROM XTBAPT.INFY_JZJBXX_JZMLJ             WHERE JHBH    = #{taskId};
+			DELETE FROM XTBAPT.INFY_JZJBXX_JZMLJ_JZMLWJ      WHERE JHBH    = #{taskId};
+			DELETE FROM XTBAPT.INFY_JZJBXX_JZMLJ_JZMLWJ_JZWJ WHERE JHBH    = #{taskId};
+			DELETE FROM XTBAPT.INFY_WS                       WHERE JHBH    = #{taskId};
+			DELETE FROM XTBAPT.INFY_XYR_JBXX                 WHERE JHBH    = #{taskId};
+			DELETE FROM XTBAPT.INFY_XYR_QZCS                 WHERE JHBH    = #{taskId};
+			DELETE FROM XTBAPT.INFY_XYR_SAXX                 WHERE JHBH    = #{taskId};
+			DELETE FROM XTBAPT.JHK_LOG                       WHERE TASK_ID = #{taskId};
+			DELETE FROM XTBAPT.FYTOJCY_MSG                   WHERE RWH     = #{taskId};
+		END;
+	</delete>
+</mapper>

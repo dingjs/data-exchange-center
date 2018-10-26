@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.filewatcher.mapper.FileWatcherMapper">
+	<resultMap id="ftpInfoResultMap" type="data.exchange.center.service.filewatcher.domain.FtpInfo">
+		<result column="C_FTPNAME"     jdbcType="VARCHAR"       property="cFtpname" />
+		<result column="C_FTPALIAS"    jdbcType="VARCHAR"       property="cFtpalias" />
+		<result column="C_USERNAME"    jdbcType="VARCHAR"       property="cUsername" />
+		<result column="C_PASSWORD"    jdbcType="VARCHAR"       property="cPassword" />
+		<result column="C_HOSTNAME"    jdbcType="VARCHAR"       property="cHostname" />
+		<result column="C_IP"          jdbcType="VARCHAR"       property="cIp" />
+		<result column="N_PORT"        jdbcType="VARCHAR"       property="nPort" />
+		<result column="C_PATH"        jdbcType="VARCHAR"       property="cPath" />
+		<result column="C_ENCODING"    jdbcType="VARCHAR"       property="cEncoding" />
+		<result column="N_PASSIVE"     jdbcType="VARCHAR"       property="nPassive" />
+		<result column="N_POOLSIZE"    jdbcType="VARCHAR"       property="nPoolsize" />
+		<result column="N_TRANSTYPE"   jdbcType="VARCHAR"       property="nTranstype" />
+		<result column="N_TIMEOUT"     jdbcType="VARCHAR"       property="nTimeout" />
+		<result column="N_EXTERNAL"    jdbcType="VARCHAR"       property="nExternal" />
+		<result column="C_DESC"        jdbcType="VARCHAR"       property="cDesc" />
+	</resultMap>
+
+	<select id="getFtpInfoByFtpAlias" parameterType="String" resultMap="ftpInfoResultMap">
+		SELECT * 
+		  FROM DCADM.DC_REG_FTP
+		 WHERE C_FTPALIAS = #{ftpAlias}
+	</select>
+	
+	<insert id="saveFtpFileInfo" parameterType="data.exchange.center.service.filewatcher.domain.FileInfo">
+		INSERT INTO XTBAPT.JHK_FTPFILE_INFO(TASK_ID, FILE_NAME, FILE_SIZE, REG_TIME, FILE_TYPE, FILE_PATH, INSERT_TIME)
+		VALUES(#{taskId},#{fileName},#{fileSize},#{date},#{type},#{filePath},SYSDATE)
+	</insert>
+	
+	<select id="getXtptbh" parameterType="String" resultType="String">
+		SELECT PTAJBH XTPTBH FROM XTBAPT.INFY_HEAD 
+		 WHERE JHBH = #{taskId}
+	</select>
+	<delete id="deleteFtpFileInfo" parameterType="data.exchange.center.service.filewatcher.domain.FileInfo">
+		DELETE FROM XTBAPT.JHK_FTPFILE_INFO
+		 WHERE TASK_ID = #{taskId}
+	</delete>
+</mapper>

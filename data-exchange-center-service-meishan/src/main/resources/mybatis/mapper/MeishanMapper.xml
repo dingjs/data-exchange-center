@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.meishan.mapper.MeishanMapper">
+	<resultMap id="outMapMss" type="data.exchange.center.service.meishan.domain.MssAjbsInfo">
+		<result column="AJLX"           property="AJLX"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="SPZ"            property="SPZ"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="SFSQTJ"         property="SFSQTJ"        javaType="string"        jdbcType="VARCHAR" />
+		<result column="JAFS"           property="JAFS"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="YY"             property="YY"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="YCQJ"           property="YCQJ"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="KTSL"           property="KTSL"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="AJJZJD"         property="AJJZJD"        javaType="string"        jdbcType="VARCHAR" />
+		<result column="SYCX"           property="SYCX"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="LARQ"           property="LARQ"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="AH"             property="AH"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="LAAY"           property="LAAY"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="LARQ"           property="LARQ"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="BDJE"           property="BDJE"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="JARQ"           property="JARQ"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="CSCLSY"         property="CSCLSY"        javaType="string"        jdbcType="VARCHAR" />
+		<result column="AY"             property="AY"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="JARQ"           property="JARQ"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="JABDJE"         property="JABDJE"        javaType="string"        jdbcType="VARCHAR" />
+		<result column="FDSXTS"         property="FDSXTS"        javaType="string"        jdbcType="VARCHAR" />
+		<result column="JYZPTRQ"        property="JYZPTRQ"       javaType="string"        jdbcType="VARCHAR" />
+		<result column="TC"             property="TC"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="SJSLTS"         property="SJSLTS"        javaType="string"        jdbcType="VARCHAR" />
+		<result column="STFY"           property="STFY"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="JAAY"           property="JAAY"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="FGZL"           property="FGZL"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="GPYY"           property="GPYY"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="LADM"           property="LADM"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="JADM"           property="JADM"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="SJDM"           property="SJDM"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="FJM"            property="FJM"           javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="outMapZxaj" type="data.exchange.center.service.meishan.domain.ZxajAjbsInfo">
+		<result column="AH"             property="AH"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="LAAY"           property="LAAY"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="SQZXBDJE"       property="SQZXBDJE"      javaType="string"        jdbcType="VARCHAR" />
+		<result column="ZXYJZW"         property="ZXYJZW"        javaType="string"        jdbcType="VARCHAR" />
+		<result column="FLWSWH"         property="FLWSWH"        javaType="string"        jdbcType="VARCHAR" />
+		<result column="JARQ"           property="JARQ"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="JABDJE"         property="JABDJE"        javaType="string"        jdbcType="VARCHAR" />
+		<result column="SJDWJE"         property="SJDWJE"        javaType="string"        jdbcType="VARCHAR" />
+		<result column="AJJZJD"         property="AJJZJD"        javaType="string"        jdbcType="VARCHAR" />
+		<result column="JAFS"           property="JAFS"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="SQF"            property="SQF"           javaType="string"        jdbcType="VARCHAR" />
+		<result column="CBSPT"          property="CBSPT"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="LARQ"           property="LARQ"          javaType="string"        jdbcType="VARCHAR" />
+		
+	</resultMap>
+	<resultMap id="outMapDsr" type="data.exchange.center.service.meishan.domain.DsrInfo">
+		<result column="AJLX"           property="AJLX"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="MC"             property="MC"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="SFZHM"          property="SFZHM"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="JS"             property="JS"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="DZ"             property="DZ"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="MZ"             property="MZ"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="WHCD"           property="WHCD"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="CSRQ"           property="CSRQ"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="SF"             property="SF"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="LXDH"           property="LXDH"          javaType="string"        jdbcType="VARCHAR" />
+		<result column="HJSZD"          property="HJSZD"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="LX"             property="LX"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="LY"             property="LY"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="XB"             property="XB"            javaType="string"        jdbcType="VARCHAR" />
+		<result column="SSDW1"          property="SSDW1"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="SSDW2"          property="SSDW2"         javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="outMapWsInfo" type="data.exchange.center.service.meishan.domain.WsInfo">
+		<result column="NR"             property="NR"            javaType="Object"        jdbcType="BLOB"/>
+	</resultMap>
+	<resultMap id="outMapAjbsList" type="data.exchange.center.service.meishan.domain.AjbsInfo">
+		<result column="ajbs"           property="ajbs"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="fydm"           property="fydm"         javaType="string"        jdbcType="VARCHAR" />
+		<result column="ajlx"           property="ajlx"         javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="getMssAjbsList" parameterType="java.util.Map" resultMap="outMapAjbsList">
+		<![CDATA[
+		SELECT AJBS, FYDM, AJLX FROM
+		(
+		       SELECT AJBS, DEPTCODE FYDM, AJLX, ROWNUM RN 
+		         FROM BUF_EAJ 
+		        WHERE AJLX IN ('21', '22') 
+		          AND LASTUPDATE >= TO_DATE(#{startDate},'YYYYMMDD')
+		          AND LASTUPDATE <= TO_DATE(#{endDate},'YYYYMMDD')
+                ORDER BY LASTUPDATE
+         )T1
+         WHERE 1 = 1
+           AND RN >= ${min}
+           AND RN <= ${max}
+        ]]>
+	</select>
+	<select id="getZxajAjbsList" parameterType="java.util.Map" resultMap="outMapAjbsList">
+		<![CDATA[
+		SELECT AJBS, FYDM, AJLX FROM
+		(
+		       SELECT AJBS, DEPTCODE FYDM, AJLX, ROWNUM RN 
+		         FROM BUF_EAJ 
+		        WHERE AJLX = '51'
+		          AND LASTUPDATE >= TO_DATE(#{startDate},'YYYYMMDD')
+		          AND LASTUPDATE <= TO_DATE(#{endDate},'YYYYMMDD')
+                ORDER BY LASTUPDATE
+         )T1
+         WHERE 1 = 1
+           AND RN >= ${min}
+           AND RN <= ${max}
+        ]]>
+	</select>
+	
+    <select id="getAjbsInfo" parameterType="java.util.Map" statementType="CALLABLE">
+		<![CDATA[
+		{CALL  DCADM.SERVICE_MEISHAN(
+			#{ajbs,      mode=IN, jdbcType=VARCHAR},
+			#{v_cursor1, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapMss},
+			#{v_cursor2, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapDsr},
+			#{v_cursor3, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,resultMap=outMapZxaj}
+		)}
+		]]>
+	</select>
+	<select id="getWsInfo" parameterType="java.util.Map" resultMap="outMapWsInfo">
+		SELECT NR 
+		  FROM SGY.${ajlx}_WS
+		 WHERE AJBS = #{ajbs}
+	</select>
+	<select id="getEnAjlx" parameterType="string" resultType="string">
+		SELECT C_EPREFIX 
+		  FROM DCADM.DC_AJLXLIST 
+		 WHERE C_AJLX = #{ajlx}
+	</select>
+	<select id="getMssAjbsCount" parameterType="java.util.Map" resultType="int">
+		<![CDATA[
+		SELECT COUNT(1) 
+		  FROM BUF_EAJ 
+		 WHERE AJLX IN ('21', '22') 
+		   AND LASTUPDATE >= TO_DATE(#{startDate},'YYYYMMDD')
+		   AND LASTUPDATE <= TO_DATE(#{endDate},'YYYYMMDD')
+         ORDER BY LASTUPDATE
+        ]]>
+	</select>
+	<select id="getZxajAjbsCount" parameterType="java.util.Map" resultType="int">
+		<![CDATA[
+		SELECT COUNT(1) 
+		  FROM BUF_EAJ 
+		 WHERE AJLX = '51'
+		   AND LASTUPDATE >= TO_DATE(#{startDate},'YYYYMMDD')
+		   AND LASTUPDATE <= TO_DATE(#{endDate},'YYYYMMDD')
+         ORDER BY LASTUPDATE
+        ]]>
+	</select>
+</mapper>

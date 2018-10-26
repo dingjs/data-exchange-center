@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.sfgk.mapper.SfgkMapper">
+	<resultMap id="outMapKtgkxx" type="data.exchange.center.service.sfgk.domain.Ktgkxx">
+		<result column="ajbs"                   property="ajbs"                  javaType="string"                jdbcType="VARCHAR" />
+		<result column="ah"                     property="ah"                    javaType="string"                jdbcType="VARCHAR" />
+		<result column="ajlbdm"                 property="ajlbdm"                javaType="string"                jdbcType="VARCHAR" />
+		<result column="ajlbmc"                 property="ajlbmc"                javaType="string"                jdbcType="VARCHAR" />
+		<result column="ftmc"                   property="ftmc"                  javaType="string"                jdbcType="VARCHAR" />
+		<result column="laay"                   property="laay"                  javaType="string"                jdbcType="VARCHAR" />
+		<result column="zsfgxm"                 property="zsfgxm"                javaType="string"                jdbcType="VARCHAR" />
+		<result column="dm"                     property="dm"                    javaType="string"                jdbcType="VARCHAR" />
+		<result column="fymc"                   property="fymc"                  javaType="string"                jdbcType="VARCHAR" />
+		<result column="ggnr"                   property="ggnr"                  javaType="string"                jdbcType="VARCHAR" />
+		<result column="pqrq"                   property="pqrq"                  javaType="string"                jdbcType="VARCHAR" />
+		<result column="gggkztdm"               property="gggkztdm"              javaType="string"                jdbcType="VARCHAR" />
+		<result column="gggkztmc"               property="gggkztmc"              javaType="string"                jdbcType="VARCHAR" />
+		<result column="ssfqxktdm"              property="ssfqxktdm"             javaType="string"                jdbcType="VARCHAR" />
+		<result column="ssfqxktmc"              property="ssfqxktmc"             javaType="string"                jdbcType="VARCHAR" />
+		<result column="ygxh"                   property="ygxh"                  javaType="string"                jdbcType="VARCHAR" />
+		<result column="bgrxh"                  property="bgrxh"                 javaType="string"                jdbcType="VARCHAR" />
+		<result column="kssj"                   property="kssj"                  javaType="string"                jdbcType="VARCHAR" />
+		<result column="gglx"                   property="gglx"                  javaType="string"                jdbcType="VARCHAR" />
+		<result column="ggbt"                   property="ggbt"                  javaType="string"                jdbcType="VARCHAR" />
+
+  	</resultMap>
+	<resultMap id="outMapInteger" type="java.util.HashMap">
+		<result column="anFlag"       	        property="anFlag"  	             javaType="int"       	          jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="outMapAj" type="data.exchange.center.service.sfgk.domain.Aj">
+		<result column="ajbs"       	        property="ajbs"  	             javaType="string"       	      jdbcType="VARCHAR" />
+		<result column="ajlx"       	        property="ajlx"  	             javaType="string"       	      jdbcType="VARCHAR" />
+		<result column="fydm"       	        property="fydm"  	             javaType="string"       	      jdbcType="VARCHAR" />
+		<result column="fybm"       	        property="fybm"  	             javaType="string"       	      jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="outMapFydm" type="data.exchange.center.service.sfgk.domain.Fydm">
+		<result column="deptcode"       	    property="deptcode"  	         javaType="string"       	      jdbcType="VARCHAR" />
+		<result column="fydm"       	        property="fydm" 	             javaType="string"       	      jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="getKtgg" parameterType="java.util.Map" resultType="String">
+		<![CDATA[
+			SELECT ZIP_URL
+		  	  FROM DCADM.SFGK_KTGG
+			 WHERE 1 = 1
+		 	   AND REG_TIME >= to_date(#{GXKSSJ},'yyyy-mm-dd hh24:mi:ss')
+		  	   AND REG_TIME <= to_date(#{GXJSSJ},'yyyy-mm-dd hh24:mi:ss')
+		]]>
+	</select>
+	<select id="getYastmlMc" parameterType="java.util.Map" resultType="String">
+		SELECT MC FROM SGY.YASTML_YASTML
+		 WHERE 1 = 1
+		   AND AJBS = #{ajbs}
+		   AND XH = #{xh}
+	</select>
+	<select id="getKtgkxx" parameterType="java.util.Map" statementType="CALLABLE" >
+		<![CDATA[
+		{CALL  DCADM.DC_SPLCGK.KTGK(
+			#{ajbs, mode=IN, jdbcType=VARCHAR},
+			#{ajlx, mode=IN, jdbcType=VARCHAR},
+			#{v_cursor1, mode=OUT,jdbcType=INTEGER, javaType=int,         resultMap=outMapInteger},
+			#{v_cursor2, mode=OUT,jdbcType=CURSOR,  javaType=ResultSet,   resultMap=outMapKtgkxx}
+		)}
+		]]>
+	</select>
+	<select id="selectAj" parameterType="String" resultMap="outMapAj">
+		<![CDATA[
+		SELECT T1.AJBS, T1.AJLX, T2.DEPT_CODE, T2.DM FYBM 
+		  FROM SGY.BUF_EAJ T1,
+		       SGY.SPZT_FYBM T2
+         WHERE 1 = 1
+           AND T1.AJJZJD >= 5
+           AND T1.DEPTCODE = T2.DEPT_CODE
+           AND TO_CHAR(UPDATETIME,'yyyy-mm-dd') >= TO_CHAR(sysdate-1,'yyyy-mm-dd')
+           AND TO_CHAR(UPDATETIME,'yyyy-mm-dd') < TO_CHAR(sysdate,'yyyy-mm-dd')
+           AND AJLX IN ('11','12','13','14','21','22','23','24','31','32','33','34')
+           ]]>
+	</select>
+	<select id="selectAjgkAj" parameterType="String" resultMap="outMapAj">
+		<![CDATA[
+		SELECT T1.AJBS, T1.AJLX, T2.DEPT_CODE, T2.DM FYBM 
+		  FROM SGY.BUF_EAJ T1,
+		       SGY.SPZT_FYBM T2
+         WHERE 1 = 1
+           AND T1.DEPTCODE = T2.DEPT_CODE
+           AND TO_CHAR(UPDATETIME,'yyyy-mm-dd') >= TO_CHAR(sysdate-1,'yyyy-mm-dd')
+           AND TO_CHAR(UPDATETIME,'yyyy-mm-dd') < TO_CHAR(sysdate,'yyyy-mm-dd')
+           AND AJLX IN ('11','12','13','21','22','23','31','32','33','41','42','43')
+           AND T1.LAAY <> '2100'
+           AND T1.CBR IS NOT NULL
+           ]]>
+	</select>
+	<insert id="addSfgkFile" parameterType="java.util.Map">
+		INSERT INTO DCADM.SFGK_KTGG(ID, ZIP_URL, REG_TIME, ZIPNAME, ZIPPATH)
+		VALUES(#{uuid}, #{zipurl}, sysdate-1, #{zipname}, #{zippath})
+	</insert>
+	<select id="selectDownFilePath" parameterType="string" resultType="String">
+		SELECT ZIPPATH 
+		  FROM DCADM.SFGK_KTGG
+		 WHERE ZIPNAME = #{zipname}
+	</select>
+	<select id="getFydm" resultMap="outMapFydm">
+		SELECT DM FYDM, DEPT_CODE DEPTCODE 
+		  FROM SPZT_FYBM 
+	</select>
+	<insert id="addAjgkFile" parameterType="java.util.Map">
+		INSERT INTO DCADM.SFGK_AJXX(ID, ZIP_URL, REG_TIME, ZIPNAME, ZIPPATH)
+		VALUES(#{uuid}, #{zipurl}, sysdate-1, #{zipname}, #{zippath})
+	</insert>
+	<insert id="addWzfwlFile" parameterType="java.util.Map">
+		INSERT INTO DCADM.SFGK_WZFWL(ID, ZIP_URL, REG_TIME, ZIPNAME, ZIPPATH)
+		VALUES(#{uuid}, #{zipurl}, sysdate-1, #{zipname}, #{zippath})
+	</insert>
+	<insert id="addDxFile" parameterType="java.util.Map">
+		INSERT INTO DCADM.SFGK_DX(ID, ZIP_URL, REG_TIME, ZIPNAME, ZIPPATH)
+		VALUES(#{uuid}, #{zipurl}, sysdate-1, #{zipname}, #{zippath})
+	</insert>
+	<insert id="addAjckFile" parameterType="java.util.Map">
+		INSERT INTO DCADM.SFGK_AJCK(ID, ZIP_URL, REG_TIME, ZIPNAME, ZIPPATH)
+		VALUES(#{uuid}, #{zipurl}, sysdate-1, #{zipname}, #{zippath})
+	</insert>
+	<insert id="addAjcxFile" parameterType="java.util.Map">
+		INSERT INTO DCADM.SFGK_AJCX(ID, ZIP_URL, REG_TIME, ZIPNAME, ZIPPATH)
+		VALUES(#{uuid}, #{zipurl}, sysdate-1, #{zipname}, #{zippath})
+	</insert>
+	<insert id="addFygkfsFile" parameterType="java.util.Map">
+		INSERT INTO DCADM.SFGK_FYGKFS(ID, ZIP_URL, REG_TIME, ZIPNAME, ZIPPATH)
+		VALUES(#{uuid}, #{zipurl}, sysdate-1, #{zipname}, #{zippath})
+	</insert>
+	<insert id="addYhdlFile" parameterType="java.util.Map">
+		INSERT INTO DCADM.SFGK_YHDL(ID, ZIP_URL, REG_TIME, ZIPNAME, ZIPPATH)
+		VALUES(#{uuid}, #{zipurl}, sysdate-1, #{zipname}, #{zippath})
+	</insert>
+	
+	<select id="getAjcx" parameterType="java.util.Map" resultType="String">
+		<![CDATA[
+			SELECT ZIP_URL
+		  	  FROM DCADM.SFGK_AJCX
+			 WHERE 1 = 1
+		 	   AND REG_TIME >= to_date(#{GXKSSJ},'yyyy-mm-dd hh24:mi:ss')
+		  	   AND REG_TIME <= to_date(#{GXJSSJ},'yyyy-mm-dd hh24:mi:ss')
+		]]>
+	</select>
+	<select id="getYhdl" parameterType="java.util.Map" resultType="String">
+		<![CDATA[
+			SELECT ZIP_URL
+		  	  FROM DCADM.SFGK_YHDL
+			 WHERE 1 = 1
+		 	   AND REG_TIME >= to_date(#{GXKSSJ},'yyyy-mm-dd hh24:mi:ss')
+		  	   AND REG_TIME <= to_date(#{GXJSSJ},'yyyy-mm-dd hh24:mi:ss')
+		]]>
+	</select>
+	<select id="getWzfwl" parameterType="java.util.Map" resultType="String">
+		<![CDATA[
+			SELECT ZIP_URL
+		  	  FROM DCADM.SFGK_WZFWL
+			 WHERE 1 = 1
+		 	   AND REG_TIME >= to_date(#{GXKSSJ},'yyyy-mm-dd hh24:mi:ss')
+		  	   AND REG_TIME <= to_date(#{GXJSSJ},'yyyy-mm-dd hh24:mi:ss')
+		]]>
+	</select>
+	<select id="getAjck" parameterType="java.util.Map" resultType="String">
+		<![CDATA[
+			SELECT ZIP_URL
+		  	  FROM DCADM.SFGK_AJCK
+			 WHERE 1 = 1
+		 	   AND REG_TIME >= to_date(#{GXKSSJ},'yyyy-mm-dd hh24:mi:ss')
+		  	   AND REG_TIME <= to_date(#{GXJSSJ},'yyyy-mm-dd hh24:mi:ss')
+		]]>
+	</select>
+	<select id="getFygkfs" parameterType="java.util.Map" resultType="String">
+		<![CDATA[
+			SELECT ZIP_URL
+		  	  FROM DCADM.SFGK_FYGKFS
+			 WHERE 1 = 1
+		 	   AND REG_TIME >= to_date(#{GXKSSJ},'yyyy-mm-dd hh24:mi:ss')
+		  	   AND REG_TIME <= to_date(#{GXJSSJ},'yyyy-mm-dd hh24:mi:ss')
+		]]>
+	</select>
+	<select id="getAjxx" parameterType="java.util.Map" resultType="String">
+		<![CDATA[
+			SELECT ZIP_URL
+		  	  FROM DCADM.SFGK_AJXX
+			 WHERE 1 = 1
+		 	   AND REG_TIME >= to_date(#{GXKSSJ},'yyyy-mm-dd hh24:mi:ss')
+		  	   AND REG_TIME <= to_date(#{GXJSSJ},'yyyy-mm-dd hh24:mi:ss')
+		]]>
+	</select>
+	<select id="selectAjckDownFilePath" parameterType="string" resultType="String">
+		SELECT ZIPPATH 
+		  FROM DCADM.SFGK_AJCK
+		 WHERE ZIPNAME = #{zipname}
+	</select>
+	<select id="selectAjcxDownFilePath" parameterType="string" resultType="String">
+		SELECT ZIPPATH 
+		  FROM DCADM.SFGK_AJCX
+		 WHERE ZIPNAME = #{zipname}
+	</select>
+	<select id="selectAjxxDownFilePath" parameterType="string" resultType="String">
+		SELECT ZIPPATH 
+		  FROM DCADM.SFGK_AJXX
+		 WHERE ZIPNAME = #{zipname}
+	</select>
+	<select id="selectFygkfsDownFilePath" parameterType="string" resultType="String">
+		SELECT ZIPPATH 
+		  FROM DCADM.SFGK_FYGKFS
+		 WHERE ZIPNAME = #{zipname}
+	</select>
+	<select id="selectWzfwlDownFilePath" parameterType="string" resultType="String">
+		SELECT ZIPPATH 
+		  FROM DCADM.SFGK_WZFWL
+		 WHERE ZIPNAME = #{zipname}
+	</select>
+	<select id="selectYhdlDownFilePath" parameterType="string" resultType="String">
+		SELECT ZIPPATH 
+		  FROM DCADM.SFGK_YHDL
+		 WHERE ZIPNAME = #{zipname}
+	</select>
+	<select id="selectDxDownFilePath" parameterType="string" resultType="String">
+		SELECT ZIPPATH 
+		  FROM DCADM.SFGK_DX
+		 WHERE ZIPNAME = #{zipname}
+	</select>
+</mapper>

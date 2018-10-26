@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- DataTables -->
+   
+    <link rel="stylesheet" th:href="@{/plugins/datatables/dataTables.bootstrap.css}"/>
+	<link rel="stylesheet" th:href="@{/plugins/zTree_v3-master/css/demo.css}" type="text/css}"/>
+	<link rel="stylesheet" th:href="@{/plugins/zTree_v3-master/css/zTreeStyle/zTreeStyle.css}" type="text/css"/>
+    	<style type="text/css">
+.ztree li span.button.add {margin-left:2px; margin-right: -1px; background-position:-144px 0; vertical-align:top; *vertical-align:middle}
+	</style>
+    <title>高院服务中心服务元数据管理</title>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini ">
+    <!-- Content Wrapper. Contains page content -->
+	<section class="content-header">
+	    <h1>
+	        <span>元数据管理</span>
+	    </h1>
+	</section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="box box-primary" style="height:530px;overflow-y:scroll">
+                        <div class="box-body" >
+					             <div class="zTreeDemoBackground left" >
+									            <ul class="list">
+									                <li class="title">&nbsp;&nbsp;搜索：<input id="citySel" type="text" value="" onkeyup="AutoMatch(this)"
+									                    style="width: 120px;" />
+									                </li>
+									            </ul>
+									 <div id="menuContent" class="menuContent" style="position: absolute;">
+									        <ul id="baseTree" class="ztree" style="margin-top: 0; width: 110px;">
+									        </ul>
+									</div>
+								</div>
+							
+                        </div>
+                    </div>
+                 </div>
+                <div class="col-md-8 " style="float:left;">
+                    <div class="box box-primary">
+                        <div class="box-body">
+                            <table id="dataTable" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>				
+									<th>表id</th>
+									<th>编号</th>
+									<th>英文名</th>
+									<th>中文名</th>
+									<th>类型</th>
+									<th>长度</th>
+									<th>精度</th>
+									<th>描述</th>
+									<th>代码</th>
+									<th>空</th>
+									<th>主键</th>
+									<th>用户</th>
+									<td>创建时间</td>
+									<td>更新时间</td>
+									
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="item:${list}">
+                                    <td th:text="${item.c_tableid}"></td>
+                                    <td th:text="${item.n_sn}"></td>
+                                    <td th:text="${item.c_ecolname}"></td>
+									<td th:text="${item.c_ccolname}"></td>
+									<td th:text="${item.c_datatype}"></td>
+									<td th:text="${item.n_datalen}"></td>
+									<td th:text="${item.n_precision}"></td>
+									<td th:text="${item.c_desc}"></td>
+									<td th:text="${item.c_codeid}"></td>
+									<td th:text="${item.c_notnull}"></td>
+									<td th:text="${item.c_pucol}"></td>
+									<td th:text="${item.c_userid}"></td>
+									<td th:text="${item.d_create}"></td>
+									<td th:text="${item.d_update}"></td>
+                                </tr>
+                               
+                                </tbody>
+                           
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </section>
+
+<!-- page script -->
+	<script type="text/javascript" th:src="@{/plugins/zTree_v3-master/js/jquery.ztree.core.js}"></script>
+	<script type="text/javascript" th:src="@{/plugins/zTree_v3-master/js/jquery.ztree.excheck.js}"></script>
+	<script type="text/javascript" th:src="@{/plugins/zTree_v3-master/js/jquery.ztree.exedit.js}"></script>
+	<script type="text/javascript" th:src="@{/thymeleaf/metadata/metadata.js}"></script>
+<SCRIPT>
+/*<![CDATA[*/	
+	
+		 /*]]>*/
+	</SCRIPT>
+
+<script>
+/*<![CDATA[*/	
+
+	
+
+    $(function () {
+        $('#dataTable').DataTable({
+            "paging": true,
+            //"lengthChange": false,
+            "searching": false,
+            "scrollY": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+			"scrollX": true,
+			'language': {    
+	            'emptyTable': '没有数据',    
+	            'loadingRecords': '加载中...',    
+	            'processing': '查询中...',    
+	            'search': '搜索:',    
+	            'lengthMenu': '每页 _MENU_ 条记录',    
+	            'zeroRecords': '没有数据',    
+	            'paginate': {      
+	                    'next':       '下一页',    
+	                    'previous':   '上一页'    
+	                    },    
+	            'info': '第 _PAGE_ 页 / 共 _PAGES_ 页',    
+	            'infoEmpty': '没有数据',    
+	            'infoFiltered': '(从 _MAX_ 条记录中筛选)'    
+	        }  
+        });
+    });
+	 /*]]>*/
+</script>
+</body>
+</html>

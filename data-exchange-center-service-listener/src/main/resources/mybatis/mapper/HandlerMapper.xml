@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.exchange.center.service.listener.mapper.HandlerMapper">
+	<resultMap id="outMapMsg" type="data.exchange.center.service.listener.domain.Msg" >
+		<result column="ajbs"        property="ajbs"    javaType="string"        jdbcType="VARCHAR" />
+		<result column="fydm"        property="fydm"    javaType="string"        jdbcType="VARCHAR" />
+		<result column="ajlx"        property="ajlx"    javaType="string"        jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="getAjbs_tfp" resultMap="outMapMsg">
+		SELECT DISTINCT C_AJBS ajbs, C_AJLXCODE ajlx, C_DEPTCODE fydm 
+		  FROM DCADM.DC_FJGH_EXTOPER
+	</select>
+</mapper>

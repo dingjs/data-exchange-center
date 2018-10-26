@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CASE:schema xmlns:CASE="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://dataexchange.court.gov.cn/2009/data" targetNamespace="http://dataexchange.court.gov.cn/2009/data" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<CASE:element name="短信通知" type="短信"/>
+	<CASE:complexType name="短信通知记录">
+		<CASE:sequence>
+			<CASE:element name="R" type="短信通知记录1" minOccurs="0" maxOccurs="32768"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="短信通知记录1">
+		<CASE:sequence>
+			<CASE:element name="编号" type="C32"/>
+			<CASE:element name="案件编号" type="C32" minOccurs="0"/>
+			<CASE:element name="案件标识" type="C50" minOccurs="0"/>
+			<CASE:element name="接收人" type="C300" minOccurs="0"/>
+			<CASE:element name="接收人手机号" type="C300" minOccurs="0"/>
+			<CASE:element name="接收人类型代码" type="N" minOccurs="0"/>
+			<CASE:element name="接收人类型名称" type="C300" minOccurs="0"/>
+			<CASE:element name="法院编号" type="C50"/>
+			<CASE:element name="短信内容" type="C3000" minOccurs="0"/>
+			<CASE:element name="发送时间" type="DT" minOccurs="1"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:complexType name="短信">
+		<CASE:sequence>
+			<CASE:element name="短信通知记录" type="短信通知记录" minOccurs="0"/>
+		</CASE:sequence>
+	</CASE:complexType>
+	<CASE:simpleType name="C32">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="32"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="C50">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="50"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="C300">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="300"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="N">
+		<CASE:restriction base="xsd:int"/>
+	</CASE:simpleType>
+	<CASE:simpleType name="C3000">
+		<CASE:restriction base="xsd:string">
+			<CASE:maxLength value="3000"/>
+		</CASE:restriction>
+	</CASE:simpleType>
+	<CASE:simpleType name="DT">
+		<CASE:restriction base="xsd:dateTime"/>
+	</CASE:simpleType>
+</CASE:schema>
